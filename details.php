@@ -41,9 +41,9 @@ if (!empty($_GET['slug'])) {
     echo '<br>';
     echo '<p class="detailcss">' . $movie['cast'] . '<p>';
     echo '<br>';
-    echo $movie['rating'];
-    echo '<br>';
-    echo $movie['popularity'];
+    // echo $movie['rating'];
+    // echo '<br>';
+    // echo $movie['popularity'];
     print_r($movie['id']);
   } else {
     $error['id'] = "N'est pas dans la bdd";
@@ -53,16 +53,15 @@ if (!empty($_GET['slug'])) {
   header('Location: index.php');
 }
 
-
-
-
-
-
-
-
 ?>
-
+  <div class="evaluation">
+    <h4>Moyenne des évaluations</h4>
+    <h2><?php   echo $movie['popularity']; ?> <small class="red">Popularité</small></h2>
+    <h2><?php   echo $movie['rating']; ?> <small class="red">/ 100</small></h2>
+  </div>
 </div>
+
+
 
 
 
