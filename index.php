@@ -28,7 +28,7 @@ include 'includes/header.php';
   <div class="row">
     <!-- Premier button catégories -->
     <div class="btn-group">
-      <button class="btn btn-warning btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégorie<span class="caret"></span></button>
+      <button class="btn btn-warning btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtres de recherche<span class="caret"></span></button>
       <ul class="dropdown-menu">
         <li><input type="checkbox" name="categorie1">Fantastique</li>
         <li>TEST</li>
@@ -39,6 +39,7 @@ include 'includes/header.php';
   <!-- Deuxieme button années -->
 
 </div>
+<hr>
 
 <!-- Listing des affiches de films -->
 <br>
@@ -63,6 +64,7 @@ include 'includes/header.php';
 <?php } ?>
   </div>
 </div>
+<hr>
 
 <!-- Button + de films -->
 <br>
