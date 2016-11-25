@@ -29,10 +29,40 @@ include 'includes/header.php';
   <div class="row">
     <div class="container">
       <button id="showFiltres" type="button" class="btn btn-warning btn-lg">Filtres de recherche</button>
-      <form class="filtresRecherche hidden" action="" method="GET">
-        <input type="text" name="search" placeholder="Recherche...">
+      <form class="filtresRecherche container hidden" action="" method="GET">
 
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Auteur, Titre...">
+        </div>
 
+        <div class="checkbox">
+          <input type="checkbox" name="categorie" value="drama">Drama<br>
+          <input type="checkbox" name="categorie" value="thriller">Thriller<br>
+          <input type="checkbox" name="categorie" value="action">Action<br>
+          <input type="checkbox" name="categorie" value="adventure">Adventure<br>
+          <input type="checkbox" name="categorie" value="comedy">Comedy<br>
+          <input type="checkbox" name="categorie" value="short">Short<br>
+          <input type="checkbox" name="categorie" value="romance">Romance<br>
+          <input type="checkbox" name="categorie" value="sci-fi">Sci-Fi<br>
+          <input type="checkbox" name="categorie" value="mystery">Mystery<br>
+          <input type="checkbox" name="categorie" value="war">War<br>
+          <input type="checkbox" name="categorie" value="western">Western<br>
+          <input type="checkbox" name="categorie" value="horror">Horror<br>
+          <input type="checkbox" name="categorie" value="animation">Animation<br>
+        </div>
+
+        <select class="form-control">
+          <option>Années</option>
+          <option>1900-1950</option>
+          <option>1960</option>
+          <option>1970</option>
+          <option>1980</option>
+          <option>1990</option>
+          <option>2000</option>
+          <option>2010</option>
+        </select>
+
+        <br>
         <input type="submit" name="submit" value="Chercher un film">
       </form>
     </div>
