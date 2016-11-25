@@ -4,7 +4,6 @@ include 'includes/functions.php';
 ?>
 
 
-<div class="affichage">
 
 <?php
 $error = array();
@@ -21,8 +20,9 @@ if (!empty($_GET['slug'])) {
   $movie = $query->fetch();
 
   include 'includes/header.php';
-
-
+  ?>
+  <div class="affichage">
+<?php
 
   if (!empty($movie['slug'])) {
     echo '<h1>' . $movie['title'] . '</H1>';
