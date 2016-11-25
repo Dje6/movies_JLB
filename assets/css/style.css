@@ -46,6 +46,15 @@ body {
   margin-top: 1em;
   font-size: 20px;
 }
+
+.thumbnail{
+  text-align: center;
+  margin-top: 5em;
+  margin-left: 15em;
+  margin-right: 15em;
+  margin-bottom: 5em;
+}
+
 img{
   margin: 1em;
   padding: 1em;
