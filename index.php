@@ -7,14 +7,7 @@ include 'includes/functions.php';
  $query->execute();
  $movies = $query->fetchAll();
 
-foreach ($movies as $movie) {
 
-  if (!empty($movie['id'])) {
-    echo '<a href="details.php?slug='.$movie['slug'].'"><img src="posters/'.$movie['id'].'.jpg"></a>';
-  } else {
-    echo '<a href="details.php?slug='.$movie['slug'].'"><img src="http://placehold.it/248x330"></a>';
-  }
-}
 
 
 
@@ -54,7 +47,13 @@ include 'includes/header.php';
     <?php
       foreach ($movies as $movie) { ?>
         <div class="col-xs-6 col-md-4">
-          <?php echo '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="posters/'.$movie['id'].'.jpg"></a>'; ?>
+          <?php $size = getimagesize("posters/$movie[id].jpg");
+          if($size == true) {
+            echo  '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="posters/'.$movie['id'].'.jpg"></a>';
+          } else {
+            echo '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="http://placehold.it/220x300"></a>';
+            // print_r ($size);
+          } ?>
         </div>
 <?php } ?>
   </div>
