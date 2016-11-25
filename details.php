@@ -59,6 +59,13 @@ if (!empty($_GET['slug'])) {
     <h2><?php   echo $movie['popularity']; ?> <small class="red">Popularité</small></h2>
     <h2><?php   echo $movie['rating']; ?> <small class="red">/ 100</small></h2>
   </div>
+  <div class="social">
+    <h4>réseaux sociaux</h4>
+    <img src="assets/img/face.jpg" alt="facebook">
+    <img src="assets/img/face.jpg" alt="twitter">
+    <img src="assets/img/face.jpg" alt="linkedin">
+    <img src="assets/img/face.jpg" alt="google">
+  </div>
 </div>
 
 
