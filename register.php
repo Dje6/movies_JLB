@@ -102,28 +102,31 @@ $error = array();
 
 <form id="form_inscription" action="" method="POST">
   <br>
-  <label for="pseudo">Pseudo</label>
-  <span id="error_pseudo"></span>
-  <input type="text" id="pseudo_ins" name="pseudo" value="">
-  <br><br>
+  <fieldset>
+    <legend>INSCRIPTION</legend>
+        <label for="pseudo">Pseudo</label>
+        <span id="error_pseudo"></span>
+        <input type="text" id="pseudo_ins" name="pseudo" value="">
+        <br><br>
 
-  <label for="email">Email</label>
-  <span id="error_email"></span>
-  <input type="text" id="email_ins" name="email" value="">
-  <br><br>
+        <label for="email">Email</label>
+        <span id="error_email"></span>
+        <input type="text" id="email_ins" name="email" value="">
+        <br><br>
 
-  <label for="password">Password</label>
-  <span id="error_password"></span>
-  <input type="password" id="password_ins" name="password"  value="">
-  <br>
+        <label for="password">Password</label>
+        <span id="error_password"></span>
+        <input type="password" id="password_ins" name="password"  value="">
+        <br>
 
-  <label for="reapeatPassword">ReapeatPassword</label>
-  <span></span>
-  <input type="password" name="reapeatPassword"  value="">
-  <br>
-  <br>
-
-  <input class="bouton" type="submit" name="submit" value="Je m'inscris">
+        <label for="reapeatPassword">VerifPassword</label>
+        <span></span>
+        <input type="password" name="reapeatPassword"  value="">
+        <br>
+        <br>
+  </fieldset>
+  <input class="boutonRegister" type="submit" name="submit" value="Je m'inscris">
+  <input class="boutonReset" type="reset">
 </form>
 
 
