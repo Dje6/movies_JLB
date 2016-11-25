@@ -31,7 +31,11 @@ if (!empty($_GET['slug'])) {
     echo '<br>';
     // echo $movie['year'];
     // echo '<br>';
-    echo '<img src="posters/'.$movie['id'].'.jpg">';
+    if(file_exists("posters/". $movie['id']. ".jpg")) {
+      echo '<img src="posters/'.$movie['id'].'.jpg">';
+    }else {
+      echo '<img class="displayAffiches" src="http://placehold.it/220x300">';
+    }
     echo '<br>';
     echo '<p class="detailcss">' . $movie['genres'] . '<p>';
     echo '<br>';
