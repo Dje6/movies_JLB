@@ -63,14 +63,25 @@ if (!empty($_GET['slug'])) {
     <h2><?php   echo $movie['popularity']; ?> <small class="red">Popularité</small></h2>
     <h2><?php   echo $movie['rating']; ?> <small class="red">/ 100</small></h2>
   </div>
-  <div class="social">
-    <h4>réseaux sociaux</h4>
-    <img src="assets/img/face.jpg" alt="facebook">
-    <img src="assets/img/face.jpg" alt="twitter">
-    <img src="assets/img/face.jpg" alt="linkedin">
-    <img src="assets/img/face.jpg" alt="google">
-  </div>
-</div>
+
+    <div class="container text-center">
+      <form class="form-signin" data-ember-action="2">
+        <h2 class="form-signin-heading">Social network</h2>
+          <small class="text-muted">Connect [your service] with your favorite social network</small>
+            <br><br>
+              <p>
+              <a class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
+              <a class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i class="fa fa-twitter"></i></a>
+              </p>
+              <p>
+              <a class="btn btn-primary social-login-btn social-linkedin" href="/auth/linkedin"><i class="fa fa-linkedin"></i></a>
+              <a class="btn btn-primary social-login-btn social-google" href="/auth/google"><i class="fa fa-google-plus"></i></a>
+              </p>
+          
+          <br>
+      </form>
+    </div>
+
 
 
 
