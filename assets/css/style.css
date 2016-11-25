@@ -7,12 +7,17 @@
   color: #ff740e;
 }
 
-/*style INDEX*/
+        /*style INDEX*/
 .titrePage {
   text-align: center;
 }
 .plusFilm {
   margin: auto;
+}
+/*display des affiches*/
+.displayAffiches {
+  height: 300px;
+  width: auto;
 }
 
 /*Style FOOTER*/
