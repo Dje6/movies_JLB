@@ -7,4 +7,11 @@ footer {
   width: 100%;
   background-color: black;
   color: #FF6400;
+  font-family: sans-serif;
+}
+
+/*style page*/
+body {
+  background-color: lightgrey;
+  font-family: fantasy;
 }
