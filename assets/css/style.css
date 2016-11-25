@@ -1,3 +1,12 @@
+/*style header*/
+.navbar {
+  border-radius: 0;
+  margin: auto;
+}
+.navbar-brand span {
+  color: #ff740e;
+}
+
 /*Style FOOTER*/
 footer {
   position: relative;

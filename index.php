@@ -23,7 +23,11 @@ foreach ($movies as $movie) {
 
 ?>
 
-
+<div class="titrePage container-fluid">
+  <div class="row">
+    <h1>Consultez les films proposés</h1>
+  </div>
+</div>
 
 
 
