@@ -9,7 +9,7 @@ include 'includes/functions.php';
 $error = array();
 
 
- verifie si mon formulaire est soumis
+ // verifie si mon formulaire est soumis
  if(!empty($_POST['submit'])) {
     //sécurité +++++ faille XSS
    $pseudo = trim(strip_tags($_POST['pseudo']));
@@ -29,7 +29,7 @@ $error = array();
                        $query = $pdo->prepare($sql);
                        $query->bindValue(':pseudo',$pseudo,PDO::PARAM_STR);
                        $query->execute();
-                        bind value
+                        // bind value
                        $user = $query->fetch();
                      if(!empty($user)) {
                        $error['pseudo'] = 'Ce pseudo est déjà utilisé';
