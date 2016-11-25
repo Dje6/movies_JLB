@@ -28,7 +28,15 @@ foreach ($movies as $movie) {
     <h1>Consultez les films proposés</h1>
   </div>
   <div class="row">
-    
+    <!-- Premier button -->
+    <div class="btn-group">
+      <button class="btn btn-warning btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégorie<span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><input type="checkbox" name="categorie1">Fantastique</li>
+        <li>TEST</li>
+        <li></li>
+      </ul>
+    </div>
   </div>
 </div>
 
