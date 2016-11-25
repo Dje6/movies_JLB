@@ -53,8 +53,8 @@ include 'includes/header.php';
   <div class="row">
     <?php
       foreach ($movies as $movie) { ?>
-        <div class="col-xs-4 col-md-4">
-          <?php echo '<a href="details.php?slug='.$movie['slug'].'"><img src="posters/'.$movie['id'].'.jpg"></a>'; ?>
+        <div class="col-xs-6 col-md-4">
+          <?php echo '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="posters/'.$movie['id'].'.jpg"></a>'; ?>
         </div>
 <?php } ?>
   </div>
