@@ -6,3 +6,21 @@
 .navbar-brand span {
   color: #ff740e;
 }
+
+/*Style FOOTER*/
+footer {
+  position: relative;
+  bottom: 0;
+  margin-top: 1em;
+  text-align: center;
+  width: 100%;
+  background-color: black;
+  color: #FF6400;
+  font-family: sans-serif;
+}
+
+/*style page*/
+body {
+  background-color: lightgrey;
+  font-family: fantasy;
+}
