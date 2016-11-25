@@ -25,15 +25,16 @@ include 'includes/header.php';
   <div class="row">
     <h1>Consultez les films proposés</h1>
   </div>
+  <!-- filtres recherche -->
   <div class="row">
-    <!-- Premier button catégories -->
-    <div class="btn-group">
-      <button class="btn btn-warning btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtres de recherche<span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><input type="checkbox" name="categorie1">Fantastique</li>
-        <li>TEST</li>
-        <li></li>
-      </ul>
+    <div class="container">
+      <button id="showFiltres" type="button" class="btn btn-warning btn-lg">Filtres de recherche</button>
+      <form class="filtresRecherche hidden" action="" method="GET">
+        <input type="text" name="search" placeholder="Recherche...">
+
+
+        <input type="submit" name="submit" value="Chercher un film">
+      </form>
     </div>
   </div>
   <!-- Deuxieme button années -->
@@ -70,9 +71,11 @@ include 'includes/header.php';
 <br>
 <div class="container">
   <div class="row">
-    <a href="index.php"><button type="button" class="btn btn-warning btn-lg btn-block">
-      <h2 class="plusFilm">Plus de films !</h2>
-    </button></a>
+    <a href="index.php">
+      <button type="button" class="btn btn-warning btn-lg btn-block">
+        <h2 class="plusFilm">Plus de films !</h2>
+      </button>
+    </a>
   </div>
 </div>
 
