@@ -29,6 +29,7 @@ $error = array();
                        $query = $pdo->prepare($sql);
                        $query->bindValue(':pseudo',$pseudo,PDO::PARAM_STR);
                        $query->execute();
+                        //bind value
                        $user = $query->fetch();
                      if(!empty($user)) {
                        $error['pseudo'] = 'Ce pseudo est déjà utilisé';
