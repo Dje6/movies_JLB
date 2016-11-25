@@ -7,8 +7,14 @@ include 'includes/functions.php';
  $query->execute();
  $movies = $query->fetchAll();
 
- 
+foreach ($movies as $movie) {
 
+  if (!empty($movie['id'])) {
+    echo '<a href="details.php?slug='.$movie['slug'].'"><img src="posters/'.$movie['id'].'.jpg"></a>';
+  } else {
+    echo '<a href="details.php?slug='.$movie['slug'].'"><img src="http://placehold.it/248x330"></a>';
+  }
+}
 
 
 
