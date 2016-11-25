@@ -35,4 +35,5 @@ foreach ($movies as $movie) {
 
 
 
+
 <?php include 'includes/footer.php';

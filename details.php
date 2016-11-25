@@ -5,7 +5,7 @@ include 'includes/functions.php';
 $error = array();
 
 if (!empty($_GET['id'])) {
-  
+
 
   $id = $_GET['id'];
 
@@ -14,6 +14,13 @@ if (!empty($_GET['id'])) {
   $query->bindvalue(":id",$id,PDO::PARAM_INT);
   $query->execute();
   $movie = $query->fetch();
+
+  if (!empty($movie['id'])) {
+    //fais ts operations 1+1 = 2
+  } else {
+    $error['id'] = "n'est pas dans la bdd";
+    print_r($error);
+  }
 
 
 
