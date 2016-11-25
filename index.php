@@ -47,13 +47,18 @@ include 'includes/header.php';
     <?php
       foreach ($movies as $movie) { ?>
         <div class="col-xs-6 col-md-4">
-          <?php $size = getimagesize("posters/$movie[id].jpg");
-          if($size == true) {
-            echo  '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="posters/'.$movie['id'].'.jpg"></a>';
-          } else {
-            echo '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="http://placehold.it/220x300"></a>';
-            // print_r ($size);
-          } ?>
+
+
+          <?php
+
+
+            if(file_exists("posters/". $movie['id']. ".jpg")) {
+              echo  '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="posters/'.$movie['id'].'.jpg"></a>';
+            } else {
+              echo '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="http://placehold.it/220x300"></a>';
+              // print_r ($size);
+            }
+           ?>
         </div>
 <?php } ?>
   </div>
