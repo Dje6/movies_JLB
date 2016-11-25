@@ -20,7 +20,7 @@ footer {
   text-align: center;
   width: 100%;
   background-color: black;
-  color: #FF6400;
+  color: #ff6400;
   font-family: sans-serif;
 }
 
@@ -28,4 +28,28 @@ footer {
 body {
   background-color: lightgrey;
   font-family: fantasy;
+}
+
+/*style page details*/
+.affichage{
+  text-align: center;
+  padding-top: 1em;
+  margin-top: 1em;
+  font-size: 20px;
+
+}
+
+img{
+  margin: 1em;
+  padding: 1em;
+}
+
+h1 {
+  font-size: 36px;
+  border: 3px solid  #ff6400;
+  margin-left: 35%;
+  margin-right: 35%;
+}
+.detailcss {
+  font-size: 20px;
 }

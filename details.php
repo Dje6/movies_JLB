@@ -1,7 +1,12 @@
 <?php
 include 'includes/pdo.php';
 include 'includes/functions.php';
+?>
 
+
+<div class="affichage">
+
+<?php
 $error = array();
 
 if (!empty($_GET['slug'])) {
@@ -15,29 +20,33 @@ if (!empty($_GET['slug'])) {
   $query->execute();
   $movie = $query->fetch();
 
+  include 'includes/header.php';
+
+
+
   if (!empty($movie['slug'])) {
-    echo $movie['title'];
+    echo '<h1>' . $movie['title'] . '</H1>';
     echo '<br>';
-    echo $movie['slug'];
+    echo '<h2>' . $movie['slug'] . '<H2>';
     echo '<br>';
-    echo $movie['year'];
-    echo '<br>';
+    // echo $movie['year'];
+    // echo '<br>';
     echo '<img src="posters/'.$movie['id'].'.jpg">';
     echo '<br>';
-    echo $movie['genres'];
+    echo '<p class="detailcss">' . $movie['genres'] . '<p>';
     echo '<br>';
-    echo $movie['plot'];
+    echo '<p class="detailcss">' . $movie['plot'] . '<p>';
     echo '<br>';
-    echo $movie['directors'];
+    echo '<p class="detailcss">' . $movie['directors'] . '<p>';
     echo '<br>';
-    echo $movie['cast'];
+    echo '<p class="detailcss">' . $movie['cast'] . '<p>';
     echo '<br>';
     echo $movie['rating'];
     echo '<br>';
     echo $movie['popularity'];
     print_r($movie['id']);
   } else {
-    $error['id'] = "n'est pas dans la bdd";
+    $error['id'] = "N'est pas dans la bdd";
     print_r($error);
   }
 } else {
@@ -50,10 +59,10 @@ if (!empty($_GET['slug'])) {
 
 
 
-include 'includes/header.php';
+
 ?>
 
-
+</div>
 
 
 
