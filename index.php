@@ -7,7 +7,7 @@ include 'includes/functions.php';
  $query->execute();
  $movies = $query->fetchAll();
 
-
+ 
 
 
 
