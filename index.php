@@ -17,7 +17,7 @@ include 'includes/header.php';
 
 
 foreach ($movies as $movie) {
-  echo '<a href="details.php?id='.$movie['id'].'"><img src="posters/'.$movie['id'].'.jpg"></a>';
+  echo '<a href="details.php?slug='.$movie['slug'].'"><img src="posters/'.$movie['id'].'.jpg"></a>';
 }
 
 
@@ -28,7 +28,7 @@ foreach ($movies as $movie) {
     <h1>Consultez les films proposés</h1>
   </div>
   <div class="row">
-    
+
   </div>
 </div>
 
