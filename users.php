@@ -19,7 +19,8 @@ if(isLogged())
       $users = users($num,$retour_get['page']);
 
       pagination($retour_get['page'],$users['total']['nb_page'],basename($_SERVER['PHP_SELF'])); ?>
-       <table class="use">
+      <div class="table-responsive">
+       <table class="use table">
            <th>ID</th>
            <th>Pseudo</th>
            <th>Email</th>
@@ -35,13 +36,15 @@ if(isLogged())
                <td><?php echo $ligne['id'] ?></td>
               <td><?php echo $ligne['pseudo'] ?></td>
               <td><?php echo $ligne['email'] ?></td>
-              <td><?php echo $ligne['created_at'] ?></td>
-              <td><?php echo $ligne['role'] ?></td>
+              <td><?php echo $ligne['createdat'] ?></td>
+              <td><?php echo $ligne['status'] ?></td>
               <td><?php echo $retour['bouton']; ?></td>
            </tr> <?php
           }
         } ?>
-       </table><?php
+       </table>
+     </div>
+       <?php
      }
      elseif($type == 'supprimer'){
        supprimer($retour_get['id'],"users");
@@ -58,7 +61,7 @@ if(isLogged())
     }
 
     }else{
-      echo 'Vous ne possedez pas les autorisation pour acceder a cette page';
+      header('Location: index.php');
     }
 }else {
   header('Location:index.php');

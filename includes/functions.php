@@ -23,6 +23,14 @@ function isLogged() {
   }
 }
 
+function isAdmin() {
+    if (isLogged() && $_SESSION['user']['status'] == 'Admin') {
+      return true;
+    }else {
+      return false;
+    }
+}
+
 //function generer une random string (pour token)
 function generateRandomString($length = 10) {
   $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -79,7 +87,7 @@ function users($limit,$page)
 {
  global $pdo;
  $offset = (($limit)*($page-1));
- $sql = "(SELECT id,pseudo,email,created_at,role FROM users ORDER BY pseudo LIMIT $limit OFFSET $offset)";
+ $sql = "(SELECT id,pseudo,email,createdat,status FROM users ORDER BY pseudo LIMIT $limit OFFSET $offset)";
  $query = $pdo->prepare($sql);
  $query->execute();
  $nb = $query->fetchAll();
@@ -155,4 +163,25 @@ function liste($nb_page,$destination,$page,$complement)
       echo '<span class="voisin">...</span>'.$style.'<span class="voisin">...</span>';
     }
   }
+}
+
+function bouton($ligne,$page,$destination)
+{
+ if(isset($ligne['status'])){
+   if($ligne['status'] == 'Admin'){
+     $bouton = '<a href="'.$destination.'?id='.$ligne['id'].'&page='.$page.'&type=update&role=User" title="User">
+     <button name="button" ><i class="fa fa-arrow-down"></i></button></a>
+     <a href="'.$destination.'?id='.$ligne['id'].'&page='.$page.'&type=supprimer" title="supprimer">
+     <button name="button" ><i class="fa fa-trash"></i></button></a>';
+     $retour = array('bouton'=> $bouton);
+     return($retour);
+   }elseif($ligne['status'] == 'User' || $ligne['role'] == 'user'){
+     $bouton = '<a href="'.$destination.'?id='.$ligne['id'].'&page='.$page.'&type=update&role=Admin" title="Admin">
+     <button name="button" ><i class="fa fa-arrow-up"></i></button></a>
+     <a href="'.$destination.'?id='.$ligne['id'].'&page='.$page.'&type=supprimer" title="supprimer">
+     <button name="button" ><i class="fa fa-trash"></i></button></a>';
+     $retour = array('bouton'=> $bouton);
+     return($retour);
+   }
+ }
 }

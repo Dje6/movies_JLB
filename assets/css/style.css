@@ -69,8 +69,8 @@ body {
 .thumbnail{
   text-align: center;
   margin-top: 5em;
-  margin-left: 15em;
-  margin-right: 15em;
+  margin-left: 8em;
+  margin-right: 8em;
   margin-bottom: 5em;
 }
 
@@ -243,4 +243,10 @@ a:hover {
   font-size: 20px;
   font-weight: bolder;
   font-family: fantasy;
+}
+.invalide{
+  color: red;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 30px;
 }
