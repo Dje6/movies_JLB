@@ -164,3 +164,11 @@ a:hover {
   background-color: #466b99;
   border-color: #3b5a7c;
 }
+/*page connexion*/
+#form_connexion{
+  text-align: center;
+  margin-top: 10%;
+  margin-left: 25%;
+  margin-right: 50%;
+  margin-bottom: 27%
+}
