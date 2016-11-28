@@ -23,6 +23,14 @@ function isLogged() {
   }
 }
 
+function isAdmin() {
+    if (isLogged() && $_SESSION['user']['status'] == 'Admin') {
+      return true;
+    }else {
+      return false;
+    }
+}
+
 //function generer une random string (pour token)
 function generateRandomString($length = 10) {
   $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -73,4 +81,107 @@ $moitier = (int)(($note % 20) / 10);
 $creuse = (5 - ($moitier + $entiere));
 
 echo (str_repeat($plein, $entiere)).(str_repeat($demi, $moitier)).(str_repeat($vide, $creuse));
+}
+
+function users($limit,$page)
+{
+ global $pdo;
+ $offset = (($limit)*($page-1));
+ $sql = "(SELECT id,pseudo,email,createdat,status FROM users ORDER BY pseudo LIMIT $limit OFFSET $offset)";
+ $query = $pdo->prepare($sql);
+ $query->execute();
+ $nb = $query->fetchAll();
+ $nb['total'] = calcule_page(count_page('id','users'),$limit,$page);
+ return $nb;
+}
+
+function count_page($colone,$table,$where='')
+{
+  $where_full ='';
+  if($where != ''){
+    $where_full = 'WHERE '.$where;
+  }
+  global $pdo;
+  $sql = "(SELECT COUNT($colone) FROM $table $where_full)";
+  $query = $pdo->prepare($sql);
+  $query->execute();
+  $nb = $query->fetchColumn();
+  return $nb;
+}
+function calcule_page($count,$num,$page)
+{
+  //on calcule le nombre de page en divisan le total par mon nombre d'article
+  //et on arrondi avec ceil pour avoir un nombre entier
+  $nb_page = ceil($count/$num);
+  $result['nb_page'] = $nb_page;
+  //on declare page et offset
+  if(!empty($page) && is_numeric($page) && ctype_digit($page) && ($page <= $nb_page) && ($page > 0)){
+    $result['page'] = $page;
+    $result['offset'] = (($page-1)*$num);
+  }else {
+    $result['page'] = 1;
+    $result['offset'] = 0;
+  }
+  return $result;
+}
+function pagination($page,$nb_page,$destination,$complement= '',$num='')
+{
+  if($nb_page > 1){ echo '<br/>';};
+  echo '<div class="pagin">';
+  if($page == $nb_page && $page != 1){?>
+    <a href="<?php echo $destination;?>?page=<?php echo ($page-1).$complement;?>"> << </a><?php
+    liste($nb_page,$destination,$page,$complement);
+  }elseif ($page < $nb_page && $page > 1) { ?>
+    <a href="<?php echo $destination;?>?page=<?php echo ($page-1).$complement;?>"> << </a>
+    <?php liste($nb_page,$destination,$page,$complement); ?>
+    <a href="<?php echo $destination;?>?page=<?php echo ($page+1).$complement;?>">  >> </a> <?php
+  }elseif($page == 1 && $nb_page > 1){
+  echo liste($nb_page,$destination,$page,$complement);?>
+    <a href="<?php echo $destination;?>?page=<?php echo ($page+1).$complement;?>">  >> </a> <?php
+  }
+  echo '</div>';
+  if($nb_page > 1){ echo '<br/>';};
+}
+function liste($nb_page,$destination,$page,$complement)
+{
+  for($i=1; $i <= $nb_page; $i++) {
+    if($i == $page){
+      $style = '<span class="actuel"><a href="'.$destination.'?page='.$i.$complement.'">'.$i.'</a></span>';
+    }else {
+      $style = '<span class="voisin"><a href="'.$destination.'?page='.$i.$complement.'">'.$i.'</a></span>';
+    }
+
+    if($i ==1 && $i != $page){
+      echo $style;
+    }elseif($i ==1 && $i == $page){
+      echo $style.'<span class="voisin">...</span>';
+    }elseif($i == $nb_page  && $i != $page){
+      echo $style;
+    }elseif($i == $nb_page  && $i == $page){
+      echo '<span class="voisin">...</span>'.$style;
+    }elseif($i == $page) {
+      echo '<span class="voisin">...</span>'.$style.'<span class="voisin">...</span>';
+    }
+  }
+}
+
+function bouton($ligne,$page,$destination)
+{
+ if(isset($ligne['status'])){
+   if($ligne['status'] == 'Admin'){
+     $bouton = '<a href="'.$destination.'?id='.$ligne['id'].'&page='.$page.'&type=update&role=User" title="User">
+     <button name="button" ><i class="fa fa-arrow-down"></i></button></a>
+     <a href="'.$destination.'?id='.$ligne['id'].'&page='.$page.'&type=supprimer" title="supprimer">
+     <button name="button" ><i class="fa fa-trash"></i></button></a>';
+     $retour = array('bouton'=> $bouton);
+     return($retour);
+   }elseif($ligne['status'] == 'User' || $ligne['role'] == 'user'){
+     $bouton = '<a href="'.$destination.'?id='.$ligne['id'].'&page='.$page.'&type=update&role=Admin" title="Admin">
+     <button name="button" ><i class="fa fa-arrow-up"></i></button></a>
+     <a href="'.$destination.'?id='.$ligne['id'].'&page='.$page.'&type=supprimer" title="supprimer">
+     <button name="button" ><i class="fa fa-trash"></i></button></a>';
+     $retour = array('bouton'=> $bouton);
+     return($retour);
+   }
+ }
 }

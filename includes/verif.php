@@ -36,11 +36,11 @@ function verif($verif,$min=NULL,$max=NULL,$text_error,$verif_mail = false,$exist
        $query->execute();
        if($exist == 1){
          if($query->fetchColumn() <= 0){
-           $error = 'Ce pseudo n\'existe pas';
+           $error = 'Ce '.$text_error.' n\'existe pas';
          }
        }elseif($exist == 0){
          if($query->fetchColumn() >= 1){
-           $error = 'Ce pseudo exist deja';
+           $error = 'Ce '.$text_error.' exist deja';
          }
        }
      }
@@ -78,6 +78,32 @@ function is_r_password($r_password,$password)
     }
   }else{
     $error ='Merci d\'ecrir de nouveau votre mot de passe';
+  }
+  if(isset($error))
+  {
+    return $error;
+  }
+}
+function is_token($mail,$token)
+{
+  $error = array();
+  if (!empty($mail) && !empty($token)){
+
+    global $pdo;
+    $sql = "SELECT password FROM users WHERE email = :email AND token = :token ";
+    $query = $pdo->prepare($sql);
+    $query->bindValue(':email', $mail, PDO::PARAM_STR);
+    $query->bindValue(':token', $token, PDO::PARAM_STR);
+    $query->execute();
+    $nb = $query->fetch();
+    if(empty($nb)){
+      $error['info'] = 'une erreur d\identifiation es survenu, merci de contacter l\'administration';
+    }else{
+      return $nb['password'];
+    }
+  }
+  else{
+    $error['info'] ="il manque des information";
   }
   if(isset($error))
   {
