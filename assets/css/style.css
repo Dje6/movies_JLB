@@ -83,6 +83,8 @@ h1 {
   border: 3px solid  #ff6400;
   margin-left: 35%;
   margin-right: 35%;
+  background-color: white;
+  color : #ff6400;
 }
 .detailcss {
   font-size: 20px;
@@ -176,13 +178,14 @@ a:hover {
 }
 /*page connexion*/
 #form_connexion{
-  padding-left: 7em;
-  padding-bottom: 3em;
-  margin-top: 2em;
-  margin-bottom: 3em;
+  padding-left: 10em;
+  padding-bottom: 8em;
+  margin-top: 10em;
+  margin-bottom: 8em;
   border: 5px solid #ff6400;
   font-size: 21px;
   color: #ff6400;
+  background-color: white;
 }
 /*page modif*/
 .form_modif {
