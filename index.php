@@ -1,34 +1,49 @@
 <?php
+session_start();
 include 'includes/pdo.php';
 include 'includes/functions.php';
 
 // Sinon on affiche des films random frère
 
-$sql = "SELECT * FROM movies_full ORDER BY RAND() LIMIT 6";
-$query = $pdo->prepare($sql);
-$query->execute();
-$movies = $query->fetchAll();
-$success = false;
 
 if (!empty($_GET['submit'])) {
 
+  // $search_str = trim(strip_tags($_GET['searchbar']));
+  $search = $_GET['searchbar'];
+  $annees = $_GET['annees'];
+  $popularity = $_GET['popularite'];
+
     $sql = "SELECT * FROM movies_full WHERE 1 = 1";
     if (!empty($_GET['searchbar'])){
-      $sql .= " AND directors = :search AND title = :search";
+      $sql .= " AND directors LIKE '%$search%' OR title LIKE '%$search%'";
     }
     if (!empty($_GET['genres'])){
       foreach ($_GET['genres'] as $selected) {
-        $sql .= " AND genres = :selected";
+        $sql .= " AND genres LIKE '%$selected%' ";
       }
     }
     if (!empty($_GET['annees'])){
-      $sql .= " AND year = :annees";
+      $sql .= " AND year = $annees";
     }
     if (!empty($_GET['popularite'])){
-      $sql .= " AND popularity = :popularite";
+      $sql .= " AND popularity = $popularity";
     }
+    $sql .= " LIMIT 6";
     echo $sql;
-} 
+
+    $query = $pdo->prepare($sql);
+    $query->bindvalue(':search',$search,PDO::PARAM_STR);
+    $query->execute();
+    $movies = $query->fetchAll();
+
+
+} else {
+  $sql = "SELECT * FROM movies_full ORDER BY RAND() LIMIT 6";
+  $query = $pdo->prepare($sql);
+  $query->execute();
+  $movies = $query->fetchAll();
+
+}
 
 
 
@@ -58,19 +73,19 @@ include 'includes/header.php';
         </div>
 
         <div class="checkbox col-md-4">
-          <input type="checkbox" name="genres[]" value="drama">Drama<br>
-          <input type="checkbox" name="genres[]" value="thriller">Thriller<br>
-          <input type="checkbox" name="genres[]" value="action">Action<br>
-          <input type="checkbox" name="genres[]" value="adventure">Adventure<br>
-          <input type="checkbox" name="genres[]" value="comedy">Comedy<br>
-          <input type="checkbox" name="genres[]" value="short">Short<br>
-          <input type="checkbox" name="genres[]" value="romance">Romance<br>
-          <input type="checkbox" name="genres[]" value="sci-fi">Sci-Fi<br>
-          <input type="checkbox" name="genres[]" value="mystery">Mystery<br>
-          <input type="checkbox" name="genres[]" value="war">War<br>
-          <input type="checkbox" name="genres[]" value="western">Western<br>
-          <input type="checkbox" name="genres[]" value="horror">Horror<br>
-          <input type="checkbox" name="genres[]" value="animation">Animation<br>
+          <input type="checkbox" name="genres[]" value="Drama">Drama<br>
+          <input type="checkbox" name="genres[]" value="Thriller">Thriller<br>
+          <input type="checkbox" name="genres[]" value="Action">Action<br>
+          <input type="checkbox" name="genres[]" value="Adventure">Adventure<br>
+          <input type="checkbox" name="genres[]" value="Comedy">Comedy<br>
+          <input type="checkbox" name="genres[]" value="Short">Short<br>
+          <input type="checkbox" name="genres[]" value="Romance">Romance<br>
+          <input type="checkbox" name="genres[]" value="Sci-fi">Sci-Fi<br>
+          <input type="checkbox" name="genres[]" value="Mystery">Mystery<br>
+          <input type="checkbox" name="genres[]" value="War">War<br>
+          <input type="checkbox" name="genres[]" value="Western">Western<br>
+          <input type="checkbox" name="genres[]" value="Horror">Horror<br>
+          <input type="checkbox" name="genres[]" value="Animation">Animation<br>
         </div>
 
         <div class="col-md-4">
