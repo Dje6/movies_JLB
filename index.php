@@ -73,48 +73,66 @@ include 'includes/header.php';
         </div>
 
         <div class="checkbox col-md-4">
-        <fieldset class="fieldindex">
-          <input type="checkbox" name="genres[]" value="Drama">Drama<br>
-          <input type="checkbox" name="genres[]" value="Thriller">Thriller<br>
-          <input type="checkbox" name="genres[]" value="Action">Action<br>
-          <input type="checkbox" name="genres[]" value="Adventure">Adventure<br>
-          <input type="checkbox" name="genres[]" value="Comedy">Comedy<br>
-          <input type="checkbox" name="genres[]" value="Short">Short<br>
-          <input type="checkbox" name="genres[]" value="Romance">Romance<br>
-          <input type="checkbox" name="genres[]" value="Sci-fi">Sci-Fi<br>
-          <input type="checkbox" name="genres[]" value="Mystery">Mystery<br>
-          <input type="checkbox" name="genres[]" value="War">War<br>
-          <input type="checkbox" name="genres[]" value="Western">Western<br>
-          <input type="checkbox" name="genres[]" value="Horror">Horror<br>
-          <input type="checkbox" name="genres[]" value="Animation">Animation<br>
-        </fieldset>
+          <?php  global $pdo;
+          $sql = "SELECT genres FROM movies_full GROUP BY genres";
+          $query = $pdo->prepare($sql);
+          $query->execute();
+          $all = $query->fetchAll();
+
+          $genres = array();
+          $liste_genre = array();
+          $i=0;
+          foreach ($all as $key => $value) {
+            $genres[$key] = str_replace(' ','',explode(',',$value['genres']));
+          }
+          foreach ($genres as $key => $value) {
+            foreach ($value as $key_y => $value_y) {
+              $i++;
+              $liste_genre[$i]= $value_y;
+            }
+          }
+          foreach (array_unique($liste_genre) as $key => $value) {
+            if($key > 1){
+              echo '<input type="checkbox" name="genres[]" value="'.$value.'">'.$value.'<br>' ;
+            }
+          } ?>
         </div>
 
 
         <div class="col-md-4">
-          <div class="alignv">
 
+          <select class="form-control" name="annees_debut">
+            <?php for($i=1950 ; $i <= date('Y') ;$i++){
+              echo '<option value="'.$i.'">'.$i.'</option>';
+            } ?>
+          </select>
+          <select class="form-control" name="annees_fin">
+            <?php for($i=1950 ; $i <= date('Y') ;$i++){
+              if($i == date('Y')){
+                echo '<option value="'.$i.'" selected>'.$i.'</option>';
+              }else{
+                echo '<option value="'.$i.'">'.$i.'</option>';
+              }
+            } ?>
 
-          <select class="form-control" name="annees">
-            <option value="">Années</option>
-            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1900-1950</option>
-            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1960</option>
-            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1970</option>
-            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1980</option>
-            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1990</option>
-            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">2000</option>
-            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">2010</option>
+                  </select>
+          <br>
+          <select class="form-control" name="rating_debut">
+            <?php for($i=0 ; $i <= 100 ;$i++){
+              echo '<option value="'.$i.'">'.$i.'</option>';
+            } ?>
+          </select>
+          <select class="form-control" name="rating_fin">
+            <?php for($i=0 ; $i <= 100 ;$i++){
+              if($i == 100){
+                echo '<option value="'.$i.'" selected>'.$i.'</option>';
+              }else{
+                  echo '<option value="'.$i.'">'.$i.'</option>';
+              }
+            } ?>
           </select>
           <br>
-          <select class="form-control" name="popularite">
-            <option value="">Popularité</option>
-            <option value="1">0 - 20</option>
-            <option value="2">20 - 40</option>
-            <option value="3">40 - 60</option>
-            <option value="4">60 - 80</option>
-            <option value="5">80 - 100</option>
-          </select>
-          </div>
+
         </div>
         <br>
         <br>
