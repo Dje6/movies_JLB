@@ -184,3 +184,10 @@ a:hover {
   font-size: 21px;
   color: #ff6400;
 }
+/*page modif*/
+.form_modif {
+  border: 5px solid #ff6400;
+  color: #ff6400;
+  background-color: white;
+  padding: 2em;
+}
