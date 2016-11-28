@@ -1,5 +1,7 @@
 <?php
 
+include 'includes/pdo.php';
+include 'includes/verif.php';
 function debug ($array) {
   echo '<pre>';
   print_r($array);
