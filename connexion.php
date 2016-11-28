@@ -24,7 +24,7 @@ include 'includes/header.php';
     if(!empty($user)){
           if(password_verify($password, $user['password'])) {
 
-                $_SESSION['user']=array (
+                $_SESSION['user']= array(
                  'pseudo'=> $user['pseudo'],
                  'id'=>$user['id'],
                  'status'=>$user['status'],
@@ -65,7 +65,7 @@ include 'includes/header.php';
       <input type="password" id="password_connexion" name="password" value="">
       <br>
       <br>
-      <a href="modifpassword.php">Mot de Passe oublié</a>
+      <input type="button" name="modifpassword" value="Mot de Passe oublié"><a href="modifpassword.php"></a>
       <br>
 
       <input class="bouton" type="submit" name="submit" value="Se connecter">

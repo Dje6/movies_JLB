@@ -1,100 +1,86 @@
 <?php
-session_start();
 
 include 'includes/pdo.php';
 include 'includes/functions.php';
-include 'includes/header.php';
-//recupérer les informations passées danzs le GET
-if ( (!empty($_GET['email'])) && (!empty($_GET['token'])) ) {
-  $email = $_GET['email'];
-  $token = $_GET['token'];
+
+if(userlog()) {
+  header('location: index.php');
+}
 
 
-//comparer les infos à la base de donnée (email et token)
-$sql = "SELECT email, token FROM users WHERE email = :email AND token = :token";
-    $query = $pdo->prepare($sql);
-    $query->bindValue(':email', $email, PDO::PARAM_STR);
-    $query->bindValue(':token', $token, PDO::PARAM_STR);
-    $query->execute();
-    $user = $query->fetch();
+//verifier si l'utilisateur est dans la base de donnée
+if(!empty($_POST['submit'])) {
+  $email = trim(strip_tags($_POST['email']));
+
+  if(!empty($email)) {
+    // on va chercher le mail dans la bdd
+    $sql = "SELECT email, token FROM users WHERE email = :email";
+        $query = $pdo->prepare($sql);
+        $query->bindValue(':email', $email, PDO::PARAM_STR);
+        $query->execute();
+        $user = $query->fetch();
+        debug($user);
 
 
-    // si les infos sont bonnes, afficher le formaulaire de changement de mot de passe
-if(!empty($user)) {
-  $error = array();
-  if(($user['email'] == $email) && ($user['token'] == $token)) {
-    if (!empty($_POST['submit'])) {
-      $newPassword = trim(strip_tags($_POST['newpassword']));
-      $confirmPassword = trim(strip_tags($_POST['retapepassword']));
 
-      //faire les verifications habituelles du formulaire
-      // newpassword
-      if(!empty($newPassword)) {
-        if(strlen($newPassword) < 5 ) {
-          $error['password'] = 'votre password est trop court';
-        } elseif(strlen($newPassword) > 20) {
-          $error['password'] = 'votre password est trop long';
-        }
-      } else {
-        $error['password'] = 'veuillez renseigner ce champs';
+      if(!empty($user)) {
+        $query = '';
+        $query = '<a href="http://localhost/projet_commun_movies/movies_JLB//modifpassword.php?email=' . $user["email"] . '&token=' . $user["token"] . '">Cliquez ici</a>';
+
+
+        // Etape envoyer le mail
+        $to      = $user["email"];
+        $subject = 'reinitialisation';
+        $message = 'reinitialiser a cette adresse : ' . '<a href="http://localhost/projet_commun_movies/movies_JLB//modifpassword.php?email=' . urlencode($user["email"]) . '&token=' . $user["token"] . '">Cliquez ici</a>';
+        // echo $message;
+        // die();
+        $headers = 'From: webmaster@example.com' . "\r\n" .
+        'Reply-To: webmaster@example.com' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+        // echo $to . $subject . $message . $headers;
+        // die();
+
+        mail($to, $subject, $message, $headers);
+
+
       }
-      // confirmPassword
-      if(!empty($confirmPassword)) {
-        //allez revérifier si le token et l'email sont toujours les bons (re comparer les infos du get avec le resultat de la premier requette)
-        if($confirmPassword != $newPassword ) {
-          $error['reapeatPassword'] = 'votre password est différent';
-        }
-      } else {
-        $error['reapeatPassword'] = 'veuillez renseigner ce champs';
-      }
-
-      if (count($error) == 0) {
-        if ( ($user['email'] == $email) && ($user['token'] == $token) ) {
-          //si les infos sont bonnes changer le token faire un update des informations de l'utilisateur avec le nouveau mot de passe et le nouveau token
-          $newToken = generateRandomString(50);
-          $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-
-          $sql = "UPDATE users SET password = :newpassword, token = :newtoken WHERE email = :email AND token = :token";
-          $query = $pdo->prepare($sql);
-          $query->bindValue(':newpassword', $hashedNewPassword, PDO::PARAM_STR);
-          $query->bindValue(':newtoken', $newToken, PDO::PARAM_STR);
-          $query->bindValue(':email', $email, PDO::PARAM_STR);
-          $query->bindValue(':token', $token, PDO::PARAM_STR);
-          $query->execute();
-
-          // rediriger vers la page de connexion
-
-          header('Location: connexion.php');
-
-        }
-      }
-
-
-    }
-
-
-
-    ?>
-    <form class="" action="#" method="POST">
-      <label for="newpassword">Nouveau mot de passe</label>
-      <span><?php if(!empty($error['password'])) { echo $error['password']; } ?></span>
-      <input type="password" name="newpassword" value="<?php if (!empty($_POST['newpassword'])) { echo $_POST['newpassword']; } ?>">
-
-      <label for="retapepassword">Retappez votre mot de passe</label>
-      <span><?php if(!empty($error['reapeatPassword'])) { echo $error['reapeatPassword']; } ?></span>
-      <input type="password" name="retapepassword" value="<?php if (!empty($_POST['retapepassword'])) { echo $_POST['retapepassword']; } ?>">
-
-      <input type="submit" name="submit" value="Envoyer">
-
-    </form>
-    <?php
   }
 }
 
 
-} else {
- header('Location: index.php');
-  }
 
 
+
+
+
+
+include('include/header.php');
 ?>
+
+<p>MOT DE PASSE OUBLIÉ</p>
+<p>Pour récupérer votre mot de passe : veuillez saisir ci-dessous votre adresse mail. </p>
+<form action="" method="POST">
+  <br>
+<label for="email">Email</label>
+  <span><?php if(!empty($error['email'])) { echo $error['email']; } ?></span>
+  <input type="email" name="email" value="<?php if(!empty($_POST['email'])) { echo $_POST['email']; } ?>">
+  <br><br>
+<input class="bouton" type="submit" name="submit" value="Valider">
+</form>
+
+
+
+
+
+
+<a href="http://kjdsqbsqjhbds.php?email=emailenphp&token=tokenphp"></a>
+
+
+
+
+
+
+
+
+
+<?php include('include/footer.php');
