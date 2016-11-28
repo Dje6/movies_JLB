@@ -65,7 +65,7 @@ include 'includes/header.php';
       <input type="password" id="password_connexion" name="password" value="">
       <br>
       <br>
-      <a href="modifpassword.php"><input type="button" name="modifpassword" value="Mot de Passe oublié"></a>
+      <a href="password_rescue.php"><input type="button" name="modifpassword" value="Mot de Passe oublié"></a>
       <br>
 
       <input class="bouton" type="submit" name="submit" value="Se connecter">
