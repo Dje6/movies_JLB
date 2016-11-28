@@ -37,6 +37,7 @@
               <!-- Si l'utilisateur est connecté, on dit bonjour et on propose deconnexion -->
               <?php if (isLogged()) {
                 echo '<li><a>Bonjour '. $_SESSION['user']['pseudo'] .' !</a></li>'; ?>
+                <li><a href="avoir.php">Mes Films à voir</li></a>                
                 <li><a href="deco.php">Déconnexion</li></a>
 
               <?php } else { ?>
