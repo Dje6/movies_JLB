@@ -38,7 +38,7 @@ include 'includes/header.php';
 
 
      } else {
- 	    $error['pseudo'] = 'L\'utilisateur n\'existe pas';
+ 	    $error['pseudo'] = '<h4 class="invalide">L\'utilisateur n\'existe pas </h4>';
      }
 
 

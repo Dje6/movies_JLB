@@ -98,7 +98,9 @@ include 'includes/header.php';
           } ?>
         </div>
 
+
         <div class="col-md-4">
+
           <select class="form-control" name="annees_debut">
             <?php for($i=1950 ; $i <= date('Y') ;$i++){
               echo '<option value="'.$i.'">'.$i.'</option>';
@@ -109,10 +111,11 @@ include 'includes/header.php';
               if($i == date('Y')){
                 echo '<option value="'.$i.'" selected>'.$i.'</option>';
               }else{
-                echo '<option value="'.$i.'">'.$i.'</option>';      
+                echo '<option value="'.$i.'">'.$i.'</option>';
               }
             } ?>
-          </select>
+
+                  </select>
           <br>
           <select class="form-control" name="rating_debut">
             <?php for($i=0 ; $i <= 100 ;$i++){
@@ -129,8 +132,9 @@ include 'includes/header.php';
             } ?>
           </select>
           <br>
-        </div>
 
+        </div>
+        <br>
         <br>
         <input type="submit" name="submit" class="btn btn-warning" value ="Chercher un film">
       </form>

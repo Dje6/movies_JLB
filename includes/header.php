@@ -25,26 +25,27 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <!-- Recherche a gauche de header -->
-            <form class="navbar-form navbar-left">
+            <!-- <form class="navbar-form navbar-left">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+            </form> -->
 
             <!-- Liens a droite de header -->
             <ul class="nav navbar-nav navbar-right">
-              <?php if (isAdmin()) {
-                echo '<li><a href="users.php">Back-Office</a></li>';
-              }?>
               <!-- Si l'utilisateur est connecté, on dit bonjour et on propose deconnexion -->
               <?php if (isLogged()) {
                 echo '<li><a>Bonjour '. $_SESSION['user']['pseudo'] .' !</a></li>'; ?>
+                  <!-- Si le user est admin, on donne accès au back office -->
+                <?php if (isAdmin()) {
+                  echo '<li><a href="users.php">Back-Office</a></li>';
+                }?>
                 <li><a href="avoir.php">Mes Films à voir</a></li>
                 <li><a href="deco.php">Déconnexion</a></li>
 
-              <?php } else { ?>
                 <!-- Si l'utilisateur n'est pas connecté, on affiche les deux liens -->
+              <?php } else { ?>
                 <li><a href="register.php">Inscription</a></li>
                 <li><a href="connexion.php">Connexion</a></li>
               <?php } ?>
