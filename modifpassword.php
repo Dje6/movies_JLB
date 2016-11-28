@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include 'includes/pdo.php';
 include 'includes/functions.php';
 include 'includes/header.php';
@@ -94,3 +95,6 @@ if(!empty($user)) {
 } else {
  header('Location: index.php');
   }
+
+
+?>

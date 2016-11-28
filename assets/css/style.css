@@ -6,6 +6,11 @@
 .navbar-brand span {
   color: #ff740e;
 }
+.navbar-right {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 
         /*style INDEX*/
 .titrePage {
@@ -21,6 +26,7 @@
   max-width: 75%;
   display: none;
   position: relative;
+  margin-top: 1em;
 }
 .filtresRecherche button {
   position: absolute;

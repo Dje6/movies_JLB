@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'includes/pdo.php';
 include 'includes/functions.php';
 
@@ -53,7 +54,7 @@ include 'includes/header.php';
 
         <div class="col-md-4">
           <select class="form-control" name="annees">
-            <option>Années</option>
+            <option value="">Années</option>
             <option value="1">1900-1950</option>
             <option value="2">1960</option>
             <option value="3">1970</option>

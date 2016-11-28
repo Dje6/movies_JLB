@@ -1,86 +1,81 @@
 <?php
-
-include('include/pdo.php');
-include('include/function.php');
-
-
-if(userlog()) {
-  header('location: index.php');
-}
+session_start();
+include 'includes/pdo.php';
+include 'includes/functions.php';
 
 
-//verifier si l'utilisateur est dans la base de donnée
-if(!empty($_POST['submit'])) {
-  $email = trim(strip_tags($_POST['email']));
+include 'includes/header.php';
+ $error = array();
+   if(!empty($_POST['submit'])) {
 
-  if(!empty($email)) {
-    // on va chercher le mail dans la bdd
-    $sql = "SELECT email, token FROM users WHERE email = :email";
-        $query = $pdo->prepare($sql);
-        $query->bindValue(':email', $email, PDO::PARAM_STR);
-        $query->execute();
-        $user = $query->fetch();
-        debug($user);
+     $pseudo = trim(strip_tags($_POST['pseudo']));
+     $password = trim(strip_tags($_POST['password']));
 
+  $sql = "SELECT * FROM users WHERE pseudo = :pseudo
+          OR email = :pseudo";
 
-      if(!empty($user)) {
-        $query = '';
-        $query = '<a href="http://localhost/php%2017nov/modifpassword.php?email=' . $user["email"] . '&token=' . $user["token"] . '">Cliquez ici</a>';
+    $query = $pdo->prepare($sql);
+    $query->bindValue(':pseudo',$pseudo,PDO::PARAM_STR);
+    $query->execute();
+    $user = $query->fetch();
 
 
-        // Etape envoyer le mail
-        $to      = $user["email"];
-        $subject = 'reinitialisation';
-        $message = 'reinitialiser a cette adresse : ' . '<a href="http://localhost/php%2017nov/resetpassword.php?email=' . urlencode($user["email"]) . '&token=' . $user["token"] . '">Cliquez ici</a>';
-        // echo $message;
-        // die();
-        $headers = 'From: webmaster@example.com' . "\r\n" .
-        'Reply-To: webmaster@example.com' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
-        // echo $to . $subject . $message . $headers;
-        // die();
 
-        mail($to, $subject, $message, $headers);
+    if(!empty($user)){
+          if(password_verify($password, $user['password'])) {
+
+                $_SESSION['user']=array (
+                 'pseudo'=> $user['pseudo'],
+                 'id'=>$user['id'],
+                 'role'=>$user['role'],
+                 'ip'=> $_SERVER['REMOTE_ADDR']
+               );
+               echo 'BIENVENUE CHER UTILISATEUR';
+               header('Location: index.php');
+
+          } else {
+            echo 'Votre mot de passe est invalide.';
+          }
 
 
-      }
+     } else {
+ 	    echo 'L\'utilisateur n\'existe pas';
+     }
+
+
+
   }
-}
 
 
 
 
 
 
-
-
-include('include/header.php');
 ?>
+<div class="connexion">
+  <form id="form_connexion" action="" method="POST">
+    <br>
+    <label for="pseudo">Votre Pseudo</label>
+    <span id="error_pseudo"><?php if(!empty($error['pseudo'])) { echo $error['pseudo']; } ?></span>
+    <input type="text" id="pseudo_connexion" name="pseudo" value="<?php if(!empty($_POST['pseudo'])) { echo $_POST['pseudo']; } ?>">
+    <br><br>
 
-<p>MOT DE PASSE OUBLIÉ</p>
-<p>Pour récupérer votre mot de passe : veuillez saisir ci-dessous votre adresse mail. </p>
-<form action="" method="POST">
-  <br>
-<label for="email">Email</label>
-  <span><?php if(!empty($error['email'])) { echo $error['email']; } ?></span>
-  <input type="email" name="email" value="<?php if(!empty($_POST['email'])) { echo $_POST['email']; } ?>">
-  <br><br>
-<input class="bouton" type="submit" name="submit" value="Valider">
-</form>
-
-
-
-
-
-
-<a href="http://kjdsqbsqjhbds.php?email=emailenphp&token=tokenphp"></a>
+    <label for="password">Votre Password</label>
+    <input type="password" id="password_connexion" name="password" value="">
+    <br>
+    <br>
+    <a href="modifpassword.php">Mot de Passe oublié</a>
+    <br>
 
 
-
+    <input class="bouton" type="submit" name="submit" value="Envoyer">
+  </form>
+</div>
 
 
 
 
 
 
-<?php include('include/footer.php');
+
+<?php include 'includes/footer.php'; ?>
