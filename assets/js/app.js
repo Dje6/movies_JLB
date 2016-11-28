@@ -1,3 +1,3 @@
 $('#showFiltres').click(function(event) {
-  $('.filtresRecherche').toggleClass('hidden');
+  $(this).next('form').slideToggle("slow");
 });
