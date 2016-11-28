@@ -34,18 +34,18 @@
 
             <!-- Liens a droite de header -->
             <ul class="nav navbar-nav navbar-right">
-              <?php if (isAdmin()) {
-                echo '<li><a href="users.php">Back-Office</a></li>';
-              }?>
               <!-- Si l'utilisateur est connecté, on dit bonjour et on propose deconnexion -->
               <?php if (isLogged()) {
                 echo '<li><a>Bonjour '. $_SESSION['user']['pseudo'] .' !</a></li>'; ?>
-
+                  <!-- Si le user est admin, on donne accès au back office -->
+                <?php if (isAdmin()) {
+                  echo '<li><a href="users.php">Back-Office</a></li>';
+                }?>
                 <li><a href="avoir.php">Mes Films à voir</a></li>
                 <li><a href="deco.php">Déconnexion</a></li>
 
-              <?php } else { ?>
                 <!-- Si l'utilisateur n'est pas connecté, on affiche les deux liens -->
+              <?php } else { ?>
                 <li><a href="register.php">Inscription</a></li>
                 <li><a href="connexion.php">Connexion</a></li>
               <?php } ?>

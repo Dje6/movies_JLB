@@ -53,39 +53,35 @@ if (!empty($_GET['slug'])) {
         <br>
 
         <!-- note moyenne utilisateurs -->
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12 ">
-              <div class="rating-block">
-                <h4 class="note">Note moyenne des utilisateurs</h4>
-                <?php etoile_rating($movie['rating'],100)?><br/>
+        <div class="col-sm-12 ">
+          <div class="rating-block">
+            <h4 class="note">Note moyenne des utilisateurs</h4>
+            <?php etoile_rating($movie['rating'],100)?><br/>
 
-                <!-- <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button> -->
-              </div>
-            </div>
+            <!-- <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button> -->
           </div>
         </div>
 
 
         <!-- Affiche le bouton ajouter a la liste a voir si le user est logged -->
         <?php if (isLogged()) { ?>
-          <a href="avoir.php" class="btn btn-warning btn-lg">Ajouter aux films à voir</a>
+          <a href="avoir.php" class="btn btn-warning btn-md">Ajouter aux films à voir</a>
         <?php } else { ?>
-          <button class="btn btn-warning btn-lg disabled">Connectez-vous pour ajouter ce film à votre liste</button>
+          <button class="btn btn-warning btn-md disabled">Connectez-vous pour ajouter ce film à votre liste</button>
         <?php } ?>
       </div> <!-- end thumbnail -->
     </div> <!-- end row -->
