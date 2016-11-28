@@ -24,10 +24,10 @@ include 'includes/header.php';
     if(!empty($user)){
           if(password_verify($password, $user['password'])) {
 
-                $_SESSION['user']= array(
+                $_SESSION['user']=array (
                  'pseudo'=> $user['pseudo'],
                  'id'=>$user['id'],
-                 'status'=>$user['status'],
+                 'role'=>$user['role'],
                  'ip'=> $_SERVER['REMOTE_ADDR']
                );
                echo 'BIENVENUE CHER UTILISATEUR';
@@ -52,6 +52,7 @@ include 'includes/header.php';
 
 
 ?>
+
 <div class="container">
   <div class="row">
     <form id="form_connexion" action="" method="POST" class="col-md-offset-2">
