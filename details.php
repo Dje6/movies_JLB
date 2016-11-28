@@ -79,7 +79,7 @@ if (!empty($_GET['slug'])) {
 
         <!-- Affiche le bouton ajouter a la liste a voir si le user est logged -->
         <?php if (isLogged()) { ?>
-          <a href="avoir.php" class="btn btn-warning btn-md">Ajouter aux films à voir</a>
+          <a href="#" class="btn btn-warning btn-md addList" id="<?php echo $movie['id']; ?>">Ajouter aux films à voir</a>
         <?php } else { ?>
           <button class="btn btn-warning btn-md disabled">Connectez-vous pour ajouter ce film à votre liste</button>
         <?php } ?>
