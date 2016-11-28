@@ -48,7 +48,6 @@ if (!empty($_GET['slug'])) {
         <div class="evaluation">
           <h4><strong>Moyenne des évaluations</strong></h4>
           <h2><?php   echo $movie['popularity']; ?> <small class="red">Popularité</small></h2>
-          <h2><?php   echo $movie['rating']; ?> <small class="red">/ 100</small></h2>
         </div>
         <br>
 
@@ -56,6 +55,7 @@ if (!empty($_GET['slug'])) {
         <div class="col-sm-12 ">
           <div class="rating-block">
             <h4 class="note">Note moyenne des utilisateurs</h4>
+            <h2><?php   echo $movie['rating']; ?> <small class="red">/ 100</small></h2>
             <?php etoile_rating($movie['rating'],100)?><br/>
 
             <!-- <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
