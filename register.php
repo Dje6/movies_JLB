@@ -1,6 +1,5 @@
 <?php
 session_start();
-include 'includes/pdo.php';
 include 'includes/functions.php';
 ?>
 
@@ -100,7 +99,7 @@ $error = array();
        $smtp->execute();
        $success = true;
 
-       header('location: index.php');
+       header('Location: connexion.php');
 
    }
  }
@@ -114,22 +113,22 @@ $error = array();
       <fieldset>
         <legend>INSCRIPTION</legend>
             <label for="pseudo">Votre Pseudo</label>
-            <span id="error_pseudo"></span>
+            <span id="error_pseudo"><?php if (!empty($error['pseudo'])) { echo $error['pseudo'];} ?></span>
             <input type="text" id="pseudo_ins" name="pseudo" value="">
             <br><br>
 
             <label for="email">Votre Email</label>
-            <span id="error_email"></span>
+            <span id="error_email"><?php if (!empty($error['email'])) { echo $error['email'];} ?></span>
             <input type="text" id="email_ins" name="email" value="">
             <br><br>
 
             <label for="password">Mot de Passe</label>
-            <span id="error_password"></span>
+            <span id="error_password"><?php if (!empty($error['password'])) { echo $error['password'];} ?></span>
             <input type="password" id="password_ins" name="password"  value="">
             <br>
 
             <label for="reapeatPassword">Vérif Mot de Passe</label>
-            <span></span>
+            <span><?php if (!empty($error['reapeatPassword'])) { echo $error['reapeatPassword'];} ?></span>
             <input type="password" name="reapeatPassword"  value="">
             <br>
             <br>

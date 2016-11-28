@@ -28,7 +28,7 @@ if (!empty($_GET['submit'])) {
     if (!empty($_GET['popularite'])){
       $sql .= " AND popularity = $popularity";
     }
-    $sql .= " LIMIT 6";
+    $sql .= " LIMIT 20";
     echo $sql;
 
     $query = $pdo->prepare($sql);
@@ -93,13 +93,13 @@ include 'includes/header.php';
         <div class="col-md-4">
           <select class="form-control" name="annees">
             <option value="">Années</option>
-            <option value="1">1900-1950</option>
-            <option value="2">1960</option>
-            <option value="3">1970</option>
-            <option value="4">1980</option>
-            <option value="5">1990</option>
-            <option value="6">2000</option>
-            <option value="7">2010</option>
+            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1900-1950</option>
+            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1960</option>
+            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1970</option>
+            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1980</option>
+            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1990</option>
+            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">2000</option>
+            <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">2010</option>
           </select>
           <br>
           <select class="form-control" name="popularite">

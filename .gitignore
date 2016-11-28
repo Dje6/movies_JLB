@@ -1,3 +1,4 @@
 posters/
 sql/
 includes/pdo.php
+vendor/

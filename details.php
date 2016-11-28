@@ -8,18 +8,13 @@ include 'includes/functions.php';
 
 <?php
 $error = array();
-
 if (!empty($_GET['slug'])) {
-
-
   $slug = $_GET['slug'];
-
   $sql = "SELECT * FROM movies_full WHERE slug = :slug";
   $query = $pdo->prepare($sql);
   $query->bindvalue(":slug",$slug,PDO::PARAM_STR);
   $query->execute();
   $movie = $query->fetch();
-
   include 'includes/header.php';
   ?>
   <div class="affichage">
@@ -38,9 +33,7 @@ if (!empty($_GET['slug'])) {
             echo '<p class="detailcss"><strong>Genre : </strong>' . $movie['genres'] . '<p>';
             echo '<br>';
             echo '<p class="detailcss"><strong>Synopsis : </strong>' . $movie['plot'] . '<p>';
-
             echo '<p class="detailcss"><strong>Réalisateur(s) : </strong>' . $movie['directors'] . '<p>';
-
             echo '<p class="detailcss"><strong>Casting : </strong>' . $movie['cast'] . '<p>';
               //print_r($movie['id']);
           } else {
