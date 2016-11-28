@@ -95,6 +95,17 @@ function users($limit,$page)
  return $nb;
 }
 
+function movies($limit,$page)
+{
+  global $pdo;
+  $offset = (($limit)*($page-1));
+  $sql = "(SELECT id,title,year,rating FROM movies_full ORDER BY id LIMIT $limit OFFSET $offset)";
+  $query = $pdo->prepare($sql);
+  $query->execute();
+  $nb['total'] = calcule_page(count_page('id','users'),$limit,$page);
+  return $nb;
+}
+
 function count_page($colone,$table,$where='')
 {
   $where_full ='';
