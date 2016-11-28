@@ -44,8 +44,9 @@ include 'includes/header.php';
   <div class="row">
     <div class="container">
       <button id="showFiltres" type="button" class="btn btn-warning btn-lg">Filtres de recherche</button>
-      <form class="filtresRecherche container hidden" action="" method="GET">
+      <form class="filtresRecherche container" action="" method="GET">
 
+<<<<<<< HEAD
         <div class="form-group">
           <input type="text" name="searchbar" class="form-control" placeholder="Auteur, Titre...">
         </div>
@@ -76,9 +77,52 @@ include 'includes/header.php';
           <option>2000</option>
           <option>2010</option>
         </select>
+=======
+        <div class="form-group col-md-4">
+          <input type="text" name="searchbar" class="form-control" placeholder="Réalisateur, Titre...">
+        </div>
+
+        <div class="checkbox col-md-4">
+          <input type="checkbox" name="genres[]" value="drama">Drama<br>
+          <input type="checkbox" name="genres[]" value="thriller">Thriller<br>
+          <input type="checkbox" name="genres[]" value="action">Action<br>
+          <input type="checkbox" name="genres[]" value="adventure">Adventure<br>
+          <input type="checkbox" name="genres[]" value="comedy">Comedy<br>
+          <input type="checkbox" name="genres[]" value="short">Short<br>
+          <input type="checkbox" name="genres[]" value="romance">Romance<br>
+          <input type="checkbox" name="genres[]" value="sci-fi">Sci-Fi<br>
+          <input type="checkbox" name="genres[]" value="mystery">Mystery<br>
+          <input type="checkbox" name="genres[]" value="war">War<br>
+          <input type="checkbox" name="genres[]" value="western">Western<br>
+          <input type="checkbox" name="genres[]" value="horror">Horror<br>
+          <input type="checkbox" name="genres[]" value="animation">Animation<br>
+        </div>
+
+        <div class="col-md-4">
+          <select class="form-control" name="annees">
+            <option>Années</option>
+            <option value="1">1900-1950</option>
+            <option value="2">1960</option>
+            <option value="3">1970</option>
+            <option value="4">1980</option>
+            <option value="5">1990</option>
+            <option value="6">2000</option>
+            <option value="7">2010</option>
+          </select>
+          <br>
+          <select class="form-control" name="popularite">
+            <option value="">Popularité</option>
+            <option value="1">0 - 20</option>
+            <option value="2">20 - 40</option>
+            <option value="3">40 - 60</option>
+            <option value="4">60 - 80</option>
+            <option value="5">80 - 100</option>
+          </select>
+        </div>
+>>>>>>> 0fe499461c3ecc9065d1f215930cb00aa35a1d04
 
         <br>
-        <input type="submit" name="submit" value="Chercher un film">
+        <button type="submit" name="submit" class="btn btn-warning">Chercher un film</button>
       </form>
     </div>
   </div>
