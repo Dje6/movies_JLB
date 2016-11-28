@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('includes/functions.php');
-include('includes/header.php');
+include('includes/header_back.php');
 if(isLogged())
 {
   if($_SESSION['user']['status'] == 'Admin'){
@@ -33,7 +33,7 @@ if(isLogged())
             $retour = bouton($ligne,$retour_get['page'],basename($_SERVER['PHP_SELF']));
             ?>
            <tr>
-               <td><?php echo $ligne['id'] ?></td>
+              <td><?php echo $ligne['id'] ?></td>
               <td><?php echo $ligne['pseudo'] ?></td>
               <td><?php echo $ligne['email'] ?></td>
               <td><?php echo $ligne['createdat'] ?></td>
@@ -43,7 +43,7 @@ if(isLogged())
           }
         } ?>
        </table>
-     </div>
+      </div>
        <?php
      }
      elseif($type == 'supprimer'){
@@ -66,5 +66,8 @@ if(isLogged())
 }else {
   header('Location:index.php');
 }
-include('includes/footer.php');
- ?>
+?>
+
+
+
+<?php include('includes/footer_back.php'); ?>
