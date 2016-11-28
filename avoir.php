@@ -9,6 +9,8 @@ if(!isLogged()) {
   header('location: connexion.php');
   exit;
 }
+
+
 ?>
 
 <?php include 'includes/header.php'; ?>
@@ -24,7 +26,7 @@ if(!isLogged()) {
 <!-- Display des films à voir -->
 <div class="container affichesFilms">
   <div class="row">
-
+    
   </div>
 </div>
 
