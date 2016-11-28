@@ -31,3 +31,44 @@ function generateRandomString($length = 10) {
   }
   return $randomString;
 };
+function etoile_rating($note,$echelle)
+{
+$total = $echelle;
+
+if($total == 0)
+{
+  $note = 1;
+}else {
+  $note = ($note/($total/100));
+}
+
+$vide = '<i class="fa fa-star-o"></i>';
+$demi = '<i class="fa fa-star-half-empty"></i>';
+$plein = '<i class="fa fa-star"></i>';
+$entiere = (int)($note/20) ;
+$moitier = (int)(($note % 20) / 10);
+$creuse = (5 - ($moitier + $entiere));
+
+echo (str_repeat($plein, $entiere)).(str_repeat($demi, $moitier)).(str_repeat($vide, $creuse));
+}
+
+function etoile_like($like,$dislike)
+{
+$total = $like + $dislike;
+
+if($total == 0)
+{
+  $note = 1;
+}else {
+  $note = ($like/($total/100));
+}
+
+$vide = '<i class="fa fa-star-o"></i>';
+$demi = '<i class="fa fa-star-half-empty"></i>';
+$plein = '<i class="fa fa-star"></i>';
+$entiere = (int)($note/20) ;
+$moitier = (int)(($note % 20) / 10);
+$creuse = (5 - ($moitier + $entiere));
+
+echo (str_repeat($plein, $entiere)).(str_repeat($demi, $moitier)).(str_repeat($vide, $creuse));
+}
