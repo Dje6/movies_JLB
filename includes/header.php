@@ -37,7 +37,7 @@
               <!-- Si l'utilisateur est connecté, on dit bonjour et on propose deconnexion -->
               <?php if (isLogged()) {
                 echo '<li><a>Bonjour '. $_SESSION['user']['pseudo'] .' !</a></li>'; ?>
-                <li><a href="deconnexion.php">Déconnexion</li></a>
+                <li><a href="deco.php">Déconnexion</li></a>
 
               <?php } else { ?>
                 <!-- Si l'utilisateur n'est pas connecté, on affiche les deux liens -->
