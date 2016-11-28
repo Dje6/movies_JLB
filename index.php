@@ -2,11 +2,26 @@
 include 'includes/pdo.php';
 include 'includes/functions.php';
 
- $sql = "SELECT * FROM movies_full ORDER BY RAND() LIMIT 6";
- $query = $pdo->prepare($sql);
- $query->execute();
- $movies = $query->fetchAll();
+// Sinon on affiche des films random frère
+$sql = "SELECT * FROM movies_full ORDER BY RAND() LIMIT 6";
+$query = $pdo->prepare($sql);
+$query->execute();
+$movies = $query->fetchAll();
 
+$success = false;
+
+if (!empty($_GET['submit'])) {
+
+  $sql = "SELECT * FROM movies_full WHERE 1 = 1";
+  if (!empty($_GET['searchbar'])){
+    $sql .= "AND directors = :search AND title = :search";
+  } elseif (!empty($_GET['genres[]'])){
+    $sql .= "AND genres = :genres";
+  } elseif (!empty($_GET['annees'])){
+    $sql .= "AND annees = :annees";
+  }
+  echo $sql;
+} 
 
 
 
@@ -32,26 +47,26 @@ include 'includes/header.php';
       <form class="filtresRecherche container hidden" action="" method="GET">
 
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Auteur, Titre...">
+          <input type="text" name="searchbar" class="form-control" placeholder="Auteur, Titre...">
         </div>
 
         <div class="checkbox">
-          <input type="checkbox" name="categorie" value="drama">Drama<br>
-          <input type="checkbox" name="categorie" value="thriller">Thriller<br>
-          <input type="checkbox" name="categorie" value="action">Action<br>
-          <input type="checkbox" name="categorie" value="adventure">Adventure<br>
-          <input type="checkbox" name="categorie" value="comedy">Comedy<br>
-          <input type="checkbox" name="categorie" value="short">Short<br>
-          <input type="checkbox" name="categorie" value="romance">Romance<br>
-          <input type="checkbox" name="categorie" value="sci-fi">Sci-Fi<br>
-          <input type="checkbox" name="categorie" value="mystery">Mystery<br>
-          <input type="checkbox" name="categorie" value="war">War<br>
-          <input type="checkbox" name="categorie" value="western">Western<br>
-          <input type="checkbox" name="categorie" value="horror">Horror<br>
-          <input type="checkbox" name="categorie" value="animation">Animation<br>
+          <input type="checkbox" name="categorie[]" value="drama">Drama<br>
+          <input type="checkbox" name="categorie[]" value="thriller">Thriller<br>
+          <input type="checkbox" name="categorie[]" value="action">Action<br>
+          <input type="checkbox" name="categorie[]" value="adventure">Adventure<br>
+          <input type="checkbox" name="categorie[]" value="comedy">Comedy<br>
+          <input type="checkbox" name="categorie[]" value="short">Short<br>
+          <input type="checkbox" name="categorie[]" value="romance">Romance<br>
+          <input type="checkbox" name="categorie[]" value="sci-fi">Sci-Fi<br>
+          <input type="checkbox" name="categorie[]" value="mystery">Mystery<br>
+          <input type="checkbox" name="categorie[]" value="war">War<br>
+          <input type="checkbox" name="categorie[]" value="western">Western<br>
+          <input type="checkbox" name="categorie[]" value="horror">Horror<br>
+          <input type="checkbox" name="categorie[]" value="animation">Animation<br>
         </div>
 
-        <select class="form-control">
+        <select class="form-control" name="annees">
           <option>Années</option>
           <option>1900-1950</option>
           <option>1960</option>
