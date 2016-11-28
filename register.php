@@ -111,22 +111,22 @@ $error = array();
   <br>
   <fieldset>
     <legend>INSCRIPTION</legend>
-        <label for="pseudo">Pseudo</label>
+        <label for="pseudo">Votre Pseudo</label>
         <span id="error_pseudo"></span>
         <input type="text" id="pseudo_ins" name="pseudo" value="">
         <br><br>
 
-        <label for="email">Email</label>
+        <label for="email">Votre Email</label>
         <span id="error_email"></span>
         <input type="text" id="email_ins" name="email" value="">
         <br><br>
 
-        <label for="password">Password</label>
+        <label for="password">Mot de Passe</label>
         <span id="error_password"></span>
         <input type="password" id="password_ins" name="password"  value="">
         <br>
 
-        <label for="reapeatPassword">VerifPassword</label>
+        <label for="reapeatPassword">Vérif Mot de Passe</label>
         <span></span>
         <input type="password" name="reapeatPassword"  value="">
         <br>

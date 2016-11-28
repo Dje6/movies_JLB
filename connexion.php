@@ -55,20 +55,20 @@ include 'includes/header.php';
 <div class="connexion">
   <form id="form_connexion" action="" method="POST">
     <br>
-    <label for="pseudo">Pseudo</label>
+    <label for="pseudo">Votre Pseudo</label>
     <span id="error_pseudo"><?php if(!empty($error['pseudo'])) { echo $error['pseudo']; } ?></span>
     <input type="text" id="pseudo_connexion" name="pseudo" value="<?php if(!empty($_POST['pseudo'])) { echo $_POST['pseudo']; } ?>">
     <br><br>
 
-    <label for="password">Password</label>
+    <label for="password">Votre Password</label>
     <input type="password" id="password_connexion" name="password" value="">
     <br>
     <br>
     <a href="modifpassword.php">Mot de Passe oublié</a>
     <br>
-
-
+    
     <input class="bouton" type="submit" name="submit" value="Se connecter">
+
   </form>
 </div>
 
