@@ -259,13 +259,6 @@ a:hover {
   font-size: 30px;
 }
 /*alignement */
-.fieldindex {
-	margin: auto;
-  float: left;
-	text-align:left;
-  color: #ff6400;
-  padding-left: 120px;
-}
 .filtresRecherche {
   background-color: white;
   font-size: 20px;
@@ -274,7 +267,11 @@ input.form-control {
 margin-top: 100px;
 }
 .alignv {
-  margin-top: 100px;
+  margin: auto;
+  float: left;
+  text-align:left;
+  color: #ff6400;
+  padding-left: 120px;
 }
 input.btn.btn-warning{
   margin-top: 50px;
