@@ -27,19 +27,18 @@ include 'includes/header.php';
                 $_SESSION['user']=array (
                  'pseudo'=> $user['pseudo'],
                  'id'=>$user['id'],
-                 'role'=>$user['role'],
+                 'status'=>$user['status'],
                  'ip'=> $_SERVER['REMOTE_ADDR']
                );
-               echo 'BIENVENUE CHER UTILISATEUR';
                header('Location: index.php');
-
+               exit;
           } else {
             echo 'Votre mot de passe est invalide.';
           }
 
 
      } else {
- 	    echo 'L\'utilisateur n\'existe pas';
+ 	    $error['pseudo'] = 'L\'utilisateur n\'existe pas';
      }
 
 

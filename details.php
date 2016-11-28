@@ -35,13 +35,13 @@ if (!empty($_GET['slug'])) {
       echo '<img class="displayAffiches" src="http://placehold.it/220x300">';
     }
     echo '<br>';
-    echo '<p class="detailcss">' . $movie['genres'] . '<p>';
+    echo '<p class="detailcss"><strong>Genre : </strong>' . $movie['genres'] . '<p>';
     echo '<br>';
-    echo '<p class="detailcss">' . $movie['plot'] . '<p>';
+    echo '<p class="detailcss"><strong>Synopsis : </strong>' . $movie['plot'] . '<p>';
 
-    echo '<p class="detailcss">' . $movie['directors'] . '<p>';
+    echo '<p class="detailcss"><strong>Réalisateur(s) : </strong>' . $movie['directors'] . '<p>';
 
-    echo '<p class="detailcss">' . $movie['cast'] . '<p>';
+    echo '<p class="detailcss"><strong>Casting : </strong>' . $movie['cast'] . '<p>';
       //print_r($movie['id']);
   } else {
     $error['id'] = "N'est pas dans la bdd";
@@ -52,7 +52,7 @@ if (!empty($_GET['slug'])) {
 }
 ?>
       <div class="evaluation">
-        <h4>Moyenne des évaluations</h4>
+        <h4><strong>Moyenne des évaluations</strong></h4>
         <h2><?php   echo $movie['popularity']; ?> <small class="red">Popularité</small></h2>
         <h2><?php   echo $movie['rating']; ?> <small class="red">/ 100</small></h2>
       </div>
