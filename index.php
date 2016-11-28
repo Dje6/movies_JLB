@@ -72,7 +72,7 @@ include 'includes/header.php';
           <input type="text" name="searchbar" class="form-control" placeholder="Réalisateur, Titre...">
         </div>
 
-        <div class="checkbox col-md-4">
+        <div class="alignv checkbox col-md-4">
           <?php  global $pdo;
           $sql = "SELECT genres FROM movies_full GROUP BY genres";
           $query = $pdo->prepare($sql);
