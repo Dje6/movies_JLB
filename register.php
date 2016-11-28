@@ -133,6 +133,7 @@ $error = array();
             <input type="password" name="reapeatPassword"  value="">
             <br>
             <br>
+            <input type="checkbox" name="souvenir" value="souvenir"> Se souvenir de moi.<br>
       </fieldset>
       <input class="boutonRegister" type="submit" name="submit" value="Je m'inscris">
       <input class="boutonReset" type="reset">
