@@ -4,38 +4,48 @@ include 'includes/pdo.php';
 include 'includes/functions.php';
 
 // Sinon on affiche des films random frère
-
-
 if (!empty($_GET['submit'])) {
+  $r_GET = nettoyage($_GET);
 
-  // $search_str = trim(strip_tags($_GET['searchbar']));
-  $search = $_GET['searchbar'];
-  $annees = $_GET['annees'];
-  $popularity = $_GET['popularite'];
+// si la recherche contient un ou plusieur mot
+if(!empty($r_GET["searchbar"])){
+  $i=0;
+  foreach (explode(" ", $r_GET["searchbar"]) as $key => $value) {
+    if($value != NULL)
+    {
+      $mot_sj[$i] = "title LIKE '%$value%' OR plot LIKE '%$value%'";
+      $i++;
+    }
+    $final_sj = '('.implode(" OR ", $mot_sj).') AND';
+  }
+}else{
+    $final_sj = '';
+}
+//si un ou plusieur genres sont selectionner
+if(!empty($r_GET["genres"])){
+  $i=0;
+  foreach ($r_GET["genres"] as $key => $value) {
+    if($value != NULL)
+    {
+      $genre_sj[$i] = "genres LIKE '%$value%'";
+      $i++;
+    }
+    $final_genre_sj = '('.implode(" OR ", $genre_sj).') AND';
+  }
+}else{
+    $final_genre_sj = '';
+}
+//par default la fourche est de 1950 a l'annee en cour
+  $annee = '(year BETWEEN '.$r_GET["annees_debut"].' AND '.$r_GET["annees_fin"].')' ;
+//par default la fouche est de 0 a 100
+  $rating = 'AND (rating BETWEEN '.$r_GET["rating_debut"].' AND '.$r_GET["rating_fin"].')' ;
 
-    $sql = "SELECT * FROM movies_full WHERE 1 = 1";
-    if (!empty($_GET['searchbar'])){
-      $sql .= " AND directors LIKE '%$search%' OR title LIKE '%$search%'";
-    }
-    if (!empty($_GET['genres'])){
-      foreach ($_GET['genres'] as $selected) {
-        $sql .= " AND genres LIKE '%$selected%' ";
-      }
-    }
-    if (!empty($_GET['annees'])){
-      $sql .= " AND year = $annees";
-    }
-    if (!empty($_GET['popularite'])){
-      $sql .= " AND popularity = $popularity";
-    }
-    $sql .= " LIMIT 20";
+
+    $sql = "SELECT * FROM movies_full WHERE $final_sj $final_genre_sj $annee $rating";
     echo $sql;
-
     $query = $pdo->prepare($sql);
-    $query->bindvalue(':search',$search,PDO::PARAM_STR);
     $query->execute();
     $movies = $query->fetchAll();
-
 
 } else {
   $sql = "SELECT * FROM movies_full ORDER BY RAND() LIMIT 6";
@@ -44,17 +54,7 @@ if (!empty($_GET['submit'])) {
   $movies = $query->fetchAll();
 
 }
-
-
-
-
-
 include 'includes/header.php';
-
-
-
-
-
 ?>
 
         <!-- Titre et filtres -->
@@ -73,7 +73,7 @@ include 'includes/header.php';
           <input type="text" name="searchbar" class="form-control " placeholder="Réalisateur, Titre...">
         </div>
 
-        <div class="checkbox col-md-4">
+        <div class="alignv checkbox col-md-4">
           <?php  global $pdo;
           $sql = "SELECT genres FROM movies_full GROUP BY genres";
           $query = $pdo->prepare($sql);

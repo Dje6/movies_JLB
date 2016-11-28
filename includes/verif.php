@@ -5,7 +5,13 @@ function nettoyage($array)
 {
   $monarray = array();
   foreach ($array as $key => $value) {
-      $monarray[$key] = trim(strip_tags($value));
+      if(is_array($value)){
+        foreach ($value as $key_y => $value_y) {
+              $monarray[$key][$key_y] = trim(strip_tags($value_y));
+        }
+      }else{
+        $monarray[$key] = trim(strip_tags($value));
+      }
   }
   return($monarray);
 }
