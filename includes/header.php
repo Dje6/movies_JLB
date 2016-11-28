@@ -30,6 +30,11 @@
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="index.php">Bienvenue</a></li>
+              <li><a href="register.php">Inscription</a></li>
+              <li><a href="connexion.php">Connexion</a></li>
+            </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>

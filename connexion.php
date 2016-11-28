@@ -29,6 +29,7 @@ include 'includes/header.php';
                  'role'=>$user['role'],
                  'ip'=> $_SERVER['REMOTE_ADDR']
                );
+               echo 'BIENVENUE CHER UTILISATEUR';
                header('Location: index.php');
 
           } else {
