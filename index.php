@@ -73,6 +73,7 @@ include 'includes/header.php';
         </div>
 
         <div class="checkbox col-md-4">
+        <fieldset>
           <input type="checkbox" name="genres[]" value="Drama">Drama<br>
           <input type="checkbox" name="genres[]" value="Thriller">Thriller<br>
           <input type="checkbox" name="genres[]" value="Action">Action<br>
@@ -86,6 +87,7 @@ include 'includes/header.php';
           <input type="checkbox" name="genres[]" value="Western">Western<br>
           <input type="checkbox" name="genres[]" value="Horror">Horror<br>
           <input type="checkbox" name="genres[]" value="Animation">Animation<br>
+        </fieldset>
         </div>
 
         <div class="col-md-4">
@@ -109,7 +111,7 @@ include 'includes/header.php';
             <option value="5">80 - 100</option>
           </select>
         </div>
-
+        <br>
         <br>
         <input type="submit" name="submit" class="btn btn-warning" value ="Chercher un film">
       </form>

@@ -127,7 +127,7 @@ a:hover {
   text-decoration: none;
 }
 
-/*TEST RESEAUX*/
+/* RESEAUX*/
 .btn-center{
   width: 50%;
   text-align: center;
@@ -189,11 +189,16 @@ a:hover {
   border: 5px solid #ff6400;
   color: #ff6400;
   background-color: white;
-  padding: 2em;
+  padding: 5em;
+  margin: 20.5em;
+}
+.oublie {
+  color: #ff6400;
+  font-size: 30px;
+  font-weight: bolder;
 }
 
-
-/*test*/
+/*evaluation*/
 .btn-grey{
     background-color:#D8D8D8;
 	color:#FFF;
@@ -249,4 +254,19 @@ a:hover {
   text-align: center;
   font-weight: bolder;
   font-size: 30px;
+}
+/*test*/
+fieldset {
+	margin: auto;
+  float: left;
+	text-align:left;
+  color: #ff6400;
+  padding-left: 120px;
+}
+.filtresRecherche {
+  background-color: white;
+  font-size: 20px;
+}
+input.form-control {
+margin-top: 100px;
 }

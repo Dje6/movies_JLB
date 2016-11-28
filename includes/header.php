@@ -25,19 +25,19 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <!-- Recherche a gauche de header -->
-            <form class="navbar-form navbar-left">
+            <!-- <form class="navbar-form navbar-left">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+            </form> -->
 
             <!-- Liens a droite de header -->
             <ul class="nav navbar-nav navbar-right">
               <!-- Si l'utilisateur est connecté, on dit bonjour et on propose deconnexion -->
               <?php if (isLogged()) {
                 echo '<li><a>Bonjour '. $_SESSION['user']['pseudo'] .' !</a></li>'; ?>
-                <li><a href="avoir.php">Mes Films à voir</li></a>                
+                <li><a href="avoir.php">Mes Films à voir</li></a>
                 <li><a href="deco.php">Déconnexion</li></a>
 
               <?php } else { ?>

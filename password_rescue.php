@@ -51,8 +51,8 @@ if($_POST){
 <div class="container">
   <div class="row">
     <div class="form_modif">
-    <p>MOT DE PASSE OUBLIÉ</p>
-    <p>Pour récupérer votre mot de passe : veuillez saisir ci-dessous votre adresse mail. </p>
+    <p class="oublie">MOT DE PASSE OUBLIÉ</p>
+    <p>Pour récupérer votre mot de passe : veuillez saisir votre adresse mail. </p>
       <form action="" method="POST">
         <br>
         <label for="email">Entrez votre Email</label>
@@ -60,7 +60,7 @@ if($_POST){
           <input type="email" name="email" value="<?php if(!empty($_POST['email'])) { echo $_POST['email']; } ?>">
           <input type="hidden" name="capcha" value="">
           <br><br>
-          <input class="bouton" type="submit" name="submit" value="Demande de renvoie de mot de passe">
+          <input class="bouton" type="submit" name="submit" value="Demande de renvoi de mot de passe">
       </form>
     </div>
   </div>
