@@ -255,8 +255,8 @@ a:hover {
   font-weight: bolder;
   font-size: 30px;
 }
-/*test*/
-fieldset {
+/*alignement */
+.fieldindex {
 	margin: auto;
   float: left;
 	text-align:left;
@@ -269,4 +269,10 @@ fieldset {
 }
 input.form-control {
 margin-top: 100px;
+}
+.alignv {
+  margin-top: 100px;
+}
+input.btn.btn-warning{
+  margin-top: 50px;
 }
