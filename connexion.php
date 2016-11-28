@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'includes/pdo.php';
 include 'includes/functions.php';
 
@@ -23,10 +24,10 @@ include 'includes/header.php';
     if(!empty($user)){
           if(password_verify($password, $user['password'])) {
 
-                $_SESSION['user']=array (
+                $_SESSION['user']= array(
                  'pseudo'=> $user['pseudo'],
                  'id'=>$user['id'],
-                 'role'=>$user['role'],
+                 'status'=>$user['status'],
                  'ip'=> $_SERVER['REMOTE_ADDR']
                );
                echo 'BIENVENUE CHER UTILISATEUR';
@@ -51,24 +52,27 @@ include 'includes/header.php';
 
 
 ?>
-<div class="connexion">
-  <form id="form_connexion" action="" method="POST">
-    <br>
-    <label for="pseudo">Pseudo</label>
-    <span id="error_pseudo"><?php if(!empty($error['pseudo'])) { echo $error['pseudo']; } ?></span>
-    <input type="text" id="pseudo_connexion" name="pseudo" value="<?php if(!empty($_POST['pseudo'])) { echo $_POST['pseudo']; } ?>">
-    <br><br>
 
-    <label for="password">Password</label>
-    <input type="password" id="password_connexion" name="password" value="">
-    <br>
-    <br>
-    <a href="modifpassword.php">Mot de Passe oublié</a>
-    <br>
+<div class="container">
+  <div class="row">
+    <form id="form_connexion" action="" method="POST" class="col-md-offset-2">
+      <br>
+      <label for="pseudo">Votre Pseudo</label>
+      <span id="error_pseudo"><?php if(!empty($error['pseudo'])) { echo $error['pseudo']; } ?></span>
+      <input type="text" id="pseudo_connexion" name="pseudo" value="<?php if(!empty($_POST['pseudo'])) { echo $_POST['pseudo']; } ?>">
+      <br><br>
 
+      <label for="password">Votre Password</label>
+      <input type="password" id="password_connexion" name="password" value="">
+      <br>
+      <br>
+      <input type="button" name="modifpassword" value="Mot de Passe oublié"><a href="modifpassword.php"></a>
+      <br>
 
-    <input class="bouton" type="submit" name="submit" value="envoyer">
-  </form>
+      <input class="bouton" type="submit" name="submit" value="Se connecter">
+
+    </form>
+  </div>
 </div>
 
 

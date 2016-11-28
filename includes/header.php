@@ -24,16 +24,26 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- Recherche a gauche de header -->
             <form class="navbar-form navbar-left">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
+
+            <!-- Liens a droite de header -->
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="index.php">Bienvenue</a></li>
-              <li><a href="register.php">Inscription</a></li>
-              <li><a href="connexion.php">Connexion</a></li>
+              <!-- Si l'utilisateur est connecté, on dit bonjour et on propose deconnexion -->
+              <?php if (isLogged()) {
+                echo '<li><a>Bonjour '. $_SESSION['user']['pseudo'] .' !</a></li>'; ?>
+                <li><a href="deco.php">Déconnexion</li></a>
+
+              <?php } else { ?>
+                <!-- Si l'utilisateur n'est pas connecté, on affiche les deux liens -->
+                <li><a href="register.php">Inscription</a></li>
+                <li><a href="connexion.php">Connexion</a></li>
+              <?php } ?>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

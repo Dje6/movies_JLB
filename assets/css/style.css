@@ -6,6 +6,11 @@
 .navbar-brand span {
   color: #ff740e;
 }
+.navbar-right {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 
         /*style INDEX*/
 .titrePage {
@@ -21,6 +26,7 @@
   max-width: 75%;
   display: none;
   position: relative;
+  margin-top: 1em;
 }
 .filtresRecherche button {
   position: absolute;
@@ -93,9 +99,13 @@ h1 {
   color: red;
 }
 #form_inscription {
-  margin-top: 10%;
-  margin-bottom: 20%;
-  margin-left: 40%;
+  padding-left: 7em;
+  padding-bottom: 3em;
+  margin-top: 2em;
+  margin-bottom: 3em;
+  border: 5px solid #ff6400;
+  font-size: 21px;
+  color: #ff6400;
 }
 label{
 	display: block;
@@ -166,9 +176,11 @@ a:hover {
 }
 /*page connexion*/
 #form_connexion{
-  text-align: center;
-  margin-top: 10%;
-  margin-left: 25%;
-  margin-right: 50%;
-  margin-bottom: 27%
+  padding-left: 7em;
+  padding-bottom: 3em;
+  margin-top: 2em;
+  margin-bottom: 3em;
+  border: 5px solid #ff6400;
+  font-size: 21px;
+  color: #ff6400;
 }
