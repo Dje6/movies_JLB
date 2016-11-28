@@ -51,12 +51,43 @@ if (!empty($_GET['slug'])) {
           header('Location: index.php');
         }
         ?>
+        <!-- Moyenne des evaluations -->
         <div class="evaluation">
           <h4><strong>Moyenne des évaluations</strong></h4>
           <h2><?php   echo $movie['popularity']; ?> <small class="red">Popularité</small></h2>
           <h2><?php   echo $movie['rating']; ?> <small class="red">/ 100</small></h2>
         </div>
         <br>
+
+        <!-- note moyenne utilisateurs -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 ">
+              <div class="rating-block">
+                <h4 class="note">Note moyenne des utilisateurs</h4>
+                <?php etoile_rating($movie['rating'],100)?><br/>
+
+                <!-- <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         <!-- Affiche le bouton ajouter a la liste a voir si le user est logged -->
         <?php if (isLogged()) { ?>
           <a href="avoir.php" class="btn btn-warning btn-lg">Ajouter aux films à voir</a>
@@ -64,24 +95,23 @@ if (!empty($_GET['slug'])) {
           <button class="btn btn-warning btn-lg disabled">Connectez-vous pour ajouter ce film à votre liste</button>
         <?php } ?>
       </div> <!-- end thumbnail -->
-    </div>
+    </div> <!-- end row -->
 
-  <!-- Social network -->
-  <div class="container text-center">
-    <form class="form-signin" data-ember-action="2">
-      <h2 class="form-signin-heading">Social network</h2>
-            <p>
-              <a class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
-              <a class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i class="fa fa-twitter"></i></a>
-            </p>
-            <p>
-              <a class="btn btn-primary social-login-btn social-linkedin" href="/auth/linkedin"><i class="fa fa-linkedin"></i></a>
-              <a class="btn btn-primary social-login-btn social-google" href="/auth/google"><i class="fa fa-google-plus"></i></a>
-            </p>
+      <!-- Social network -->
+    <div class="container text-center">
+      <form class="form-signin" data-ember-action="2">
+        <p>
+          <a class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
+          <a class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i class="fa fa-twitter"></i></a>
+        </p>
+        <p>
+          <a class="btn btn-primary social-login-btn social-linkedin" href="/auth/linkedin"><i class="fa fa-linkedin"></i></a>
+          <a class="btn btn-primary social-login-btn social-google" href="/auth/google"><i class="fa fa-google-plus"></i></a>
+        </p>
         <br>
-    </form>
-  </div>
-</div>
+      </form>
+    </div> <!-- end social network -->
+  </div> <!-- end div affichage -->
 
 
 

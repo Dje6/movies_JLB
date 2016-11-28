@@ -5,85 +5,262 @@ include 'includes/functions.php';
 
 
 
-<?php
-$error = array();
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
 
-if (!empty($_GET['slug'])) {
+    <title>Fixed Top Navbar Example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/navbar-fixed-top.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Demo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="rating-block">
+					<h4>Average user rating</h4>
+					<h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
+					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<h4>Rating breakdown</h4>
+				<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" style="margin-left:10px;">1</div>
+				</div>
+				<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" style="margin-left:10px;">1</div>
+				</div>
+				<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" style="margin-left:10px;">0</div>
+				</div>
+				<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" style="margin-left:10px;">0</div>
+				</div>
+				<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" style="margin-left:10px;">0</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="row">
+			<div class="col-sm-7">
+				<hr/>
+				<div class="review-block">
+					<div class="row">
+						<div class="col-sm-3">
+							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+							<div class="review-block-name"><a href="#">nktailor</a></div>
+							<div class="review-block-date">January 29, 2016<br/>1 day ago</div>
+						</div>
+						<div class="col-sm-9">
+							<div class="review-block-rate">
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							</div>
+							<div class="review-block-title">this was nice in buy</div>
+							<div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+						</div>
+					</div>
+					<hr/>
+					<div class="row">
+						<div class="col-sm-3">
+							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+							<div class="review-block-name"><a href="#">nktailor</a></div>
+							<div class="review-block-date">January 29, 2016<br/>1 day ago</div>
+						</div>
+						<div class="col-sm-9">
+							<div class="review-block-rate">
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							</div>
+							<div class="review-block-title">this was nice in buy</div>
+							<div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+						</div>
+					</div>
+					<hr/>
+					<div class="row">
+						<div class="col-sm-3">
+							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+							<div class="review-block-name"><a href="#">nktailor</a></div>
+							<div class="review-block-date">January 29, 2016<br/>1 day ago</div>
+						</div>
+						<div class="col-sm-9">
+							<div class="review-block-rate">
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							</div>
+							<div class="review-block-title">this was nice in buy</div>
+							<div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+    </div> <!-- /container -->
 
 
-  $slug = $_GET['slug'];
-
-  $sql = "SELECT * FROM movies_full WHERE slug = :slug";
-  $query = $pdo->prepare($sql);
-  $query->bindvalue(":slug",$slug,PDO::PARAM_STR);
-  $query->execute();
-  $movie = $query->fetch();
-
-  include 'includes/header.php';
-  ?>
-  <div class="affichage">
-<?php
-
-  if (!empty($movie['slug'])) {
-    echo '<h1>' . $movie['title'] . '</H1>';
-    echo '<br>';
-    echo '<h2>' . $movie['slug'] . '<H2>';
-    echo '<br>';
-    // echo $movie['year'];
-    // echo '<br>';
-    if(file_exists("posters/". $movie['id']. ".jpg")) {
-      echo '<img src="posters/'.$movie['id'].'.jpg">';
-    }else {
-      echo '<img class="displayAffiches" src="http://placehold.it/220x300">';
-    }
-    echo '<br>';
-    echo '<p class="detailcss">' . $movie['genres'] . '<p>';
-    echo '<br>';
-    echo '<p class="detailcss">' . $movie['plot'] . '<p>';
-    echo '<br>';
-    echo '<p class="detailcss">' . $movie['directors'] . '<p>';
-    echo '<br>';
-    echo '<p class="detailcss">' . $movie['cast'] . '<p>';
-    echo '<br>';
-    // echo $movie['rating'];
-    // echo '<br>';
-    // echo $movie['popularity'];
-    print_r($movie['id']);
-  } else {
-    $error['id'] = "N'est pas dans la bdd";
-    print_r($error);
-  }
-} else {
-  header('Location: index.php');
-}
-
-?>
-  <div class="evaluation">
-    <h4>Moyenne des évaluations</h4>
-    <h2><?php   echo $movie['popularity']; ?> <small class="red">Popularité</small></h2>
-    <h2><?php   echo $movie['rating']; ?> <small class="red">/ 100</small></h2>
-  </div>
-
-    <div class="container text-center">
-      <form class="form-signin" data-ember-action="2">
-        <h2 class="form-signin-heading">Social network</h2>
-          <small class="text-muted">Connect [your service] with your favorite social network</small>
-            <br><br>
-              <p>
-              <a class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
-              <a class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i class="fa fa-twitter"></i></a>
-              </p>
-              <p>
-              <a class="btn btn-primary social-login-btn social-linkedin" href="/auth/linkedin"><i class="fa fa-linkedin"></i></a>
-              <a class="btn btn-primary social-login-btn social-google" href="/auth/google"><i class="fa fa-google-plus"></i></a>
-              </p>
-
-          <br>
-      </form>
-    </div>
-
-
-
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
 
 
 
@@ -91,32 +268,3 @@ if (!empty($_GET['slug'])) {
 
 
 <?php include 'includes/footer.php'; ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="row">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="..." alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
