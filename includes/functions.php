@@ -8,7 +8,7 @@ function debug ($array) {
 
 //Fonction qui verifie si l'utilisateur est connecté
 function isLogged() {
-  if (!empty($_SESSION['user']) && !empty($_SESSION['user']['id']) && !empty($_SESSION['user']['pseudo']) && !empty($_SESSION['user']['role']) && !empty($_SESSION['user']['ip'])) {
+  if (!empty($_SESSION['user']) && !empty($_SESSION['user']['id']) && !empty($_SESSION['user']['pseudo']) && !empty($_SESSION['user']['status']) && !empty($_SESSION['user']['ip'])) {
 
     //On recup l'IP de la machine quand le user est sur l'index apres connexion
     $ip = $_SERVER['REMOTE_ADDR'];

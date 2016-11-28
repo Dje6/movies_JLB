@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'includes/pdo.php';
 include 'includes/functions.php';
 
@@ -23,10 +24,10 @@ include 'includes/header.php';
     if(!empty($user)){
           if(password_verify($password, $user['password'])) {
 
-                $_SESSION['user']=array (
+                $_SESSION['user']= array(
                  'pseudo'=> $user['pseudo'],
                  'id'=>$user['id'],
-                 'role'=>$user['role'],
+                 'status'=>$user['status'],
                  'ip'=> $_SERVER['REMOTE_ADDR']
                );
                echo 'BIENVENUE CHER UTILISATEUR';
@@ -67,7 +68,7 @@ include 'includes/header.php';
     <br>
 
 
-    <input class="bouton" type="submit" name="submit" value="envoyer">
+    <input class="bouton" type="submit" name="submit" value="Se connecter">
   </form>
 </div>
 

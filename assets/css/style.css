@@ -6,6 +6,11 @@
 .navbar-brand span {
   color: #ff740e;
 }
+.navbar-right {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 
         /*style INDEX*/
 .titrePage {
