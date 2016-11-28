@@ -63,13 +63,14 @@ include 'includes/header.php';
     <h1>Consultez les films proposés</h1>
   </div>
   <!-- filtres recherche -->
-  <div class="row">
-    <div class="container">
+  <div class="container">
+    <div class="row">
       <button id="showFiltres" type="button" class="btn btn-warning btn-lg">Filtres de recherche</button>
       <form class="filtresRecherche container" action="" method="GET">
 
+
         <div class="form-group col-md-4">
-          <input type="text" name="searchbar" class="form-control" placeholder="Réalisateur, Titre...">
+          <input type="text" name="searchbar" class="form-control " placeholder="Réalisateur, Titre...">
         </div>
 
         <div class="checkbox col-md-4">
@@ -90,7 +91,7 @@ include 'includes/header.php';
         </fieldset>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 ">
           <select class="form-control" name="annees">
             <option value="">Années</option>
             <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1900-1950</option>
@@ -111,6 +112,7 @@ include 'includes/header.php';
             <option value="5">80 - 100</option>
           </select>
         </div>
+
         <br>
         <br>
         <input type="submit" name="submit" class="btn btn-warning" value ="Chercher un film">

@@ -108,7 +108,7 @@ $error = array();
 <div class="container">
   <div class="row">
 
-    <form id="form_inscription" action="" method="POST" class="col-md-offset-2">
+    <form id="form_inscription" action="" method="POST" class="col-md-offset-2 col-lg-offset-2">
       <br>
       <fieldset>
         <legend>INSCRIPTION</legend>
