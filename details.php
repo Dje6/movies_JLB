@@ -65,7 +65,7 @@ if (!empty($_GET['slug'])) {
           <div class="col-sm-12 ">
             <div class="rating-block">
               <h4 class="note">Note moyenne des utilisateurs</h4>
-              <?php etoile_rating($movie['rating'],100)?><br/>
+              <?php etoile_rating ($movie['rating'],100)?><br/>
 
               <!-- <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -96,7 +96,7 @@ if (!empty($_GET['slug'])) {
   </div>
   <div class="container text-center">
     <form class="form-signin" data-ember-action="2">
-      
+
             <p>
               <a class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
               <a class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i class="fa fa-twitter"></i></a>
