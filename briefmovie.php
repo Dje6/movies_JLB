@@ -88,9 +88,9 @@
 // Le back-office doit bien sûr être sécurisé, et accessible que par vous-seul.
 
 //Celui-ci aura les fonctionnalités suivantes :
-	// -	Statistiques (page d'accueil du BO)
-	// -	Consultation/Ajout/Modification/Supression de films
-	// -    Consultation/Modification/Supression d'utilisateurs
+	// -	Statistiques (page d'accueil du BO) --> backoffice.php
+	// -	Consultation/Ajout/Modification/Supression de films --> movies_back.php
+	// -    Consultation/Modification/Supression d'utilisateurs --> users_back.php
 
 // Côté design, assurez-vous qu'il soit différent du front.
 

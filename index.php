@@ -63,13 +63,14 @@ include 'includes/header.php';
     <h1>Consultez les films proposés</h1>
   </div>
   <!-- filtres recherche -->
-  <div class="row">
-    <div class="container">
+  <div class="container">
+    <div class="row">
       <button id="showFiltres" type="button" class="btn btn-warning btn-lg">Filtres de recherche</button>
       <form class="filtresRecherche container" action="" method="GET">
 
+
         <div class="form-group col-md-4">
-          <input type="text" name="searchbar" class="form-control" placeholder="Réalisateur, Titre...">
+          <input type="text" name="searchbar" class="form-control " placeholder="Réalisateur, Titre...">
         </div>
 
         <div class="alignv checkbox col-md-4">
@@ -134,6 +135,7 @@ include 'includes/header.php';
           <br>
 
         </div>
+
         <br>
         <br>
         <input type="submit" name="submit" class="btn btn-warning" value ="Chercher un film">

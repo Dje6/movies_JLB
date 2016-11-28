@@ -46,9 +46,11 @@ if($_POST){
         contenu dans le mail pour reinitialiser votre mot de passe';
       }
       exit();
+    } else {
+      $error['email'] = 'Cet email n\'existe pas';
     }
   }else{
-    echo 'tu es un robo';
+    echo 'tu es un robot';
     exit();
   }
 }
