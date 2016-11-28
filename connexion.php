@@ -33,7 +33,7 @@ include 'includes/header.php';
                header('Location: index.php');
                exit;
           } else {
-            echo 'Votre mot de passe est invalide.';
+            echo '<h4 class="invalide"> Votre mot de passe est invalide. </h4>';
           }
 
 
