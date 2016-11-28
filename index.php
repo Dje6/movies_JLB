@@ -74,7 +74,7 @@ include 'includes/header.php';
         </div>
 
         <div class="checkbox col-md-4">
-        <fieldset>
+        <fieldset class="fieldindex">
           <input type="checkbox" name="genres[]" value="Drama">Drama<br>
           <input type="checkbox" name="genres[]" value="Thriller">Thriller<br>
           <input type="checkbox" name="genres[]" value="Action">Action<br>
@@ -91,7 +91,9 @@ include 'includes/header.php';
         </fieldset>
         </div>
 
-        <div class="col-md-4 ">
+
+        <div class="col-md-4">
+          <div class="alignv">
           <select class="form-control" name="annees">
             <option value="">Années</option>
             <option value="<?php if(!empty($_POST['annees'])) { echo  $_POST['annees']; } ?>">1900-1950</option>
@@ -111,6 +113,7 @@ include 'includes/header.php';
             <option value="4">60 - 80</option>
             <option value="5">80 - 100</option>
           </select>
+          </div>
         </div>
 
         <br>
