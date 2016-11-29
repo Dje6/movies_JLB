@@ -5,6 +5,9 @@ if(!isLogged()) {
   header('location: connexion.php');
   exit;
 }
+
+
+
 include 'includes/header.php'; ?>
 
 <!-- Titre page -->
