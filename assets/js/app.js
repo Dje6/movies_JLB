@@ -19,6 +19,7 @@ $(function(){                   // Start when document ready
           success: function(response){
             if(response.success === true){
               $('#star-rating').html('<br/>'+response.message);
+              actual(id_mov);
             }else{
               $('#star-rating').html('<br/>'+response.message);
             }
@@ -31,6 +32,29 @@ $(function(){                   // Start when document ready
   });
 });
 
+var actual = function(id_mov){
+
+      $.ajax({
+        type:'POST',
+        url: 'includes/moyenne.php',
+        data: {id:id_mov},
+        dataType:"Json",
+        beforeSend: function(){
+        },
+        success: function(response){
+          if(response.success === true){
+            console.log('ok');
+          $('.moyenne-user-text').html((Math.round(response.texte))*20);
+          $('.moyenne-user-etoile').html(response.etoile);
+          }else{
+            console.log(response.error)
+          }
+        },
+        error: function(response){
+          console.log(response);
+        }
+      });
+    };
 //ajout du film a voir
 $(".addList").on("click",function(e) {
   e.preventDefault();

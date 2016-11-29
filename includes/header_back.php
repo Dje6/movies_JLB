@@ -37,5 +37,5 @@
         <!-- <li><a href="#"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> page3</a></li> -->
         <li><a href="index.php"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Retour FRONT</a></li>
       </ul>
-
+      <img src="assets/img/dash1.gif" class="dashimg" alt="graphique">
     </div><!--/.sidebar-->

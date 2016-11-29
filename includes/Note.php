@@ -26,14 +26,14 @@ if($_POST)
     $query->bindValue(':note',$r_POST['note'],PDO::PARAM_INT);
     if($query->execute()){
       $error['success'] = true;
-      $error['message'] = 'Vote enregistrer';
+      $error['message'] = 'Vote enregistré';
     }else{
       $error['success'] = false;
       $error['message'] = 'Erreur lors de l\'ajout';
     }
   }else{
     $error['success'] = false;
-    $error['message'] = 'Vous avez deja voter';
+    $error['message'] = 'Vous avez deja voté';
   }
 }else{
   $error['success'] = false;
