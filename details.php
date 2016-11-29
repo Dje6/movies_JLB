@@ -11,7 +11,7 @@ $error = array();
 if (!empty($_GET['slug'])) {
   $slug = $_GET['slug'];
   $sql = "(SELECT mf.*,AVG(mun.note) FROM movies_full AS mf LEFT JOIN movies_user_note AS mun
-  ON mf.id = mun.id_movie WHERE slug = :slug GROUP BY mf.id)";
+  ON mf.id = mun.id_movie WHERE mf.slug = :slug GROUP BY mf.id)";
   $query = $pdo->prepare($sql);
   $query->bindvalue(":slug",$slug,PDO::PARAM_STR);
   $query->execute();
@@ -44,20 +44,32 @@ if (!empty($_GET['slug'])) {
           header('Location: index.php');
         }
         ?>
-        <!-- Moyenne des evaluations -->
+        <!-- Moyenne des evaluations --><?php
+        $sql = "(SELECT COUNT(*) FROM movies_user_note WHERE id_movie = :id_movie AND id_user = :id_user)";
+        $query = $pdo->prepare($sql);
+        $query->bindValue(':id_movie',$movie['id'],PDO::PARAM_INT);
+        $query->bindValue(':id_user',$_SESSION['user']['id'],PDO::PARAM_INT);
+        $query->execute();
+        $deja_vote = $query->fetchColumn(); ?>
+
         <div class="evaluation">
           <h4><strong>Moyenne des évaluations Utilisateur</strong></h4>
-          <h2><?php etoile_rating($movie['AVG(mun.note)'],100); ?><small class="red"></small></h2><br/>
+          <h2><?php echo ($movie['AVG(mun.note)']*20); ?><small class="red">/100</small></h2><?php
 
-          <section class="container">
+          etoile_rating(($movie['AVG(mun.note)']*20),100);
+
+          if($deja_vote == 0){ ?>
             <div id="star-rating">
-                <input type="radio" name="example" class="rating" value="20" />
-                <input type="radio" name="example" class="rating" value="40" />
-                <input type="radio" name="example" class="rating" value="60" />
-                <input type="radio" name="example" class="rating" value="80" />
-                <input type="radio" name="example" class="rating" value="100" />
+                <input type="radio" name="example" class="rating" value="1" id="<?php echo $movie['id'] ?>"/>
+                <input type="radio" name="example" class="rating" value="2" id="<?php echo $movie['id'] ?>"/>
+                <input type="radio" name="example" class="rating" value="3" id="<?php echo $movie['id'] ?>"/>
+                <input type="radio" name="example" class="rating" value="4" id="<?php echo $movie['id'] ?>"/>
+                <input type="radio" name="example" class="rating" value="5" id="<?php echo $movie['id'] ?>"/>
             </div>
-          </section>
+         <?php
+          }else{
+            echo '<br/><br/>Vous avez deja noté ce film';
+          } ?>
         </div>
         <br>
 

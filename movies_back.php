@@ -3,37 +3,48 @@ session_start();
 include('includes/functions.php');
 include('includes/header_back.php');
 if(isAdmin()) {
+  $r_GET = nettoyage($_GET);
 
-  $sql = "SELECT id,title,year,rating FROM movies_full ORDER BY id";
-  $query = $pdo->prepare($sql);
-  $query->execute();
-  $movies = $query->fetchAll();
-
-?>
-  <table class="use table">
-    <tr>
-      <th>ID</th>
-      <th>Title</th>
-      <th>Year</th>
-      <th>Rating</th>
-      <th>Actions</th>
-    </tr>
-
-<?php
-
-  foreach ($movies as $movie => $value) { ?>
-
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+  if(!isset($r_GET['page'])){
+    $r_GET['page'] = 1 ;
+  }
+  $num = 100;
+  $movies = movies($num,$r_GET['page']);?>
 
 
-  <?php }
-  }else{
+<div class="container table-responsive">
+  <div class="row">
+    <div class="col-xs-9 col-md-9 col-lg-10">
+
+      <?php pagination($r_GET['page'],$movies['total']['nb_page'],basename($_SERVER['PHP_SELF'])); ?>
+
+      <table class="use table">
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Year</th>
+          <th>Rating</th>
+          <th>Actions</th>
+        </tr>
+  <?php foreach ($movies as $key => $movie) {
+    if(is_numeric($key)){ ?>
+
+        <tr>
+          <td><?php echo $movie['id']; ?></td>
+          <td><?php echo $movie['title']; ?></td>
+          <td><?php echo $movie['year']; ?></td>
+          <td><?php echo $movie['rating']; ?></td>
+          <td></td>
+        </tr>
+
+    <?php
+  }
+  } ?>
+      </table>
+    </div>
+  </div>
+</div>
+<?php }else{
       header('Location: index.php');
     }
 

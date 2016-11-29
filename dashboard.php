@@ -1,8 +1,25 @@
 <?php
 include 'includes/pdo.php';
 include 'includes/functions.php';
-?>
 
+$sql ="SELECT count(*) FROM users";
+$query = $pdo->prepare($sql);
+$query->execute();
+$nb_abo = $query->fetchColumn();
+
+// debug ($nb_abo);
+
+
+$sql ="SELECT count(*) FROM movies_full";
+$query = $pdo->prepare($sql);
+$query->execute();
+$nb_films = $query->fetchColumn();
+
+// debug ($nb_films);
+
+
+
+?>
 <?php include 'includes/header_back.php'; ?>
 
 	<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -37,7 +54,7 @@ include 'includes/functions.php';
 			<li><a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> page4</a></li>
 		</ul>
 
-	</div>sidebar--> 
+	</div>sidebar-->
 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 			<div class="row">
@@ -67,8 +84,8 @@ include 'includes/functions.php';
 							<svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">52</div>
-							<div class="text-muted">Films retirés</div>
+							<div class="large"><?php echo $nb_films ;?></div>
+							<div class="text-muted">Nombre de films Total</div>
 						</div>
 					</div>
 				</div>
@@ -80,8 +97,8 @@ include 'includes/functions.php';
 							<svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">24</div>
-							<div class="text-muted">Nouveaux Abonnés</div>
+							<div class="large"><?php echo $nb_abo ;?></div>
+							<div class="text-muted">Nombre d'abonnés</div>
 						</div>
 					</div>
 				</div>
@@ -93,8 +110,31 @@ include 'includes/functions.php';
 							<svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">152k</div>
-							<div class="text-muted">Pages vues</div>
+							<div class="large">
+								<p><?php
+
+								if(file_exists('compteur_visites.txt'))
+								{
+												$compteur_f = fopen('compteur_visites.txt', 'r+');
+												$compte = fgets($compteur_f);
+								}
+								else
+								{
+												$compteur_f = fopen('compteur_visites.txt', 'a+');
+												$compte = 0;
+								}
+								if(!isset($_SESSION['compteur_de_visite']))
+								{
+												$_SESSION['compteur_de_visite'] = 'visite';
+												$compte++;
+												fseek($compteur_f, 0);
+												fputs($compteur_f, $compte);
+								}
+								fclose($compteur_f);
+								echo '<strong>'.$compte.'</strong> visites.';
+								?></p>
+							</div>
+							<div class="text-muted">Nombre de visites</div>
 						</div>
 					</div>
 				</div>
@@ -127,8 +167,14 @@ include 'includes/functions.php';
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Films retirés</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span>
+						<h4>Objectif Nombre de films enregistrés 10000</h4>
+						<?php echo $nb_films ;?>
+						<div class="easypiechart" id="easypiechart-orange"><span class="percent">
+							<?php
+								$Pourcent =  Pourcentage($nb_films, 10000);
+								echo $Pourcent.'%';
+								?></span>
+							</span>
 						</div>
 					</div>
 				</div>
@@ -136,8 +182,13 @@ include 'includes/functions.php';
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Nouveaux Abonnés</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
+						<h4>Obhectif nombre d'abonnés 500</h4>
+						<p><?php echo $nb_abo; ?></p>
+						<div class="easypiechart" id="easypiechart-teal" ><span class="percent">
+							<?php
+								$Pourcent =  Pourcentage($nb_abo, 500);
+								echo $Pourcent.'%';
+								?></span>
 						</div>
 					</div>
 				</div>
@@ -145,15 +196,23 @@ include 'includes/functions.php';
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Visiteurs</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span>
+						<h4>Objectif Visiteurs 250/jour</h4>
+							<p><?php
+			      		echo '<strong>'.$compte.'</strong> visites.';
+			      		?></p>
+								<div class="easypiechart" id="easypiechart-red" ><span class="percent">
+							<?php
+								$Pourcent =  Pourcentage($compte, 250);
+								echo $Pourcent.'%';
+								?>
+							</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!--/.row-->
 
-		<
+
 				</div>
 
 			</div><!--/.col-->

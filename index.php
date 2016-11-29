@@ -93,8 +93,10 @@ include 'includes/header.php';
               $liste_genre[$i]= $value_y;
             }
           }
+            $last_key = array_pop(array_keys(array_unique($liste_genre)));
+
           foreach (array_unique($liste_genre) as $key => $value) {
-            if($key > 1){
+            if($key > 1 && $key < $last_key){
               echo '<input type="checkbox" name="genres[]" value="'.$value.'">'.$value.'<br>' ;
             }
           } ?>
@@ -174,9 +176,9 @@ include 'includes/header.php';
 
 
             if(file_exists("posters/". $movie['id']. ".jpg")) {
-              echo  '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="posters/'.$movie['id'].'.jpg"></a>';
+              echo  '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" title="'.$movie['title'].'" src="posters/'.$movie['id'].'.jpg"></a>';
             } else {
-              echo '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="http://placehold.it/220x300"></a>';
+              echo '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" title="'.$movie['title'].'" src="http://placehold.it/220x300"></a>';
               // print_r ($size);
             }
            ?>

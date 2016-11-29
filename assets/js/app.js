@@ -4,12 +4,29 @@ $('#showFiltres').click(function(event) {
 });
 //demarag de la fonction pour le vote etoile
 $(function(){                   // Start when document ready
-  $('#star-rating').rating(function(vote, event){
+  $('#star-rating').rating(function(vote,id_mov, event){
           // we have vote and event variables now, lets send vote to server.
+          $this = $(this);
       $.ajax({
           url: "includes/Note.php",
           type: "POST",
-          data: {note: vote,id:$(this).attr('id')},
+          data: {note: vote,
+                id: id_mov
+              },
+          dataType:"Json",
+          beforeSend: function(){
+          },
+          success: function(response){
+            if(response.success === true){
+              $('#star-rating').html('<br/>'+response.message);
+            }else{
+              $('#star-rating').html('<br/>'+response.message);
+            }
+          },
+          error: function(response){
+            console.log(response);
+          }
+
       });
   });
 });
@@ -142,6 +159,7 @@ $(".addList").on("click",function(e) {
                 container = el.parent().parent(),
                 inputs = container.children('input'),
                 rate = el.attr('title');
+                id_mov = el.attr('id');
 
             matchInput = inputs.filter(function(i){
                 if ($(this).val() == rate)
@@ -156,7 +174,7 @@ $(".addList").on("click",function(e) {
 
             container
                 .trigger('set.rating', matchInput.val())
-                .data('rating').callback(rate, e);
+                .data('rating').callback(rate,id_mov, e);
         }
     });
 

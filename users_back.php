@@ -19,7 +19,7 @@ if(isLogged())
       $users = users($num,$retour_get['page']);
 
       pagination($retour_get['page'],$users['total']['nb_page'],basename($_SERVER['PHP_SELF'])); ?>
-      <div class="table-responsive">
+      <div class="container table-responsive">
        <table class="use table">
            <th>ID</th>
            <th>Pseudo</th>
