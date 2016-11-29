@@ -27,16 +27,20 @@ console.log('pas ok');
 
 $(".removeList").on("click", function(event) {
   event.preventDefault();
+  $this = $(this);
   $.ajax({
     type: 'POST',
     url: 'includes/removeList.php',
+    data: {id:$(this).attr('id')},
     dataType: "Json",
+
     success: function(response){
       if(response.success === true){
-        $(".removeList").remove();
-        console.log('supprimé');
+        $('#'+$this.attr('id')).remove();
+        console.log(response.message);
+        location.reload();
       } else {
-        console.log('pas supprimé');
+        console.log(response.message);
       }
     },
     error: function(){
