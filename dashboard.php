@@ -7,7 +7,16 @@ $query = $pdo->prepare($sql);
 $query->execute();
 $nb_abo = $query->fetchColumn();
 
-debug ($nb_abo);
+// debug ($nb_abo);
+
+
+$sql ="SELECT count(*) FROM movies_full";
+$query = $pdo->prepare($sql);
+$query->execute();
+$nb_films = $query->fetchColumn();
+
+// debug ($nb_films);
+
 
 
 ?>
@@ -75,8 +84,8 @@ debug ($nb_abo);
 							<svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">52</div>
-							<div class="text-muted">Films retirés</div>
+							<div class="large"><?php echo $nb_films ;?></div>
+							<div class="text-muted">Nombre de films Total</div>
 						</div>
 					</div>
 				</div>
@@ -158,8 +167,14 @@ debug ($nb_abo);
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Films retirés</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span>
+						<h4>Objectif Nombre de films enregistrés 10000</h4>
+						<?php echo $nb_films ;?>
+						<div class="easypiechart" id="easypiechart-orange"><span class="percent">
+							<?php
+								$Pourcent =  Pourcentage($nb_films, 10000);
+								echo $Pourcent.'%';
+								?></span>
+							</span>
 						</div>
 					</div>
 				</div>
@@ -167,11 +182,13 @@ debug ($nb_abo);
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Nombre d'abonnés</h4>
-						<p><?php
-							echo '<strong>'.$compte.'</strong> visites.';
-							?></p>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
+						<h4>Obhectif nombre d'abonnés 500</h4>
+						<p><?php echo $nb_abo; ?></p>
+						<div class="easypiechart" id="easypiechart-teal" ><span class="percent">
+							<?php
+								$Pourcent =  Pourcentage($nb_abo, 500);
+								echo $Pourcent.'%';
+								?></span>
 						</div>
 					</div>
 				</div>
@@ -183,7 +200,7 @@ debug ($nb_abo);
 							<p><?php
 			      		echo '<strong>'.$compte.'</strong> visites.';
 			      		?></p>
-								<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">
+								<div class="easypiechart" id="easypiechart-red" ><span class="percent">
 							<?php
 								$Pourcent =  Pourcentage($compte, 250);
 								echo $Pourcent.'%';
