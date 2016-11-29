@@ -30,12 +30,21 @@ $query->bindValue(':id_user',$_SESSION['user']['id'],PDO::PARAM_STR);
 $query->execute();
 $movies = $query->fetchAll();
 
+// Display des films
 foreach ($movies as $key => $value) {
-  if(file_exists("posters/". $value['id']. ".jpg")) {
-    echo  '<a href="details.php?slug='.$value['slug'].'"><img class="displayAffiches" src="posters/'.$value['id'].'.jpg"></a>';
-  } else {
-    echo '<a href="details.php?slug='.$value['slug'].'"><img class="displayAffiches" src="http://placehold.it/220x300"></a>';
-  }
+  if(file_exists("posters/". $value['id']. ".jpg")) { ?>
+
+    <div class="col-sm-3">
+      <a href="details.php?slug=<?php echo $value['slug']; ?>"><img class="displayAffiches" src="posters/<?php echo $value['id']; ?>.jpg"></a>
+      <button class="btn btn-danger btn-xs removeList">Retirer ce film de ma liste</button>
+
+    </div>
+
+
+    <!-- Si le poster existe pas, on affiche placeholder -->
+<?php } else { ?>
+    <a href="details.php?slug=<?php echo $value['slug']; ?>"><img class="displayAffiches" src="http://placehold.it/220x300"></a>
+<?php }
 }
 ?>
   </div>
