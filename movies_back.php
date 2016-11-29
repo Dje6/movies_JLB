@@ -4,8 +4,8 @@ include('includes/functions.php');
 include('includes/header.php');
 if(isAdmin()) {
 
-  $sql = "SELECT id,title,year,rating FROM movies_full ORDER BY id"
-  $query->prepare($sql);
+  $sql = "SELECT id,title,year,rating FROM movies_full ORDER BY id";
+  $query = $pdo->prepare($sql);
   $query->execute();
   $movies = $query->fetchAll();
 
