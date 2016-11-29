@@ -2,3 +2,4 @@ posters/
 sql/
 includes/pdo.php
 vendor/
+compteur_visites.txt
