@@ -9,7 +9,6 @@ $error = array();
 if($_POST)
 {
   $r_POST = nettoyage($_POST);
-
   global $pdo;
 
   $sql = "(SELECT COUNT(*) FROM movies_user_note WHERE id_movie = :id_movie AND id_user = :id_user)";
@@ -20,7 +19,7 @@ if($_POST)
   $deja_vote = $query->fetchColumn();
 
   if($deja_vote == 0){
-    $sql = "INSERT INTO movies_user_note (id_movie,id_user,note,created_at,status) VALUES (:id_movie,:id_user,:note,NOW();1)";
+    $sql = "INSERT INTO movies_user_note (id_movie,id_user,note,created_at,status) VALUES (:id_movie,:id_user,:note,NOW(),1)";
     $query = $pdo->prepare($sql);
     $query->bindValue(':id_movie',$r_POST['id'],PDO::PARAM_INT);
     $query->bindValue(':id_user',$_SESSION['user']['id'],PDO::PARAM_INT);
