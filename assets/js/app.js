@@ -1,6 +1,8 @@
+//toggle filtre recherche
 $('#showFiltres').click(function(event) {
   $(this).next('form').slideToggle("slow");
 });
+//demarag de la fonction pour le vote etoile
 $(function(){                   // Start when document ready
   $('#star-rating').rating(function(vote, event){
           // we have vote and event variables now, lets send vote to server.
@@ -10,10 +12,9 @@ $(function(){                   // Start when document ready
           data: {note: vote,id:$(this).attr('id')},
       });
   });
-
 });
 
-
+//ajout du film a voir
 $(".addList").on("click",function(e) {
   e.preventDefault();
   $this = $(this);
@@ -44,7 +45,7 @@ $(".addList").on("click",function(e) {
     }
   });
 });
-
+//systeme de vote des etoiles
 ;(function($){
     $.fn.rating = function(callback){
 
@@ -160,3 +161,27 @@ $(".addList").on("click",function(e) {
     });
 
 })(jQuery);
+//retirer un film de la liste a voir
+$(".removeList").on("click", function(event) {
+  event.preventDefault();
+  $this = $(this);
+  $.ajax({
+    type: 'POST',
+    url: 'includes/removeList.php',
+    data: {id:$(this).attr('id')},
+    dataType: "Json",
+
+    success: function(response){
+      if(response.success === true){
+        $('#'+$this.attr('id')).remove();
+        console.log(response.message);
+        location.reload();
+      } else {
+        console.log(response.message);
+      }
+    },
+    error: function(){
+      console.error('ERROR');
+    }
+  })
+})

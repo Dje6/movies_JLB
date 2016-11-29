@@ -38,8 +38,7 @@ if (!empty($_GET['slug'])) {
             echo '<p class="detailcss"><strong>Casting : </strong>' . $movie['cast'] . '<p>';
               //print_r($movie['id']);
           } else {
-            $error['id'] = "N'est pas dans la bdd";
-            print_r($error);
+            header('Location: index.php');
           }
         } else {
           header('Location: index.php');
