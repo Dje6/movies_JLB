@@ -38,6 +38,7 @@
 .displayAffiches {
   height: 300px;
   width: auto;
+  position: relative;
 }
 
 /*Style FOOTER*/
@@ -126,6 +127,11 @@ label{
 }
 a:hover {
   text-decoration: none;
+}
+.removeList {
+  position: absolute;
+  bottom: 6px;
+  left: 60px;
 }
 
 /* RESEAUX*/
