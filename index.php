@@ -7,45 +7,11 @@ include 'includes/functions.php';
 if (!empty($_GET['submit'])) {
   $r_GET = nettoyage($_GET);
 
-// si la recherche contient un ou plusieur mot
-if(!empty($r_GET["searchbar"])){
-  $i=0;
-  foreach (explode(" ", $r_GET["searchbar"]) as $key => $value) {
-    if($value != NULL)
-    {
-      $mot_sj[$i] = "title LIKE '%$value%' OR plot LIKE '%$value%'";
-      $i++;
+    if(!isset($r_GET['page'])){
+      $r_GET['page'] = 1 ;
     }
-    $final_sj = '('.implode(" OR ", $mot_sj).') AND';
-  }
-}else{
-    $final_sj = '';
-}
-//si un ou plusieur genres sont selectionner
-if(!empty($r_GET["genres"])){
-  $i=0;
-  foreach ($r_GET["genres"] as $key => $value) {
-    if($value != NULL)
-    {
-      $genre_sj[$i] = "genres LIKE '%$value%'";
-      $i++;
-    }
-    $final_genre_sj = '('.implode(" OR ", $genre_sj).') AND';
-  }
-}else{
-    $final_genre_sj = '';
-}
-//par default la fourche est de 1950 a l'annee en cour
-  $annee = '(year BETWEEN '.$r_GET["annees_debut"].' AND '.$r_GET["annees_fin"].')' ;
-//par default la fouche est de 0 a 100
-  $rating = 'AND (rating BETWEEN '.$r_GET["rating_debut"].' AND '.$r_GET["rating_fin"].')' ;
-
-
-    $sql = "SELECT * FROM movies_full WHERE $final_sj $final_genre_sj $annee $rating";
-    echo $sql;
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    $movies = $query->fetchAll();
+    $num = 20;
+    $movies = search($num,$r_GET['page'],$r_GET) ;
 
 } else {
   $sql = "SELECT * FROM movies_full ORDER BY RAND() LIMIT 6";
@@ -158,8 +124,13 @@ include 'includes/header.php';
     if(empty($movies)) {
       echo '<h2 class="text-center">Pas de film correspondant à cette recherche </h2>';
     } else {
+if (!empty($_GET['submit'])) {
+        pagination($r_GET['page'],$movies['total']['nb_page'],basename($_SERVER['PHP_SELF']));
+  }
 
-      foreach ($movies as $movie) { ?>
+      foreach ($movies as $key => $movie) {
+        if(is_numeric($key)){
+        ?>
         <div class="col-xs-6 col-md-4">
 
 
@@ -174,8 +145,9 @@ include 'includes/header.php';
             }
            ?>
         </div>
-        <?php } ?>
-<?php } ?>
+    <?php }
+      }
+   } ?>
   </div>
 </div>
 <hr>

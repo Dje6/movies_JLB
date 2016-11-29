@@ -54,9 +54,9 @@ if (!empty($_GET['slug'])) {
 
         <div class="evaluation">
           <h4><strong>Moyenne des évaluations Utilisateur</strong></h4>
-          <h2><?php echo ($movie['AVG(mun.note)']*20); ?><small class="red">/100</small></h2><?php
+          <h2><span class="moyenne-user-text"><?php echo ($movie['AVG(mun.note)']*20); ?></span><small class="red">/100</small></h2>
 
-          etoile_rating(($movie['AVG(mun.note)']*20),100);
+          <span class="moyenne-user-etoile"><?php etoile_rating(($movie['AVG(mun.note)']*20),100); ?></span><?php
 
           if($deja_vote == 0){ ?>
             <div id="star-rating">
