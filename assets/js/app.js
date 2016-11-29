@@ -24,3 +24,27 @@ console.log('pas ok');
     }
   });
 });
+
+$(".removeList").on("click", function(event) {
+  event.preventDefault();
+  $this = $(this);
+  $.ajax({
+    type: 'POST',
+    url: 'includes/removeList.php',
+    data: {id:$(this).attr('id')},
+    dataType: "Json",
+
+    success: function(response){
+      if(response.success === true){
+        $('#'+$this.attr('id')).remove();
+        console.log(response.message);
+        location.reload();
+      } else {
+        console.log(response.message);
+      }
+    },
+    error: function(){
+      console.error('ERROR');
+    }
+  })
+})

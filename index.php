@@ -152,6 +152,11 @@ include 'includes/header.php';
 <div class="container affichesFilms">
   <div class="row">
     <?php
+
+    if(empty($movies)) {
+      echo '<h2 class="text-center">Pas de film correspondant à cette recherche </h2>';
+    } else {
+
       foreach ($movies as $movie) { ?>
         <div class="col-xs-6 col-md-4">
 
@@ -167,6 +172,7 @@ include 'includes/header.php';
             }
            ?>
         </div>
+        <?php } ?>
 <?php } ?>
   </div>
 </div>
