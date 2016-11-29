@@ -1,7 +1,11 @@
     <footer>
      <h3>MOVIES : notre super base de données de films</h3>
-      <p><a href="register.php">Inscrivez-vous ici</a></p>
-      <a href="connexion.php">Connectez-vous ici</a>
+    <?php if(isLogged()) {
+       echo '<a>Session de '. $_SESSION['user']['pseudo'] .' !</a>';
+     } else { ?>
+       <p><a href="register.php">Inscrivez-vous ici</a></p>
+       <a href="connexion.php">Connectez-vous ici</a>
+    <?php  } ?>
       <br>
       <?php
 

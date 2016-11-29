@@ -36,7 +36,7 @@
   		</div><!-- /.container-fluid -->
   	</nav>
 
-    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+    <div id="sidebar-collapse" class="col-sm-3 col-md-3 col-lg-2 sidebar">
         <ul class="nav menu">
         <li class="active"><a href="dashboard.php"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
         <li><a href="users_back.php"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Utilisateurs</a></li>

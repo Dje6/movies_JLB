@@ -1,8 +1,16 @@
 <?php
 include 'includes/pdo.php';
 include 'includes/functions.php';
-?>
 
+$sql ="SELECT count(*) FROM users";
+$query = $pdo->prepare($sql);
+$query->execute();
+$nb_abo = $query->fetchColumn();
+
+debug ($nb_abo);
+
+
+?>
 <?php include 'includes/header_back.php'; ?>
 
 	<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -37,7 +45,7 @@ include 'includes/functions.php';
 			<li><a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> page4</a></li>
 		</ul>
 
-	</div>sidebar--> 
+	</div>sidebar-->
 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 			<div class="row">
@@ -80,7 +88,7 @@ include 'includes/functions.php';
 							<svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">24</div>
+							<div class="large"><?php echo $nb_abo ;?></div>
 							<div class="text-muted">Nouveaux Abonnés</div>
 						</div>
 					</div>
