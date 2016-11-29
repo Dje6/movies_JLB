@@ -7,16 +7,22 @@ $query = $pdo->prepare($sql);
 $query->execute();
 $nb_abo = $query->fetchColumn();
 
-// debug ($nb_abo);
-
-
 $sql ="SELECT count(*) FROM movies_full";
 $query = $pdo->prepare($sql);
 $query->execute();
 $nb_films = $query->fetchColumn();
 
 // debug ($nb_films);
+$sql ="SELECT count(*) FROM movies_user_liste";
+$query = $pdo->prepare($sql);
+$query->execute();
+$nb_Ajfilms = $query->fetchColumn();
 
+// test
+$sql ="SELECT count(*) FROM movies_full WHERE rating > 90";
+$query = $pdo->prepare($sql);
+$query->execute();
+$ratingfilm = $query->fetchColumn();
 
 
 ?>
@@ -71,7 +77,7 @@ $nb_films = $query->fetchColumn();
 							<svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">120</div>
+							<div class="large"><?php echo $nb_Ajfilms ;?></div>
 							<div class="text-muted">Films ajoutés</div>
 						</div>
 					</div>
@@ -158,8 +164,13 @@ $nb_films = $query->fetchColumn();
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Films ajoutés</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span>
+						<h4 class="dash">Films notés plus de 90/100</h4>
+						<?php echo $ratingfilm; ?>
+						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">
+							<?php
+								$Pourcent =  Pourcentage($ratingfilm, 100);
+								echo $Pourcent.'%';
+								?></span>
 						</div>
 					</div>
 				</div>
@@ -167,14 +178,13 @@ $nb_films = $query->fetchColumn();
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Objectif Nombre de films enregistrés 10000</h4>
+						<h4 class="dash">Objectif Nombre de films enregistrés 10000</h4>
 						<?php echo $nb_films ;?>
 						<div class="easypiechart" id="easypiechart-orange"><span class="percent">
 							<?php
 								$Pourcent =  Pourcentage($nb_films, 10000);
 								echo $Pourcent.'%';
 								?></span>
-							</span>
 						</div>
 					</div>
 				</div>
@@ -182,7 +192,7 @@ $nb_films = $query->fetchColumn();
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Obhectif nombre d'abonnés 500</h4>
+						<h4 class="dash">Obhectif nombre d'abonnés 500</h4>
 						<p><?php echo $nb_abo; ?></p>
 						<div class="easypiechart" id="easypiechart-teal" ><span class="percent">
 							<?php
@@ -196,7 +206,7 @@ $nb_films = $query->fetchColumn();
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Objectif Visiteurs 250/jour</h4>
+						<h4 class="dash">Objectif Visiteurs 250/jour</h4>
 							<p><?php
 			      		echo '<strong>'.$compte.'</strong> visites.';
 			      		?></p>
