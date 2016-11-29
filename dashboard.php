@@ -81,7 +81,7 @@ include 'includes/functions.php';
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
 							<div class="large">24</div>
-							<div class="text-muted">Nouveaux Abonnés</div>
+							<div class="text-muted">Nombre d'abonnés</div>
 						</div>
 					</div>
 				</div>
@@ -159,7 +159,10 @@ include 'includes/functions.php';
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Nouveaux Abonnés</h4>
+						<h4>Nombre d'abonnés</h4>
+						<p><?php
+							echo '<strong>'.$compte.'</strong> visites.';
+							?></p>
 						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
 						</div>
 					</div>
@@ -172,7 +175,7 @@ include 'includes/functions.php';
 							<p><?php
 			      		echo '<strong>'.$compte.'</strong> visites.';
 			      		?></p>
-					<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">
+								<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">
 							<?php
 								$Pourcent =  Pourcentage($compte, 250);
 								echo $Pourcent.'%';
