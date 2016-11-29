@@ -39,7 +39,7 @@
                 echo '<li><a>Bonjour '. $_SESSION['user']['pseudo'] .' !</a></li>'; ?>
                   <!-- Si le user est admin, on donne accès au back office -->
                 <?php if (isAdmin()) {
-                  echo '<li><a href="users_back.php">Back-Office</a></li>';
+                  echo '<li><a href="dashboard.php">Back-Office</a></li>';
                 }?>
                 <li><a href="avoir.php">Mes Films à voir</a></li>
                 <li><a href="deco.php">Déconnexion</a></li>

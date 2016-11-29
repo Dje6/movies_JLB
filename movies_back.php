@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('includes/functions.php');
-include('includes/header.php');
+include('includes/header_back.php');
 if(isAdmin()) {
 
   $sql = "SELECT id,title,year,rating FROM movies_full ORDER BY id"
@@ -37,5 +37,5 @@ if(isAdmin()) {
       header('Location: index.php');
     }
 
-include('includes/footer.php');
+include('includes/footer_back.php');
  ?>
