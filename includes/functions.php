@@ -1,39 +1,20 @@
 <?php
 //permet de faire une inclusion meme si tu include dans un sous dossier
 if(dirname('includes')){
-  include 'pdo.php';
-  include 'verif.php';
+  $prefix = '';
 }else{
-  include 'includes/pdo.php';
-  include 'includes/verif.php';
+  $prefix='includes/';
 }
+  include $prefix.'pdo.php';
+  include $prefix.'verif.php';
+  include $prefix.'authentification.php';
+  include $prefix.'sql_affichage.php';
+  include $prefix.'pagination.php';
+
 function debug ($array) {
   echo '<pre>';
   print_r($array);
   echo '</pre>';
-}
-
-//Fonction qui verifie si l'utilisateur est connecté
-function isLogged() {
-  if (!empty($_SESSION['user']) && !empty($_SESSION['user']['id']) && !empty($_SESSION['user']['pseudo']) && !empty($_SESSION['user']['status']) && !empty($_SESSION['user']['ip'])) {
-
-    //On recup l'IP de la machine quand le user est sur l'index apres connexion
-    $ip = $_SERVER['REMOTE_ADDR'];
-    //Si l'IP recupéré correspond a l'IP rentré au moment de la création de la session (connexion du user)
-    if ($ip == $_SESSION['user']['ip']) {
-      return true;
-    }
-  } else {
-    return false;
-  }
-}
-
-function isAdmin() {
-    if (isLogged() && $_SESSION['user']['status'] == 'Admin') {
-      return true;
-    }else {
-      return false;
-    }
 }
 
 //function generer une random string (pour token)
@@ -46,26 +27,7 @@ function generateRandomString($length = 10) {
   }
   return $randomString;
 };
-function etoile_rating($note,$echelle)
-{
-$total = $echelle;
 
-if($total == 0)
-{
-  $note = 1;
-}else {
-  $note = ($note/($total/100));
-}
-
-$vide = '<i class="fa fa-star-o"></i>';
-$demi = '<i class="fa fa-star-half-empty"></i>';
-$plein = '<i class="fa fa-star"></i>';
-$entiere = (int)($note/20) ;
-$moitier = (int)(($note % 20) / 10);
-$creuse = (5 - ($moitier + $entiere));
-
-echo (str_repeat($plein, $entiere)).(str_repeat($demi, $moitier)).(str_repeat($vide, $creuse));
-}
 function etoile_rating_return($note,$echelle)
 {
   $total = $echelle;
@@ -87,146 +49,8 @@ function etoile_rating_return($note,$echelle)
   return (str_repeat($plein, $entiere)).(str_repeat($demi, $moitier)).(str_repeat($vide, $creuse));
 }
 
-function users($limit,$page)
-{
- global $pdo;
- $offset = (($limit)*($page-1));
- $sql = "(SELECT id,pseudo,email,createdat,status FROM users ORDER BY pseudo LIMIT $limit OFFSET $offset)";
- $query = $pdo->prepare($sql);
- $query->execute();
- $nb = $query->fetchAll();
- $nb['total'] = calcule_page(count_page('id','users'),$limit,$page);
- return $nb;
-}
-function search($limit,$page,$r_GET)
-{
-   global $pdo;
-    $offset = (($limit)*($page-1));
-    // si la recherche contient un ou plusieur mot
-    if(!empty($r_GET["searchbar"])){
-      $i=0;
-      foreach (explode(" ", $r_GET["searchbar"]) as $key => $value) {
-        if($value != NULL)
-        {
-          $mot_sj[$i] = "title LIKE '%$value%' OR plot LIKE '%$value%'";
-          $i++;
-        }
-        $final_sj = '('.implode(" OR ", $mot_sj).') AND';
-      }
-    }else{
-        $final_sj = '';
-    }
-    //si un ou plusieur genres sont selectionner
-    if(!empty($r_GET["genres"])){
-  $i=0;
-  foreach ($r_GET["genres"] as $key => $value) {
-    if($value != NULL)
-    {
-      $genre_sj[$i] = "genres LIKE '%$value%'";
-      $i++;
-    }
-    $final_genre_sj = '('.implode(" OR ", $genre_sj).') AND';
-  }
-}else{
-    $final_genre_sj = '';
-}
-//par default la fourche est de 1950 a l'annee en cour
-  $annee = '(year BETWEEN '.$r_GET["annees_debut"].' AND '.$r_GET["annees_fin"].')' ;
-//par default la fouche est de 0 a 100
-  $rating = 'AND (rating BETWEEN '.$r_GET["rating_debut"].' AND '.$r_GET["rating_fin"].')' ;
 
 
-    $sql = "SELECT * FROM movies_full WHERE $final_sj $final_genre_sj $annee $rating LIMIT $limit OFFSET $offset";
-    echo $sql;
-    $par = $final_sj.$final_genre_sj.$annee.$rating;
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    $movies = $query->fetchAll();
-     $movies['total'] = calcule_page(count_page('id','movies_full',$par),$limit,$page);
-     return $movies;
-}
-
-function movies($limit,$page)
-{
-  global $pdo;
-  $offset = (($limit)*($page-1));
-  $sql = "(SELECT id,title,year,rating FROM movies_full ORDER BY id LIMIT $limit OFFSET $offset)";
-  $query = $pdo->prepare($sql);
-  $query->execute();
-  $nb = $query->fetchAll();
-  $nb['total'] = calcule_page(count_page('id','movies_full'),$limit,$page);
-  return $nb;
-}
-
-function count_page($colone,$table,$where='')
-{
-  $where_full ='';
-  if($where != ''){
-    $where_full = 'WHERE '.$where;
-  }
-  global $pdo;
-  $sql = "(SELECT COUNT($colone) FROM $table $where_full)";
-  $query = $pdo->prepare($sql);
-  $query->execute();
-  $nb = $query->fetchColumn();
-  return $nb;
-}
-function calcule_page($count,$num,$page)
-{
-  //on calcule le nombre de page en divisan le total par mon nombre d'article
-  //et on arrondi avec ceil pour avoir un nombre entier
-  $nb_page = ceil($count/$num);
-  $result['nb_page'] = $nb_page;
-  //on declare page et offset
-  if(!empty($page) && is_numeric($page) && ctype_digit($page) && ($page <= $nb_page) && ($page > 0)){
-    $result['page'] = $page;
-    $result['offset'] = (($page-1)*$num);
-  }else {
-    $result['page'] = 1;
-    $result['offset'] = 0;
-  }
-  return $result;
-}
-function pagination($page,$nb_page,$destination,$complement= '',$num='')
-{
-  if($nb_page > 1){ echo '<br/>';};
-  echo '<div class="pagin">';
-  if($page == $nb_page && $page != 1){?>
-    <a href="<?php echo $destination;?>?page=<?php echo ($page-1).$complement;?>"> << </a><?php
-    liste($nb_page,$destination,$page,$complement);
-  }elseif ($page < $nb_page && $page > 1) { ?>
-    <a href="<?php echo $destination;?>?page=<?php echo ($page-1).$complement;?>"> << </a>
-    <?php liste($nb_page,$destination,$page,$complement); ?>
-    <a href="<?php echo $destination;?>?page=<?php echo ($page+1).$complement;?>">  >> </a> <?php
-  }elseif($page == 1 && $nb_page > 1){
-  echo liste($nb_page,$destination,$page,$complement);?>
-    <a href="<?php echo $destination;?>?page=<?php echo ($page+1).$complement;?>">  >> </a> <?php
-  }
-  echo '</div>';
-  if($nb_page > 1){ echo '<br/>';};
-}
-function liste($nb_page,$destination,$page,$complement)
-{
-  for($i=1; $i <= $nb_page; $i++) {
-    if($i == $page){
-      $style = '<span class="actuel"><a href="'.$destination.'?page='.$i.$complement.'">'.$i.'</a></span>';
-    }else {
-      $style = '<span class="voisin"><a href="'.$destination.'?page='.$i.$complement.'">'.$i.'</a></span>';
-    }
-
-    if($i ==1 && $i != $page){
-      echo $style;
-    }elseif($i ==1 && $i == $page){
-      echo $style.'<span class="voisin">...</span>';
-    }elseif($i == $nb_page  && $i != $page){
-      echo $style;
-    }elseif($i == $nb_page  && $i == $page){
-      echo '<span class="voisin">...</span>'.$style;
-    }elseif($i == $page) {
-      echo '<span class="voisin">...</span>'.$style.'<span class="voisin">...</span>';
-    }
-  }
-}
 
 function bouton($ligne,$page,$destination)
 {

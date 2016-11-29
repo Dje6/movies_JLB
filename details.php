@@ -2,15 +2,11 @@
 session_start();
 include 'includes/pdo.php';
 include 'includes/functions.php';
-?>
 
-
-
-<?php
 $error = array();
 if (!empty($_GET['slug'])) {
   $slug = $_GET['slug'];
-  $sql = "(SELECT mf.*,AVG(mun.note) FROM movies_full AS mf LEFT JOIN movies_user_note AS mun
+  $sql = "(SELECT mf.*,AVG(mun.note),COUNT(mun.note) FROM movies_full AS mf LEFT JOIN movies_user_note AS mun
   ON mf.id = mun.id_movie WHERE mf.slug = :slug GROUP BY mf.id)";
   $query = $pdo->prepare($sql);
   $query->bindvalue(":slug",$slug,PDO::PARAM_STR);
@@ -45,31 +41,37 @@ if (!empty($_GET['slug'])) {
         }
         ?>
         <!-- Moyenne des evaluations --><?php
-        $sql = "(SELECT COUNT(*) FROM movies_user_note WHERE id_movie = :id_movie AND id_user = :id_user)";
-        $query = $pdo->prepare($sql);
-        $query->bindValue(':id_movie',$movie['id'],PDO::PARAM_INT);
-        $query->bindValue(':id_user',$_SESSION['user']['id'],PDO::PARAM_INT);
-        $query->execute();
-        $deja_vote = $query->fetchColumn(); ?>
+        if(isset($_SESSION['user']['id'])){
+            $sql = "(SELECT COUNT(*) FROM movies_user_note WHERE id_movie = :id_movie AND id_user = :id_user)";
+            $query = $pdo->prepare($sql);
+            $query->bindValue(':id_movie',$movie['id'],PDO::PARAM_INT);
+            $query->bindValue(':id_user',$_SESSION['user']['id'],PDO::PARAM_INT);
+            $query->execute();
+            $deja_vote = $query->fetchColumn();
+        } ?>
 
         <div class="evaluation">
           <h4><strong>Moyenne des évaluations Utilisateur</strong></h4>
           <h2><span class="moyenne-user-text"><?php echo ($movie['AVG(mun.note)']*20); ?></span><small class="red">/100</small></h2>
+          <span class="moyenne-user-notes"><?php echo $movie['COUNT(mun.note)']; ?> note<?php if($movie['COUNT(mun.note)'] > 1){ echo 's';} ?></span><br/>
+          <span class="moyenne-user-etoile"><?php echo etoile_rating_return(($movie['AVG(mun.note)']*20),100); ?></span><?php
 
-          <span class="moyenne-user-etoile"><?php etoile_rating(($movie['AVG(mun.note)']*20),100); ?></span><?php
-
+      if(isset($_SESSION['user']['id'])){
           if($deja_vote == 0){ ?>
-            <div id="star-rating">
-                <input type="radio" name="example" class="rating" value="1" id="<?php echo $movie['id'] ?>"/>
-                <input type="radio" name="example" class="rating" value="2" id="<?php echo $movie['id'] ?>"/>
-                <input type="radio" name="example" class="rating" value="3" id="<?php echo $movie['id'] ?>"/>
-                <input type="radio" name="example" class="rating" value="4" id="<?php echo $movie['id'] ?>"/>
-                <input type="radio" name="example" class="rating" value="5" id="<?php echo $movie['id'] ?>"/>
-            </div>
+              <div id="star-rating">
+                  <input type="radio" name="example" class="rating" value="1" id="<?php echo $movie['id'] ?>"/>
+                  <input type="radio" name="example" class="rating" value="2" id="<?php echo $movie['id'] ?>"/>
+                  <input type="radio" name="example" class="rating" value="3" id="<?php echo $movie['id'] ?>"/>
+                  <input type="radio" name="example" class="rating" value="4" id="<?php echo $movie['id'] ?>"/>
+                  <input type="radio" name="example" class="rating" value="5" id="<?php echo $movie['id'] ?>"/>
+              </div>
          <?php
           }else{
             echo '<br/><br/>Vous avez deja noté ce film';
-          } ?>
+          }
+      }else{
+          echo '<br/><br/>Connectez-vous pour voter';
+      } ?>
         </div>
         <br>
 
@@ -78,7 +80,7 @@ if (!empty($_GET['slug'])) {
           <div class="rating-block">
             <h4 class="note">Rating du film</h4>
             <h2><?php   echo $movie['rating']; ?> <small class="red">/ 100</small></h2>
-            <?php etoile_rating($movie['rating'],100) ;?><br/>
+            <?php echo etoile_rating_return($movie['rating'],100) ;?><br/>
           </div>
         </div>
 

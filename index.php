@@ -1,27 +1,30 @@
 <?php
 session_start();
-include 'includes/pdo.php';
 include 'includes/functions.php';
 
 // Sinon on affiche des films random frère
 if (!empty($_GET['submit'])) {
-  $r_GET = nettoyage($_GET);
+  $r_GET = nettoyage($_GET); //verif.php
 
     if(!isset($r_GET['page'])){
       $r_GET['page'] = 1 ;
     }
-    $num = 20;
-    $movies = search($num,$r_GET['page'],$r_GET) ;
+    $num = 20;//nombre de video presenter sur la page par defaut
+
+    if(isset($r_GET['nbr_par_page'])){ //si un choix est fait on utilise ce choix
+      $num = $r_GET['nbr_par_page'] ;
+    }
+    $movies = search($num,$r_GET['page'],$r_GET) ; //affichage.php
+    $url = url_transfert($r_GET); //pagination.php
+    $pagination = pagination($r_GET['page'],$movies['total']['nb_page'],basename($_SERVER['PHP_SELF']),str_replace(' ','+',$url));//pagination.php
 
 } else {
   $sql = "SELECT * FROM movies_full ORDER BY RAND() LIMIT 6";
   $query = $pdo->prepare($sql);
   $query->execute();
   $movies = $query->fetchAll();
-
 }
-include 'includes/header.php';
-?>
+include 'includes/header.php';?>
 
         <!-- Titre et filtres -->
 <div class="titrePage container-fluid">
@@ -34,10 +37,10 @@ include 'includes/header.php';
       <button id="showFiltres" type="button" class="btn btn-warning btn-lg">Filtres de recherche</button>
       <form class="filtresRecherche container" action="" method="GET">
 
-
         <div class="form-group col-xs-4 searchbar">
           <label for="searchbar">Recherche personnalisée</label>
-          <input type="text" name="searchbar" class="form-control " placeholder="Réalisateur, Titre...">
+          <input type="text" name="searchbar" class="form-control " placeholder="Réalisateur, Titre..."
+          value="<?php if(isset($r_GET['searchbar']) && !empty($r_GET['searchbar'])){echo $r_GET['searchbar'] ;} ?> ">
         </div>
 
         <div class="alignv checkbox col-xs-4">
@@ -59,11 +62,24 @@ include 'includes/header.php';
               $liste_genre[$i]= $value_y;
             }
           }
-            $last_key = array_pop(array_keys(array_unique($liste_genre)));
+          //pas fini
+          // $genre_comparaison='';
+          // foreach ($r_GET['genres'] as $key => $value) {
+          //   if($key == 0){
+          //     $genre_comparaison .= '$value == '.$value ;
+          //   }else{
+          //    $genre_comparaison .= ' || $value == '.$value ;
+          //   }
+          // }
+          //pas fini
 
           foreach (array_unique($liste_genre) as $key => $value) {
-            if($key > 1 && $key < $last_key){
-              echo '<input type="checkbox" name="genres[]" value="'.$value.'">'.$value.'<br>' ;
+            if($key > 1 && $value != 'N/A'){
+            //  if(isset($r_GET['genres']) && !empty($r_GET['genres']) && ($genre_comparaison)){ //pas fini
+            //    echo '<input type="checkbox" name="genres[]" value="'.$value.'" checked>'.$value.'<br>' ;
+            //  }else{
+                echo '<input type="checkbox" name="genres[]" value="'.$value.'">'.$value.'<br>' ;
+            //  }
             }
           } ?>
         </div>
@@ -108,59 +124,56 @@ include 'includes/header.php';
                 }
               } ?>
             </select>
-          </div>
-          <br>
 
-        </div>
+            <br/><label for="nbr_par_page">Videos par page </label>
+            <select class="form-control" name="nbr_par_page">
+              <?php for($i=10 ; $i <= 50 ;($i+=10)){
+                if($i == 20){
+                  echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                }else{
+                    echo '<option value="'.$i.'">'.$i.'</option>';
+                }
+              } ?>
+            </select>
 
-        <br>
-        <br>
+          </div><br>
+        </div><br><br>
         <input type="submit" name="submit" class="btn btn-warning btn-lg" value ="Chercher un film">
       </form>
     </div>
   </div>
-
-
 </div>
-<hr>
 
+<hr>
 <!-- Listing des affiches de films -->
-<br>
-<div class="container affichesFilms">
-  <div class="row">
-    <?php
+<br><div class="container affichesFilms">
+  <div class="row"><?php
 
     if(empty($movies)) {
       echo '<h2 class="text-center">Pas de film correspondant à cette recherche </h2>';
-    } else {
-if (!empty($_GET['submit'])) {
-        pagination($r_GET['page'],$movies['total']['nb_page'],basename($_SERVER['PHP_SELF']));
-  }
+    }else{
 
+      if(!empty($_GET['submit'])){
+          echo $pagination;
+      }
       foreach ($movies as $key => $movie) {
-        if(is_numeric($key)){
-        ?>
-        <div class="col-xs-6 col-md-4">
-
-
-          <?php
-
+        if(is_numeric($key)){ ?>
+          <div class="col-xs-6 col-md-4"><?php
 
             if(file_exists("posters/". $movie['id']. ".jpg")) {
-              echo  '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" title="'.$movie['title'].'" src="posters/'.$movie['id'].'.jpg"></a>';
+              echo  '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches"
+              title="'.$movie['title'].'" src="posters/'.$movie['id'].'.jpg"></a>';
             } else {
-              echo '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" title="'.$movie['title'].'" src="http://placehold.it/220x300"></a>';
-              // print_r ($size);
-            }
-           ?>
-        </div>
-    <?php }
+              echo '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches"
+              title="'.$movie['title'].'" src="http://placehold.it/220x300"></a>';
+            } ?>
+          </div> <?php
+        }
       }
-   } ?>
+    } ?>
   </div>
 </div>
 <hr>
-
 <!-- Button + de films -->
 <br>
 <div class="container">
@@ -172,9 +185,4 @@ if (!empty($_GET['submit'])) {
     </a>
   </div>
 </div>
-
-
-
-
-
 <?php include 'includes/footer.php';

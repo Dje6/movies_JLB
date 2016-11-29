@@ -9,14 +9,14 @@ if(isAdmin()) {
     $r_GET['page'] = 1 ;
   }
   $num = 100;
-  $movies = movies($num,$r_GET['page']);?>
-
+  $movies = movies($num,$r_GET['page']);
+$pagination = pagination($r_GET['page'],$movies['total']['nb_page'],basename($_SERVER['PHP_SELF'])); ?>
 
 <div class="container table-responsive">
   <div class="row">
     <div class="col-xs-9 col-md-9 col-lg-10">
 
-      <?php pagination($r_GET['page'],$movies['total']['nb_page'],basename($_SERVER['PHP_SELF'])); ?>
+      <?php echo $pagination//peut etre afficher plusieur fois si besoin ?>
 
       <table class="use table">
         <tr>

@@ -303,3 +303,25 @@ input.btn.btn-warning{
   .tmp_fs{
     background-position:left -40px
   }
+  /*pagination*/
+  .actuel
+  {
+    background-color: red;
+    padding-top : 3px;
+    padding-bottom : 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color : yellow;
+  }
+  .actuel a
+  {
+    color : white;
+  }
+  .voisin
+  {
+    padding-top : 3px;
+    padding-bottom : 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  /*fin de pagination*/

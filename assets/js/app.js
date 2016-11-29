@@ -45,6 +45,7 @@ var actual = function(id_mov){
           if(response.success === true){
             console.log('ok');
           $('.moyenne-user-text').html((Math.round(response.texte))*20);
+          $('.moyenne-user-notes').html(response.note);
           $('.moyenne-user-etoile').html(response.etoile);
           }else{
             console.log(response.error)

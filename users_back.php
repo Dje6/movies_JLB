@@ -17,8 +17,10 @@ if(isLogged())
       }
       $num = 20;
       $users = users($num,$retour_get['page']);
+      $pagination = pagination($retour_get['page'],$users['total']['nb_page'],basename($_SERVER['PHP_SELF']));
 
-      pagination($retour_get['page'],$users['total']['nb_page'],basename($_SERVER['PHP_SELF'])); ?>
+      echo $pagination;
+      ?>
       <div class="container table-responsive">
        <table class="use table">
            <th>ID</th>
