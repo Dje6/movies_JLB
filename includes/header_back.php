@@ -21,7 +21,7 @@
   					<span class="icon-bar"></span>
   					<span class="icon-bar"></span>
   				</button>
-  				<a class="navbar-brand" href="#"><span>Back-Office</span>JLBS Production</a>
+  				<a class="navbar-brand" href="index.php"><span>Back-Office</span>JLBS Production</a>
   				<ul class="user-menu">
   					<!-- <li class="dropdown pull-right">
   						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a>
