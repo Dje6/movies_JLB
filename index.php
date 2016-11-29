@@ -93,10 +93,9 @@ include 'includes/header.php';
               $liste_genre[$i]= $value_y;
             }
           }
-            $last_key = array_pop(array_keys(array_unique($liste_genre)));
 
           foreach (array_unique($liste_genre) as $key => $value) {
-            if($key > 1 && $key < $last_key){
+            if($key > 1 && $value != 'N/A'){
               echo '<input type="checkbox" name="genres[]" value="'.$value.'">'.$value.'<br>' ;
             }
           } ?>
