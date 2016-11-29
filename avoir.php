@@ -31,7 +31,7 @@ $movies = $query->fetchAll();
 foreach ($movies as $key => $value) {
   if(file_exists("posters/". $value['id']. ".jpg")) { ?>
 
-    <div class="col-sm-3">
+    <div class="col-xs-6 col-sm-4 col-md-3">
       <a href="details.php?slug=<?php echo $value['slug']; ?>"><img class="displayAffiches" src="posters/<?php echo $value['id']; ?>.jpg"></a>
       <button class="btn btn-danger btn-xs removeList">Retirer ce film de ma liste</button>
 
