@@ -108,34 +108,33 @@ $error = array();
 <div class="container">
   <div class="row">
 
-    <form id="form_inscription" action="" method="POST" class="col-md-offset-2">
+    <form id="form_inscription" action="" method="POST" class="">
       <br>
-      <fieldset>
+      <fieldset style="margin: auto;">
         <legend>INSCRIPTION</legend>
-            <label for="pseudo">Votre Pseudo</label>
-            <span id="error_pseudo"><?php if (!empty($error['pseudo'])) { echo $error['pseudo'];} ?></span>
-            <input type="text" id="pseudo_ins" name="pseudo" value="">
-            <br><br>
+          <label for="pseudo">Votre Pseudo</label>
+          <span id="error_pseudo"><?php if (!empty($error['pseudo'])) { echo $error['pseudo'];} ?></span>
+          <input type="text" id="pseudo_ins" name="pseudo" value="">
+          <br><br>
 
-            <label for="email">Votre Email</label>
-            <span id="error_email"><?php if (!empty($error['email'])) { echo $error['email'];} ?></span>
-            <input type="text" id="email_ins" name="email" value="">
-            <br><br>
+          <label for="email">Votre Email</label>
+          <span id="error_email"><?php if (!empty($error['email'])) { echo $error['email'];} ?></span>
+          <input type="text" id="email_ins" name="email" value="">
+          <br><br>
 
-            <label for="password">Mot de Passe</label>
-            <span id="error_password"><?php if (!empty($error['password'])) { echo $error['password'];} ?></span>
-            <input type="password" id="password_ins" name="password"  value="">
-            <br>
+          <label for="password">Mot de Passe</label>
+          <span id="error_password"><?php if (!empty($error['password'])) { echo $error['password'];} ?></span>
+          <input type="password" id="password_ins" name="password"  value="">
+          <br><br>
 
-            <label for="reapeatPassword">Vérif Mot de Passe</label>
-            <span><?php if (!empty($error['reapeatPassword'])) { echo $error['reapeatPassword'];} ?></span>
-            <input type="password" name="reapeatPassword"  value="">
-            <br>
-            <br>
-            <input type="checkbox" name="souvenir" value="souvenir"> Se souvenir de moi.<br>
+          <label for="reapeatPassword">Répétez mot de passe</label>
+          <span><?php if (!empty($error['reapeatPassword'])) { echo $error['reapeatPassword'];} ?></span>
+          <input type="password" name="reapeatPassword"  value="">
+          <br>
+          <br>
+          <input class="boutonRegister" type="submit" name="submit" value="Je m'inscris">
+          <input class="boutonReset" type="reset">
       </fieldset>
-      <input class="boutonRegister" type="submit" name="submit" value="Je m'inscris">
-      <input class="boutonReset" type="reset">
     </form>
 
   </div>

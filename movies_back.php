@@ -3,17 +3,20 @@ session_start();
 include('includes/functions.php');
 include('includes/header_back.php');
 if(isAdmin()) {
+  $r_GET = nettoyage($_GET);
 
-  $sql = "SELECT id,title,year,rating FROM movies_full ORDER BY title ASC";
-  $query = $pdo->prepare($sql);
-  $query->execute();
-  $movies = $query->fetchAll();
+  if(!isset($r_GET['page'])){
+    $r_GET['page'] = 1 ;
+  }
+  $num = 100;
+  $movies = movies($num,$r_GET['page']);?>
 
-?>
+
 <div class="container table-responsive">
   <div class="row">
     <div class="col-xs-9 col-md-9 col-lg-10">
 
+      <?php pagination($r_GET['page'],$movies['total']['nb_page'],basename($_SERVER['PHP_SELF'])); ?>
 
       <table class="use table">
         <tr>
@@ -23,8 +26,8 @@ if(isAdmin()) {
           <th>Rating</th>
           <th>Actions</th>
         </tr>
-
-  <?php foreach ($movies as $movie) { ?>
+  <?php foreach ($movies as $key => $movie) {
+    if(is_numeric($key)){ ?>
 
         <tr>
           <td><?php echo $movie['id']; ?></td>
@@ -34,7 +37,9 @@ if(isAdmin()) {
           <td></td>
         </tr>
 
-    <?php } ?>
+    <?php
+  }
+  } ?>
       </table>
     </div>
   </div>

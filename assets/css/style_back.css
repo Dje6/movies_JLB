@@ -44,6 +44,20 @@ h3, h4 {
 	font-weight: 300;
 }
 
+.page-header{
+  color: blue;
+}
+.dash{
+  color : blue;
+  font-size: 17px;
+  font-weight: bolder;
+}
+
+.dashimg {
+  padding-left: 3em;
+  padding-top: 35em;
+}
+
 .large {
 	font-size: 2em;
 }

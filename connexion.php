@@ -54,21 +54,29 @@ include 'includes/header.php';
 
 <div class="container">
   <div class="row">
-    <form id="form_connexion" action="" method="POST" class="col-md-offset-2">
+    <form id="form_connexion" action="" method="POST" class="">
       <br>
-      <label for="pseudo">Votre Pseudo</label>
-      <span id="error_pseudo"><?php if(!empty($error['pseudo'])) { echo $error['pseudo']; } ?></span>
-      <input type="text" id="pseudo_connexion" name="pseudo" value="<?php if(!empty($_POST['pseudo'])) { echo $_POST['pseudo']; } ?>">
-      <br><br>
+      <fieldset style="margin: auto;">
+        <legend>CONNEXION</legend>
 
-      <label for="password">Votre Password</label>
-      <input type="password" id="password_connexion" name="password" value="">
-      <br>
-      <br>
-      <a href="password_rescue.php"><input type="button" name="modifpassword" value="Mot de Passe oublié"></a>
-      <br>
+        <label for="pseudo">Votre Pseudo</label>
+        <span id="error_pseudo"><?php if(!empty($error['pseudo'])) { echo $error['pseudo']; } ?></span>
+        <input type="text" id="pseudo_connexion" name="pseudo" value="<?php if(!empty($_POST['pseudo'])) { echo $_POST['pseudo']; } ?>">
+        <br><br>
 
-      <input class="bouton" type="submit" name="submit" value="Se connecter">
+        <label for="password">Votre Password</label>
+        <input type="password" id="password_connexion" name="password" value="">
+        <br><br>
+
+        <input type="checkbox" name="souvenir" value="souvenir"><span> Se souvenir de moi</span>
+        <br><br>
+
+        <input class="bouton" type="submit" name="submit" value="Se connecter">
+
+        <br>
+        <a href="password_rescue.php"><span class="small">Mot de passe oublié ?</span></a>
+        <br>
+      </fieldset>
 
     </form>
   </div>

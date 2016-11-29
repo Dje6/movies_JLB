@@ -153,7 +153,8 @@ function movies($limit,$page)
   $sql = "(SELECT id,title,year,rating FROM movies_full ORDER BY id LIMIT $limit OFFSET $offset)";
   $query = $pdo->prepare($sql);
   $query->execute();
-  $nb['total'] = calcule_page(count_page('id','users'),$limit,$page);
+  $nb = $query->fetchAll();
+  $nb['total'] = calcule_page(count_page('id','movies_full'),$limit,$page);
   return $nb;
 }
 

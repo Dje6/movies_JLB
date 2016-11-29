@@ -35,11 +35,12 @@ include 'includes/header.php';
       <form class="filtresRecherche container" action="" method="GET">
 
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-xs-4 searchbar">
+          <label for="searchbar">Recherche personnalisée</label>
           <input type="text" name="searchbar" class="form-control " placeholder="Réalisateur, Titre...">
         </div>
 
-        <div class="alignv checkbox col-md-4">
+        <div class="alignv checkbox col-xs-4">
           <?php  global $pdo;
           $sql = "SELECT genres FROM movies_full GROUP BY genres";
           $query = $pdo->prepare($sql);
@@ -68,45 +69,53 @@ include 'includes/header.php';
         </div>
 
 
-        <div class="col-md-4">
-
-          <select class="form-control" name="annees_debut">
-            <?php for($i=1950 ; $i <= date('Y') ;$i++){
-              echo '<option value="'.$i.'">'.$i.'</option>';
-            } ?>
-          </select>
-          <select class="form-control" name="annees_fin">
-            <?php for($i=1950 ; $i <= date('Y') ;$i++){
-              if($i == date('Y')){
-                echo '<option value="'.$i.'" selected>'.$i.'</option>';
-              }else{
+        <div class="col-xs-4">
+          <!-- Recherche par année -->
+          <div class="form-group">
+            <label for="annees_debut">Année de</label>
+            <select class="form-control" name="annees_debut">
+              <?php for($i=1950 ; $i <= date('Y') ;$i++){
                 echo '<option value="'.$i.'">'.$i.'</option>';
-              }
-            } ?>
-
-                  </select>
-          <br>
-          <select class="form-control" name="rating_debut">
-            <?php for($i=0 ; $i <= 100 ;$i++){
-              echo '<option value="'.$i.'">'.$i.'</option>';
-            } ?>
-          </select>
-          <select class="form-control" name="rating_fin">
-            <?php for($i=0 ; $i <= 100 ;$i++){
-              if($i == 100){
-                echo '<option value="'.$i.'" selected>'.$i.'</option>';
-              }else{
+              } ?>
+            </select>
+            <label for="annees_fin">à </label>
+            <select class="form-control" name="annees_fin">
+              <?php for($i=1950 ; $i <= date('Y') ;$i++){
+                if($i == date('Y')){
+                  echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                }else{
                   echo '<option value="'.$i.'">'.$i.'</option>';
-              }
-            } ?>
-          </select>
+                }
+              } ?>
+            </select>
+          </div>
+          <br>
+          <!-- Recherche par popularité -->
+          <div class="form-group">
+            <label class="form-group" for="rating_debut">Popularité de</label>
+            <select class="form-control" name="rating_debut">
+              <?php for($i=0 ; $i <= 100 ;$i++){
+                echo '<option value="'.$i.'">'.$i.'</option>';
+              } ?>
+            </select>
+            <label for="rating_fin">à </label>
+            <select class="form-control" name="rating_fin">
+              <?php for($i=0 ; $i <= 100 ;$i++){
+                if($i == 100){
+                  echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                }else{
+                    echo '<option value="'.$i.'">'.$i.'</option>';
+                }
+              } ?>
+            </select>
+          </div>
           <br>
 
         </div>
 
         <br>
         <br>
-        <input type="submit" name="submit" class="btn btn-warning" value ="Chercher un film">
+        <input type="submit" name="submit" class="btn btn-warning btn-lg" value ="Chercher un film">
       </form>
     </div>
   </div>
@@ -138,9 +147,9 @@ if (!empty($_GET['submit'])) {
 
 
             if(file_exists("posters/". $movie['id']. ".jpg")) {
-              echo  '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="posters/'.$movie['id'].'.jpg"></a>';
+              echo  '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" title="'.$movie['title'].'" src="posters/'.$movie['id'].'.jpg"></a>';
             } else {
-              echo '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" src="http://placehold.it/220x300"></a>';
+              echo '<a href="details.php?slug='.$movie['slug'].'"><img class="displayAffiches" title="'.$movie['title'].'" src="http://placehold.it/220x300"></a>';
               // print_r ($size);
             }
            ?>

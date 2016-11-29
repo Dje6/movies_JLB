@@ -6,31 +6,20 @@ include 'includes/functions.php';
 
 
 include 'includes/header.php';
-?>
 
 
-<?php
-session_start();
-if(file_exists('compteur_visites.txt'))
-{
-        $compteur_f = fopen('compteur_visites.txt', 'r+');
-        $compte = fgets($compteur_f);
-}
-else
-{
-        $compteur_f = fopen('compteur_visites.txt', 'a+');
-        $compte = 0;
-}
-if(!isset($_SESSION['compteur_de_visite']))
-{
-        $_SESSION['compteur_de_visite'] = 'visite';
-        $compte++;
-        fseek($compteur_f, 0);
-        fputs($compteur_f, $compte);
-}
-fclose($compteur_f);
-echo '<strong>'.$compte.'</strong> visites.';
-?>
+
+
+$host="localhost";
+$utilisateur="root";
+$motdepasse="";
+$base="movies_user_list";
+$conexion=mysql_connect($host,$utilisateur,$motdepasse) or die('Connexion impossible: ' . mysql_error());
+$db=mysql_select_db($base, $conexion) or die('Connexion a la base impossible : ' . mysql_error());
+$query=mysql_query('SELECT MONTH(dates) AS mois, libelle_produit,(SELECT SUM(quantite) FROM vente
+WHERE produit.id_produit=vente.id_produit AND MONTH(dates)=mois AND YEAR(dates)=2008)as qtvendu FROM vente,produit
+WHERE produit.id_produit=vente.id_produit AND produit.id_produit=1 AND YEAR(dates)=2008 GROUP BY mois ORDER BY mois ASC');
+
 
 
 
