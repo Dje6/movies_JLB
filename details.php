@@ -10,7 +10,8 @@ include 'includes/functions.php';
 $error = array();
 if (!empty($_GET['slug'])) {
   $slug = $_GET['slug'];
-  $sql = "SELECT * FROM movies_full WHERE slug = :slug";
+  $sql = "(SELECT mf.*,AVG(mun.note) FROM movies_full AS mf LEFT JOIN movies_user_note AS mun
+  ON mf.id = mun.id_movie WHERE slug = :slug GROUP BY mf.id)";
   $query = $pdo->prepare($sql);
   $query->bindvalue(":slug",$slug,PDO::PARAM_STR);
   $query->execute();
@@ -46,41 +47,46 @@ if (!empty($_GET['slug'])) {
         ?>
         <!-- Moyenne des evaluations -->
         <div class="evaluation">
-          <h4><strong>Moyenne des évaluations</strong></h4>
-          <h2><?php   echo $movie['popularity']; ?> <small class="red">Popularité</small></h2>
+          <h4><strong>Moyenne des évaluations Utilisateur</strong></h4>
+          <h2><?php etoile_rating($movie['AVG(mun.note)'],100); ?><small class="red"></small></h2><br/>
+
+          <section class="container">
+            <div id="star-rating">
+                <input type="radio" name="example" class="rating" value="20" />
+                <input type="radio" name="example" class="rating" value="40" />
+                <input type="radio" name="example" class="rating" value="60" />
+                <input type="radio" name="example" class="rating" value="80" />
+                <input type="radio" name="example" class="rating" value="100" />
+            </div>
+          </section>
         </div>
         <br>
 
         <!-- note moyenne utilisateurs -->
         <div class="col-sm-12 ">
           <div class="rating-block">
-            <h4 class="note">Note moyenne des utilisateurs</h4>
+            <h4 class="note">Rating du film</h4>
             <h2><?php   echo $movie['rating']; ?> <small class="red">/ 100</small></h2>
-            <?php etoile_rating($movie['rating'],100)?><br/>
-
-            <!-- <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            </button> -->
+            <?php etoile_rating($movie['rating'],100) ;?><br/>
           </div>
         </div>
 
 
         <!-- Affiche le bouton ajouter a la liste a voir si le user est logged -->
-        <?php if (isLogged()) { ?>
-          <a href="#" class="btn btn-warning btn-md addList" id="<?php echo $movie['id']; ?>">Ajouter aux films à voir</a>
-        <?php } else { ?>
+        <?php if (isLogged()) {
+
+          $sql = "(SELECT COUNT(*) FROM movies_user_liste WHERE id_movie = :id)";
+          $query = $pdo->prepare($sql);
+          $query->bindvalue(":id",$movie['id'],PDO::PARAM_STR);
+          $query->execute();
+          $a_voir = $query->fetchColumn();
+
+            if($a_voir > 0){ ?>
+              <a href="avoir.php" class="btn btn-success btn-md" >Ce film est déjà dans votre liste<br/>Y accéder ?</a> <?php
+            }else{ ?>
+              <a href="#" class="btn btn-warning btn-md addList" id="<?php echo $movie['id'] ; ?>">Ajouter aux films à voir</a> <?php
+            }
+         } else { ?>
           <button class="btn btn-warning btn-md disabled">Connectez-vous pour ajouter ce film à votre liste</button>
         <?php } ?>
       </div> <!-- end thumbnail -->
