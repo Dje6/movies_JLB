@@ -190,3 +190,8 @@ function showJson($data)
     die("error in Json encoding");
   }
 }
+
+// test Pourcentage
+function Pourcentage($Nombre, $Total) {
+  return $Nombre * 100 / $Total;
+}
