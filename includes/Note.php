@@ -33,7 +33,7 @@ if($_POST)
     }
   }else{
     $error['success'] = false;
-    $error['message'] = 'Vous avez deja voter';
+    $error['message'] = 'Vous avez deja voté';
   }
 }else{
   $error['success'] = false;
