@@ -11,6 +11,18 @@ footer {
 
 
 /*Global Styles*/
+.text-muted {
+  color: #30a5ff;
+}
+
+.blue {
+  color: #30a5ff;
+}
+.alimage {
+margin-left: 25%;
+margin-top: 10%;
+text-align: center;
+}
 
 body {
 	background: #f1f4f7;
@@ -45,10 +57,14 @@ h3, h4 {
 }
 
 .page-header{
-  color: blue;
+  color: #30a5ff;
+  font-style: italic;
+  font-weight: bolder;
+  font-family: fantasy;
+  text-decoration: underline;
 }
 .dash{
-  color : blue;
+  color: #30a5ff;
   font-size: 17px;
   font-weight: bolder;
 }
@@ -60,6 +76,7 @@ h3, h4 {
 
 .large {
 	font-size: 2em;
+  color: #30a5ff;
 }
 
 .text-muted {
