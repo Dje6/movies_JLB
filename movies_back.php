@@ -21,9 +21,14 @@ if(isAdmin()) {
   $movies = movies($num,$r_GET['page']);
 $pagination = pagination($r_GET['page'],$movies['total']['nb_page'],basename($_SERVER['PHP_SELF'])); ?>
 
-<div class="container table-responsive">
+<div class="container-fluid table-responsive">
   <div class="row">
-    <div class="col-xs-9 col-md-9 col-lg-10">
+    <div class="col-sm-offset-3 col-sm-9 col-md-offset-3 col-md-9 col-lg-offset-2 col-lg-10">
+      <br>
+      <a href="addMovie.php">
+        <button type="button" class="btn btn-primary btn-lg btn-block">Ajouter un film</button>
+      </a>
+      <hr style="border-color: white">
 
       <?php echo $pagination//peut etre afficher plusieur fois si besoin ?>
 
@@ -36,7 +41,7 @@ $pagination = pagination($r_GET['page'],$movies['total']['nb_page'],basename($_S
           <th>Actions</th>
         </tr>
   <?php foreach ($movies as $key => $movie) {
-    if(is_numeric($key)){ ?>
+          if(is_numeric($key)){ ?>
 
         <tr>
           <td><?php echo $movie['id']; ?></td>
@@ -46,10 +51,12 @@ $pagination = pagination($r_GET['page'],$movies['total']['nb_page'],basename($_S
           <td></td>
         </tr>
 
-    <?php
-  }
-  } ?>
+    <?php }
+        } ?>
       </table>
+
+      <?php echo $pagination//peut etre afficher plusieur fois si besoin ?>
+
     </div>
       <div class="col-xs-3 col-md-3 col-lg-2">
         <h4 class="blue" >Nombre de films</h4>

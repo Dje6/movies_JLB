@@ -1,7 +1,13 @@
 //toggle filtre recherche
-$('#showFiltres').click(function(event) {
+$('#showFiltres').click(function() {
   $(this).next('form').slideToggle("slow");
 });
+//dans filtre recherche, select tous les genres
+$("#check_all").change(function() {
+  $(".check_genres").prop('checked', $(this).prop("checked"));
+});
+
+
 //demarag de la fonction pour le vote etoile
 $(function(){                   // Start when document ready
   $('#star-rating').rating(function(vote,id_mov, event){
