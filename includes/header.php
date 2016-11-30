@@ -20,7 +20,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php"><span>JLB - Productions</span></a>
+            <a class="navbar-brand" href="index.php"><span>JLBS - Productions</span></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->

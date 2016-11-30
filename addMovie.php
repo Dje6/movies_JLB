@@ -25,7 +25,7 @@ $time = verif($r_POST['time'],2,3,'durée','',true);
 $director = verif($r_POST['director'],5,50,'réalisateur');
 $writers = verif($r_POST['writers'],5,150,'scénaristes');
 
-debug($error);
+//debug($error);
   if (count($error) == 0) {
     $slug = slugify($r_POST['title']);
     $slug .= '-'.$r_POST['year'];
