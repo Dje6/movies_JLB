@@ -11,6 +11,24 @@ footer {
 
 
 /*Global Styles*/
+.text-muted {
+  color: #30a5ff;
+}
+
+.blue {
+  color: #30a5ff;
+}
+.alimage {
+margin-left: 25%;
+margin-top: 10%;
+text-align: center;
+}
+.alimage2 {
+/*margin-left: 40%;*/
+margin-top: 2%;
+display: block;
+margin: 0 auto;
+}
 
 body {
 	background: #f1f4f7;
@@ -45,10 +63,14 @@ h3, h4 {
 }
 
 .page-header{
-  color: blue;
+  color: #30a5ff;
+  font-style: italic;
+  font-weight: bolder;
+  font-family: fantasy;
+  text-decoration: underline;
 }
 .dash{
-  color : blue;
+  color: #30a5ff;
   font-size: 17px;
   font-weight: bolder;
 }
@@ -60,6 +82,7 @@ h3, h4 {
 
 .large {
 	font-size: 2em;
+  color: #30a5ff;
 }
 
 .text-muted {
@@ -875,6 +898,25 @@ h1.page-header {
 }
 .fixed-table-pagination .pagination-detail {
 	margin-top: 20px;
+}
+
+/*Pagination sur tableaux*/
+.pagin {
+  text-align: center;
+  font-size: 1.5em;
+}
+.actuel {
+  background-color: #30a5ff;
+  padding: 3px 6px 3px 6px;
+  margin: 5px;
+  color : yellow;
+}
+.actuel a {
+  color : white;
+}
+.voisin {
+  margin: 5px;
+  padding: 3px 6px 3px 6px;
 }
 
 /*Icons*/
