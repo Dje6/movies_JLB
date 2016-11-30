@@ -85,7 +85,6 @@ include 'includes/header.php';?>
           } ?>
         </div>
 
-
         <div class="col-xs-4">
           <!-- Recherche par année -->
           <?php
@@ -97,15 +96,22 @@ include 'includes/header.php';?>
           <div class="form-group">
             <label for="annees_debut">Année de</label>
             <select class="form-control" name="annees_debut">
+
               <?php for($i=$min ; $i <= date('Y') ;$i++){
-                echo '<option value="'.$i.'">'.$i.'</option>';
+                if(isset($r_GET['annees_debut']) && !empty($r_GET['annees_debut']) && $i == $r_GET['annees_debut']){
+                  echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                }else{
+                  echo '<option value="'.$i.'">'.$i.'</option>';
+                }
               } ?>
             </select>
             <label for="annees_fin">à </label>
             <select class="form-control" name="annees_fin">
-              <?php for($i=1950 ; $i <= date('Y') ;$i++){
-                if($i == date('Y')){
+              <?php for($i=$min ; $i <= date('Y') ;$i++){
+                if($i == date('Y') && !isset($r_GET['annees_fin']) && empty($r_GET['annees_fin'])){
                   echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                }elseif(isset($r_GET['annees_fin']) && !empty($r_GET['annees_fin']) && $i == $r_GET['annees_fin']){
+                    echo '<option value="'.$i.'" selected>'.$i.'</option>';
                 }else{
                   echo '<option value="'.$i.'">'.$i.'</option>';
                 }
@@ -118,16 +124,22 @@ include 'includes/header.php';?>
             <label class="form-group" for="rating_debut">Popularité de</label>
             <select class="form-control" name="rating_debut">
               <?php for($i=0 ; $i <= 100 ;$i++){
-                echo '<option value="'.$i.'">'.$i.'</option>';
+                if(isset($r_GET['rating_debut']) && !empty($r_GET['rating_debut']) && $i == $r_GET['rating_debut']){
+                  echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                }else{
+                  echo '<option value="'.$i.'">'.$i.'</option>';
+                }
               } ?>
             </select>
             <label for="rating_fin">à </label>
             <select class="form-control" name="rating_fin">
               <?php for($i=0 ; $i <= 100 ;$i++){
-                if($i == 100){
+                if($i == 100 && !isset($r_GET['rating_fin']) && empty($r_GET['rating_fin'])){
                   echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                }elseif(isset($r_GET['rating_fin']) && !empty($r_GET['rating_fin']) && $i == $r_GET['rating_fin']){
+                    echo '<option value="'.$i.'" selected>'.$i.'</option>';
                 }else{
-                    echo '<option value="'.$i.'">'.$i.'</option>';
+                  echo '<option value="'.$i.'">'.$i.'</option>';
                 }
               } ?>
             </select>
@@ -135,10 +147,12 @@ include 'includes/header.php';?>
             <br/><label for="nbr_par_page">Videos par page </label>
             <select class="form-control" name="nbr_par_page">
               <?php for($i=9 ; $i <= 30 ;($i+=3)){
-                if($i == 15){
+                if($i == 15 && !isset($r_GET['nbr_par_page']) && empty($r_GET['nbr_par_page'])){
                   echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                }elseif(isset($r_GET['nbr_par_page']) && !empty($r_GET['nbr_par_page']) && $i == $r_GET['nbr_par_page']){
+                    echo '<option value="'.$i.'" selected>'.$i.'</option>';
                 }else{
-                    echo '<option value="'.$i.'">'.$i.'</option>';
+                  echo '<option value="'.$i.'">'.$i.'</option>';
                 }
               } ?>
             </select>

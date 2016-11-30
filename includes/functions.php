@@ -50,7 +50,17 @@ function etoile_rating_return($note,$echelle)
 }
 
 
+function bouton_movies($ligne,$page,$destination)
+{
+      $bouton = '<a href="addMovie.php?id='.$ligne['id'].'&page='.$page.'&type=update" title="Modifier">
+                 <button name="button" ><i class="fa fa-pencil-square-o"></i></button></a>
+                 <a href="details.php?slug='.$ligne['slug'].'&page='.$page.'" title="voir_site">
+                  <button name="button"><i class="fa fa-eye"></i></button></a>
+                  <a href="includes/delMovie.php" id="supprimer_movie" idmovie='.$ligne['id'].' title="supprimer">
+                  <button name="button"><i class="fa fa-trash"></i></button></a>';
 
+    return($bouton);
+}
 
 function bouton($ligne,$page,$destination)
 {
@@ -59,7 +69,7 @@ function bouton($ligne,$page,$destination)
      $bouton = '<a href="'.$destination.'?id='.$ligne['id'].'&page='.$page.'&type=update&role=User" title="User">
      <button name="button" ><i class="fa fa-arrow-down"></i></button></a>
      <a href="'.$destination.'?id='.$ligne['id'].'&page='.$page.'&type=supprimer" title="supprimer">
-     <button name="button" ><i class="fa fa-trash"></i></button></a>';
+     <button name="button" class="supprimer_movie"><i class="fa fa-trash"></i></button></a>';
      $retour = array('bouton'=> $bouton);
      return($retour);
    }elseif($ligne['status'] == 'User' || $ligne['role'] == 'user'){

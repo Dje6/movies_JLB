@@ -43,12 +43,12 @@ $pagination = pagination($r_GET['page'],$movies['total']['nb_page'],basename($_S
   <?php foreach ($movies as $key => $movie) {
           if(is_numeric($key)){ ?>
 
-        <tr>
-          <td><?php echo $movie['id']; ?></td>
-          <td><?php echo $movie['title']; ?></td>
-          <td><?php echo $movie['year']; ?></td>
-          <td><?php echo $movie['rating']; ?></td>
-          <td></td>
+        <tr class='liste_movies_back liste_movies_back<?php echo $movie['id']; ?>'>
+          <td class='<?php echo $movie['id']; ?>'><?php echo $movie['id']; ?></td>
+          <td class='<?php echo str_replace(' ','-',$movie['title']); ?>'><?php echo $movie['title']; ?></td>
+          <td class='<?php echo $movie['year']; ?>'><?php echo $movie['year']; ?></td>
+          <td class='<?php echo $movie['rating']; ?>'><?php echo $movie['rating']; ?></td>
+          <td class='bouton'><?php echo bouton_movies($movie,$r_GET['page'],basename($_SERVER['PHP_SELF'])); ?></td>
         </tr>
 
     <?php }
