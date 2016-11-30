@@ -17,7 +17,7 @@ function nettoyage($array)
 }
 //Full verif en une
 //(element a verifier, minimum,maximum,text d'erreur, verif si c un mail, la verif en bdd, la table , la colone)
-function verif($verif,$min=NULL,$max=NULL,$text_error,$verif_mail = false,$exist=NULL,$table=NULL,$colone=NULL)
+function verif($verif,$min=NULL,$max=NULL,$text_error,$verif_mail = false,$verif_num = false,$exist=NULL,$table=NULL,$colone=NULL)
 {
  $error = '';
 
@@ -25,6 +25,11 @@ function verif($verif,$min=NULL,$max=NULL,$text_error,$verif_mail = false,$exist
    if ($verif_mail == true) {
      if(filter_var($verif, FILTER_VALIDATE_EMAIL) == false) {
        $error = '* Votre email n\'est pas valide';
+     }
+   }
+   if ($verif_num == true) {
+     if(!is_numeric($verif)) {
+       $error = '* N\'est pas un nombre';
      }
    }
    if($min && $max){
@@ -57,6 +62,7 @@ function verif($verif,$min=NULL,$max=NULL,$text_error,$verif_mail = false,$exist
  return $error;
 
 }
+
 
 function is_password($password,$min,$max)
 {
@@ -173,5 +179,32 @@ function is_search($search,$max)
   {
     return $error;
   }
+}
+
+function slugify($text)
+{
+  // replace non letter or digits by -
+  $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+  // transliterate
+  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+  // remove unwanted characters
+  $text = preg_replace('~[^-\w]+~', '', $text);
+
+  // trim
+  $text = trim($text, '-');
+
+  // remove duplicate -
+  $text = preg_replace('~-+~', '-', $text);
+
+  // lowercase
+  $text = strtolower($text);
+
+  if (empty($text)) {
+    return 'n-a';
+  }
+
+  return $text;
 }
 ?>

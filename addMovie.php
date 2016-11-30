@@ -7,6 +7,49 @@ if(!isAdmin()) {
   exit;
 }
 
+$error = array();
+$success = false;
+
+if (!empty($_POST['submit'])) {
+
+  $r_POST = nettoyage($_POST);
+
+  // debug($r_POST);
+
+$title = verif($r_POST['title'],3,50,'titre');
+$genre = verif($r_POST['genre'],3,50,'genre');
+$year = verif($r_POST['year'],4,4,'année','',true);
+$plot = verif($r_POST['plot'],20,500,'intrigue');
+$cast = verif($r_POST['cast'],3,100,'cast');
+$time = verif($r_POST['time'],2,3,'durée','',true);
+$director = verif($r_POST['director'],5,50,'réalisateur');
+$writers = verif($r_POST['writers'],5,150,'scénaristes');
+
+debug($error);
+  if (count($error) == 0) {
+    $slug = slugify($r_POST['title']);
+    $slug .= '-'.$r_POST['year'];
+    $success = true;
+    $sql = "INSERT INTO movies_full (title,genres,year,plot,cast,runtime,directors,writers,slug,created) VALUES (:title,:genres,:year,:plot,:cast,:runtime,:directors,:writers,:slug,NOW())";
+    $query = $pdo->prepare($sql);
+    $query->bindvalue(':title',$r_POST['title'],PDO::PARAM_STR);
+    $query->bindvalue(':genres',$r_POST['genre'],PDO::PARAM_STR);
+    $query->bindvalue(':year',$r_POST['year'],PDO::PARAM_INT);
+    $query->bindvalue(':plot',$r_POST['plot'],PDO::PARAM_STR);
+    $query->bindvalue(':cast',$r_POST['cast'],PDO::PARAM_STR);
+    $query->bindvalue(':runtime',$r_POST['time'],PDO::PARAM_INT);
+    $query->bindvalue(':directors',$r_POST['director'],PDO::PARAM_STR);
+    $query->bindvalue(':writers',$r_POST['writers'],PDO::PARAM_STR);
+    $query->bindvalue(':slug',$slug,PDO::PARAM_STR);
+
+    $query->execute();
+
+  }
+
+
+
+}
+
 
 
 
@@ -27,7 +70,8 @@ include 'includes/header_back.php';?>
           </div>
           <div class="col-md-4 col-lg-4">
             <label for="genre">Genre</label>
-            <input type="text" name="genre" class="form-control" value="">
+            <span><?php if (!empty($genre)) {echo $genre;}?></span>
+            <input type="text" name="genre" class="form-control" value="<?php if(!empty($_POST['genre'])) {echo $_POST['genre'];} ?>">
           </div>
           <div class="col-md-4 col-lg-4">
             <label for="year">Année</label>

@@ -59,7 +59,8 @@ footer {
 
 /*style page*/
 body {
-  background-color: lightgrey;
+  background-image: url('../img/Grey_Wallpaper.jpg');
+  background-size: cover;
 }
 /*style page details*/
 .affichage{
@@ -139,6 +140,20 @@ a:hover {
 }
 
 /* RESEAUX*/
+.facebook{
+  
+}
+.twitter{
+
+}
+.google{
+
+}
+.link{
+
+}
+
+
 .btn-center{
   width: 50%;
   text-align: center;
@@ -296,7 +311,9 @@ input.btn.btn-warning{
     background-position:left -59px
   }
   .stars{
-    overflow:hidden
+    overflow:hidden;
+    margin-left: 47%;
+    padding-top: 2%;
   }
   .tmp_es{
     background-position:left -21px
