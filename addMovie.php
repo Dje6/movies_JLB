@@ -68,7 +68,8 @@ include 'includes/header_back.php';?>
         <div class="form-group">
           <div class="col-md-4 col-lg-4">
             <label for="title">Titre</label>
-            <input type="text" name="title" class="form-control" value="">
+            <span><?php if (!empty($title)) {echo $title;}?></span>
+            <input type="text" name="title" class="form-control" value="<?php if(!empty($_POST['title'])) {echo $_POST['title'];} ?>">
           </div>
           <div class="col-md-4 col-lg-4">
             <label for="genre">Genre</label>
@@ -78,33 +79,39 @@ include 'includes/header_back.php';?>
           </div>
           <div class="col-md-4 col-lg-4">
             <label for="year">Année</label>
-            <input type="text" name="year" class="form-control" value="">
+            <span><?php if (!empty($year)) {echo $year;}?></span>
+            <input type="text" name="year" class="form-control" value="<?php if(!empty($_POST['year'])) {echo $_POST['year'];} ?>">
           </div>
         </div>
         <div class="form-group">
           <div class="col-md-12 col-lg-12">
             <label for="plot">Intrigue</label>
-            <textarea name="plot" class="form-control" rows="8" cols="80"></textarea>
+            <span><?php if (!empty($plot)) {echo $plot;}?></span>
+            <textarea name="plot" class="form-control" rows="8" cols="80"><?php if(!empty($_POST['plot'])) {echo $_POST['plot'];} ?></textarea>
           </div>
         </div>
         <div class="form-group">
           <div class="col-md-10 col-lg-10">
             <label for="cast">Cast</label>
-            <input type="text" name="cast" class="form-control" value="">
+            <span><?php if (!empty($cast)) {echo $cast;}?></span>
+            <input type="text" name="cast" class="form-control" value="<?php if(!empty($_POST['cast'])) {echo $_POST['cast'];} ?>">
           </div>
           <div class="col-md-2 col-lg-2">
             <label for="time">Durée (en minutes)</label>
-            <input type="text" name="time" class="form-control" value="">
+            <span><?php if (!empty($time)) {echo $time;}?></span>
+            <input type="text" name="time" class="form-control" value="<?php if(!empty($_POST['time'])) {echo $_POST['time'];} ?>">
           </div>
         </div>
         <div class="form-group">
           <div class="col-md-6 col-lg-6">
             <label for="director">Réalisateur</label>
-            <input type="text" name="director" class="form-control" value="">
+            <span><?php if (!empty($director)) {echo $director;}?></span>
+            <input type="text" name="director" class="form-control" value="<?php if(!empty($_POST['director'])) {echo $_POST['director'];} ?>">
           </div>
           <div class="col-md-6 col-lg-6">
             <label for="writers">Scénaristes</label>
-            <input type="text" name="writers" class="form-control" value="">
+            <span><?php if (!empty($writers)) {echo $writers;}?></span>
+            <input type="text" name="writers" class="form-control" value="<?php if(!empty($_POST['writers'])) {echo $_POST['writers'];} ?>">
           </div>
         </div>
         <div class="form-group">
