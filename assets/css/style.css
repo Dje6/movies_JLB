@@ -4,7 +4,8 @@
   margin: auto;
 }
 .navbar-brand span {
-  color: #ff740e;
+  color: white;
+  text-shadow: 2px 1px #337ab7;
 }
 .navbar-right {
   display: flex;
@@ -53,7 +54,7 @@ footer {
   text-align: center;
   width: 100%;
   background-color: black;
-  color: #ff6400;
+  color: white;
   font-family: sans-serif;
 }
 
@@ -84,12 +85,13 @@ img{
   padding: 1em;
 }
 h1 {
+  padding: 5px;
   font-size: 36px;
-  border: 2px solid  #ff6400;
+  border: 2px solid  black;
   margin-left: 35%;
   margin-right: 35%;
-  background-color: rgba(255, 255, 255, 0.7);
-  color : #ff6400;
+  background-color: rgba(51, 122, 183, 0.8);
+  color: white;
 }
 .detailcss {
   font-size: 20px;
@@ -109,10 +111,10 @@ h1 {
   display: flex;
   margin-top: 10em;
   margin-bottom: 8em;
-  border: 5px solid #ff6400;
+  border: 3px solid #337ab7;
   font-size: 21px;
-  color: #ff6400;
-  background-color: rgba(0, 0, 0, 0.1);
+  color: #337ab7;
+  background-color: rgba(238, 238, 238, 0.62);
 }
 label{
 	display: block;
@@ -122,6 +124,9 @@ label{
 /*boutons*/
 .btn {
   border-radius: 0px;
+}
+.btn-primary {
+  border: 1.5px solid black;
 }
 .boutonRegister {
 	padding: 10px 50px 10px;
@@ -205,10 +210,10 @@ a:hover {
   display: flex;
   margin-top: 10em;
   margin-bottom: 8em;
-  border: 5px solid #ff6400;
+  border: 3px solid #337ab7;
   font-size: 21px;
-  color: #ff6400;
-  background-color: rgba(0, 0, 0, 0.1);
+  color: #337ab7;
+  background-color: rgba(238, 238, 238, 0.62);
 }
 /*page modif*/
 .form_modif {
@@ -226,7 +231,7 @@ a:hover {
 
 /*evaluation*/
 .btn-grey{
-    background-color:#D8D8D8;
+  background-color:#D8D8D8;
 	color:#FFF;
 }
 .rating-block{
@@ -270,7 +275,7 @@ a:hover {
 }
 
 .note {
-  color: #ff6400;
+  color: #337ab7;
   font-size: 20px;
   font-weight: bolder;
 }
@@ -289,13 +294,9 @@ margin-top: 100px;
   overflow-y: scroll;
   float: left;
   text-align:left;
-  padding-left: 120px;
+  padding-left: 70px;
 }
-input.btn.btn-warning{
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
+
 .star{
   background-image:url('../img/star.png');
   background-position:left -2px;
@@ -310,10 +311,11 @@ input.btn.btn-warning{
   .fullStar{
     background-position:left -59px
   }
-  .stars{
+  #star-rating {
+    display: flex;
     overflow:hidden;
-    margin-left: 47%;
     padding-top: 2%;
+    justify-content: center;
   }
   .tmp_es{
     background-position:left -21px
@@ -328,9 +330,10 @@ input.btn.btn-warning{
   font-size: 1.5em;
 }
 .actuel {
-  background-color: #f0ad4e;
+  background-color: #30a5ff;
   padding: 3px 6px 3px 6px;
   margin: 5px;
+  color : yellow;
 }
 .actuel a {
   color : white;

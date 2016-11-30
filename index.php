@@ -34,7 +34,7 @@ include 'includes/header.php';?>
   <!-- filtres recherche -->
   <div class="container">
     <div class="row">
-      <button id="showFiltres" type="button" class="btn btn-warning btn-lg">Filtres de recherche</button>
+      <button id="showFiltres" type="button" class="btn btn-primary btn-lg">Filtres de recherche</button>
       <form class="filtresRecherche container" action="" method="GET">
 
         <div class="form-group col-xs-4 searchbar">
@@ -163,7 +163,7 @@ include 'includes/header.php';?>
 
           </div><br>
         </div><br><br>
-        <input type="submit" name="submit" class="btn btn-warning btn-lg" value ="Chercher un film">
+        <input type="submit" name="submit" class="btn btn-primary btn-lg" value ="Chercher un film">
       </form>
     </div>
   </div>
@@ -207,7 +207,7 @@ include 'includes/header.php';?>
 <div class="container">
   <div class="row">
     <a href="index.php">
-      <button type="button" class="btn btn-warning btn-lg btn-block">
+      <button type="button" class="btn btn-primary btn-lg btn-block">
         <h2 class="plusFilm">Plus de films !</h2>
       </button>
     </a>

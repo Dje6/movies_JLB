@@ -14,7 +14,7 @@ if (!empty($_GET['slug'])) {
   $movie = $query->fetch();
   include 'includes/header.php';
   ?>
-  <div class="affichage">
+  <div class="affichage container-fluid">
     <div class="row">
       <div class="thumbnail">
         <?php
@@ -97,32 +97,21 @@ if (!empty($_GET['slug'])) {
             if($a_voir > 0){ ?>
               <a href="avoir.php" class="btn btn-success btn-md" >Ce film est déjà dans votre liste<br/>Y accéder ?</a> <?php
             }else{ ?>
-              <a href="#" class="btn btn-warning btn-md addList" id="<?php echo $movie['id'] ; ?>">Ajouter aux films à voir</a> <?php
+              <a href="#" class="btn btn-primary btn-md addList" id="<?php echo $movie['id'] ; ?>">Ajouter aux films à voir</a> <?php
             }
          } else { ?>
-          <button class="btn btn-warning btn-md disabled">Connectez-vous pour ajouter ce film à votre liste</button>
+          <button class="btn btn-primary btn-md disabled">Connectez-vous pour ajouter ce film à votre liste</button>
         <?php } ?>
       </div> <!-- end thumbnail -->
     </div> <!-- end row -->
-
-      <!-- Social network -->
-    <!-- <div class="container text-center">
-      <form class="form-signin" data-ember-action="2">
-        <p>
-
-          <a name="fb_share" type="box_count" share_url="http://localhost/projet_commun_movies/movies_JLB/index.php" class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
-          <a href="http://twitter.com/share" class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i class="fa fa-twitter"></i></a>
-        </p>
-        <p>
-          <a class="btn btn-primary social-login-btn social-linkedin" href="/auth/linkedin"><i class="fa fa-linkedin"></i></a>
-          <a class="btn btn-primary social-login-btn social-google" href="/auth/google"><i class="fa fa-google-plus"></i></a>
-        </p>
-        <br> -->
-
-
   </div> <!-- end div affichage -->
 
+
+          <!-- Social networks -->
+  <div class="container">
     <div class="row">
+
+
 
       <iframe src="http://www.facebook.com/plugins/like.php?href=http://www.example.com/page.html&show_faces=true&width=65&action=like&font=arial&colorscheme=light&height=65"
         scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:65px; height:65px; margin-top:3px;" allowTransparency="true"></iframe>
@@ -134,8 +123,8 @@ if (!empty($_GET['slug'])) {
 
       <script type="in/share" data-counter="hidden"></script>
 
-
-</div> <!-- end social network -->
+    </div>
+  </div> <!-- end social network -->
 
           <script type="text/javascript" src="http://platform.linkedin.com/in.js"></script>
           <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
