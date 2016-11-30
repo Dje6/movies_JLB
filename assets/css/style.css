@@ -59,7 +59,8 @@ footer {
 
 /*style page*/
 body {
-  background-color: lightgrey;
+  background-image: url('http://chelsealaneco.com/media/catalog/category/Grey_Wallpaper.jpg');
+  background-size: cover;
 }
 /*style page details*/
 .affichage{
