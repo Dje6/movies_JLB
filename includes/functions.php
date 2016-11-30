@@ -16,6 +16,18 @@ function debug ($array) {
   print_r($array);
   echo '</pre>';
 }
+//transform un array en chaine de caractere separer par des virgule
+function array_string($array){
+  if(is_array($array)){
+    foreach ($array as $key => $value) {
+      $genres .= $value.',';
+    }
+    $genres = rtrim($genres, ',');
+  }else{
+    $genres = $array;
+  }
+  return $genres;
+}
 
 //function generer une random string (pour token)
 function generateRandomString($length = 10) {
