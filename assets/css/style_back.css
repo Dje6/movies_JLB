@@ -23,6 +23,12 @@ margin-left: 25%;
 margin-top: 10%;
 text-align: center;
 }
+.alimage2 {
+/*margin-left: 40%;*/
+margin-top: 2%;
+display: block;
+margin: 0 auto;
+}
 
 body {
 	background: #f1f4f7;
