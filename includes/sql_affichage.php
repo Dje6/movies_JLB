@@ -20,8 +20,7 @@ function search($limit,$page,$r_GET)
     if(!empty($r_GET["searchbar"])){
       $i=0;
       foreach (explode(" ", $r_GET["searchbar"]) as $key => $value) {
-        if($value != NULL)
-        {
+        if($value != NULL){
           $mot_sj[$i] = "title LIKE '%$value%' OR plot LIKE '%$value%'";
           $i++;
         }
@@ -34,8 +33,7 @@ function search($limit,$page,$r_GET)
     if(!empty($r_GET["genres"])){
   $i=0;
   foreach ($r_GET["genres"] as $key => $value) {
-    if($value != NULL)
-    {
+    if($value != NULL){
       $genre_sj[$i] = "genres LIKE '%$value%'";
       $i++;
     }
@@ -49,14 +47,13 @@ function search($limit,$page,$r_GET)
 //par default la fouche est de 0 a 100
   $rating = 'AND (rating BETWEEN '.$r_GET["rating_debut"].' AND '.$r_GET["rating_fin"].')' ;
 
-
-    $sql = "SELECT * FROM movies_full WHERE $final_sj $final_genre_sj $annee $rating LIMIT $limit OFFSET $offset";
-    $par = $final_sj.$final_genre_sj.$annee.$rating;
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    $movies = $query->fetchAll();
-     $movies['total'] = calcule_page(count_page('id','movies_full',$par),$limit,$page);
-     return $movies;
+  $sql = "SELECT * FROM movies_full WHERE $final_sj $final_genre_sj $annee $rating LIMIT $limit OFFSET $offset";
+  $par = $final_sj.$final_genre_sj.$annee.$rating;
+  $query = $pdo->prepare($sql);
+  $query->execute();
+  $movies = $query->fetchAll();
+  $movies['total'] = calcule_page(count_page('id','movies_full',$par),$limit,$page);
+  return $movies;
 }
 
 function movies($limit,$page)

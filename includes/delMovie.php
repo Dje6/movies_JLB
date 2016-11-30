@@ -23,11 +23,11 @@ if($_POST)
     $query = $pdo->prepare($sql);
     $query->bindValue(':id',$movie[0]['id'],PDO::PARAM_INT);
     if($query->execute()){
-      
+
       $error['success'] = true;
       $error['message'] = 'Film correctement supprimer';
       $error['id'] = $movie[0]['id'];
-      $error['title'] = str_replace(' ','-',$movie[0]['title']);
+      $error['title'] = strip_tags(trim(str_replace(' ','-',str_replace('\'','-',$movie[0]['title']))));;
       $error['year'] = $movie[0]['year'];
       $error['rating'] = $movie[0]['rating'];
       $error['bouton'] = 'bouton';
