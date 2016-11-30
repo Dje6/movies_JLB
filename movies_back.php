@@ -2,6 +2,15 @@
 session_start();
 include('includes/functions.php');
 include('includes/header_back.php');
+
+// calcul nombre de fileperms
+$sql ="SELECT count(*) FROM movies_full";
+$query = $pdo->prepare($sql);
+$query->execute();
+$nb_films = $query->fetchColumn();
+
+
+
 if(isAdmin()) {
   $r_GET = nettoyage($_GET);
 
@@ -18,7 +27,7 @@ $pagination = pagination($r_GET['page'],$movies['total']['nb_page'],basename($_S
 
       <?php echo $pagination//peut etre afficher plusieur fois si besoin ?>
 
-      <table class="use table">
+      <table class="use table blue">
         <tr>
           <th>ID</th>
           <th>Title</th>
@@ -42,6 +51,11 @@ $pagination = pagination($r_GET['page'],$movies['total']['nb_page'],basename($_S
   } ?>
       </table>
     </div>
+      <div class="col-xs-3 col-md-3 col-lg-2">
+        <h4 class="blue" >Nombre de films</h4>
+        	<div class="large blue"><?php echo $nb_films ;?></div>
+      </div>
+
   </div>
 </div>
 <?php }else{

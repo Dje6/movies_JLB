@@ -2,6 +2,13 @@
 session_start();
 include('includes/functions.php');
 include('includes/header_back.php');
+
+$sql ="SELECT count(*) FROM users";
+$query = $pdo->prepare($sql);
+$query->execute();
+$nb_abo = $query->fetchColumn();
+
+
 if(isLogged())
 {
   if($_SESSION['user']['status'] == 'Admin'){
@@ -21,7 +28,7 @@ if(isLogged())
 
       echo $pagination;
       ?>
-      <div class="container table-responsive">
+      <div class="blue container table-responsive">
        <table class="use table">
            <th>ID</th>
            <th>Pseudo</th>
@@ -45,6 +52,14 @@ if(isLogged())
           }
         } ?>
        </table>
+        <div class="row">
+          <div class="col-lg-12 ">
+              <div class="large alimage">
+                  <h4 class="blue"><?php echo $nb_abo ;?> Utilisateurs</h4>
+                  <img src="assets/img/ut.png" alt="">
+              </div>
+          </div>
+        </div>
       </div>
        <?php
      }
