@@ -60,8 +60,8 @@ include 'includes/header_back.php';?>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-offset-3 col-sm-9 col-md-offset-3 col-md-9 col-lg-offset-2 col-lg-10">
-      <h1 class="text-center">Ajouter un film</h1>
+    <div class="col-sm-offset-3 col-sm-9 col-md-offset-3 col-md-9 col-lg-offset-2 col-lg-10 blue">
+      <h1 class="text-center blue">Ajouter un film</h1>
       <form class="addMovie" action="" method="POST">
         <div class="form-group">
           <div class="col-md-4 col-lg-4">
@@ -105,7 +105,7 @@ include 'includes/header_back.php';?>
           </div>
         </div>
         <div class="form-group">
-          <input type="submit" name="submit" class="btn-lg btn-primary" value="Ajouter">
+          <input type="submit" name="submit" class="btn-lg btn-primary alimage2" value="Ajouter">
         </div>
       </form>
     </div>

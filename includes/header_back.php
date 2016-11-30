@@ -34,7 +34,7 @@
         <li class="active"><a href="dashboard.php"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
         <li><a href="users_back.php"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Utilisateurs</a></li>
         <li><a href="movies_back.php"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Films</a></li>
-        <!-- <li><a href="#"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> page3</a></li> -->
+        <li><a href="addMovie.php"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Ajouter un film</a></li>
         <li><a href="index.php"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Retour FRONT</a></li>
       </ul>
       <img src="assets/img/dash1.gif" class="dashimg" alt="graphique">

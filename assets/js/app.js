@@ -1,7 +1,13 @@
 //toggle filtre recherche
-$('#showFiltres').click(function(event) {
+$('#showFiltres').click(function() {
   $(this).next('form').slideToggle("slow");
 });
+//dans filtre recherche, select tous les genres
+$("#check_all").change(function() {
+  $(".check_genres").prop('checked', $(this).prop("checked"));
+});
+
+
 //demarag de la fonction pour le vote etoile
 $(function(){                   // Start when document ready
   $('#star-rating').rating(function(vote,id_mov, event){
@@ -87,6 +93,34 @@ $(".addList").on("click",function(e) {
     }
   });
 });
+//suppression de video
+$(".liste_movies_back #supprimer_movie").on("click",function(e) {
+  e.preventDefault();
+  $this = $(this);
+
+  $.ajax({
+    type:'POST',
+    url: $(this).attr('href'),
+    data: {id:$(this).attr('idmovie')},
+    dataType:"Json",
+    beforeSend: function(){
+    },
+    success: function(response){
+      if(response.success === true){
+        $('.liste_movies_back'+response.id+' .'+response.title).html(response.message);
+        $('.liste_movies_back'+response.id+' .'+response.year).html(0);
+        $('.liste_movies_back'+response.id+' .'+response.rating).html(0);
+        $('.liste_movies_back'+response.id+' .bouton').html('');
+      }else{
+        console.log('rater');
+      }
+    },
+    error: function(response){
+      console.log(response);
+    }
+  });
+});
+
 //systeme de vote des etoiles
 ;(function($){
     $.fn.rating = function(callback){

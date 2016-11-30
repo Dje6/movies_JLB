@@ -106,21 +106,39 @@ if (!empty($_GET['slug'])) {
     </div> <!-- end row -->
 
       <!-- Social network -->
-    <div class="container text-center">
+    <!-- <div class="container text-center">
       <form class="form-signin" data-ember-action="2">
         <p>
-          <a class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
-          <a class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i class="fa fa-twitter"></i></a>
+
+          <a name="fb_share" type="box_count" share_url="http://localhost/projet_commun_movies/movies_JLB/index.php" class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
+          <a href="http://twitter.com/share" class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i class="fa fa-twitter"></i></a>
         </p>
         <p>
           <a class="btn btn-primary social-login-btn social-linkedin" href="/auth/linkedin"><i class="fa fa-linkedin"></i></a>
           <a class="btn btn-primary social-login-btn social-google" href="/auth/google"><i class="fa fa-google-plus"></i></a>
         </p>
-        <br>
-      </form>
-    </div> <!-- end social network -->
+        <br> -->
+
+
   </div> <!-- end div affichage -->
 
+    <div class="row">
 
+      <iframe src="http://www.facebook.com/plugins/like.php?href=http://www.example.com/page.html&show_faces=true&width=65&action=like&font=arial&colorscheme=light&height=65"
+        scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:65px; height:65px; margin-top:3px;" allowTransparency="true"></iframe>
+        <a name="fb_share" type="box_count" share_url="http://www.example.com/page.html"></a>
+
+        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+      <g:plusone size="right"></g:plusone>
+
+      <script type="in/share" data-counter="hidden"></script>
+
+
+</div> <!-- end social network -->
+
+          <script type="text/javascript" src="http://platform.linkedin.com/in.js"></script>
+          <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+          <script type="text/javascript" src="https://apis.google.com/js/plusone.js">{lang: 'fr'}</script>
 
 <?php include 'includes/footer.php'; ?>
