@@ -9,7 +9,7 @@ if (!empty($_GET['submit'])) {
     if(!isset($r_GET['page'])){
       $r_GET['page'] = 1 ;
     }
-    $num = 20;//nombre de video presenter sur la page par defaut
+    $num = 15;//nombre de video presenter sur la page par defaut
 
     if(isset($r_GET['nbr_par_page'])){ //si un choix est fait on utilise ce choix
       $num = $r_GET['nbr_par_page'] ;
@@ -72,13 +72,14 @@ include 'includes/header.php';?>
           //   }
           // }
           //pas fini
-
+              //Un checkbox pour sélect tous les genres
+          echo '<input type="checkbox" id="check_all"><b>Sélectionner tout</b><br>' ;
           foreach (array_unique($liste_genre) as $key => $value) {
             if($key > 1 && $value != 'N/A'){
             //  if(isset($r_GET['genres']) && !empty($r_GET['genres']) && ($genre_comparaison)){ //pas fini
             //    echo '<input type="checkbox" name="genres[]" value="'.$value.'" checked>'.$value.'<br>' ;
             //  }else{
-                echo '<input type="checkbox" name="genres[]" value="'.$value.'">'.$value.'<br>' ;
+                echo '<input type="checkbox" class="check_genres" name="genres[]" value="'.$value.'">'.$value.'<br>' ;
             //  }
             }
           } ?>
@@ -87,10 +88,16 @@ include 'includes/header.php';?>
 
         <div class="col-xs-4">
           <!-- Recherche par année -->
+          <?php
+          $sql = "SELECT MIN(year) FROM movies_full";
+          $query = $pdo->prepare($sql);
+          $query->execute();
+          $min = $query->fetchColumn(); ?>
+
           <div class="form-group">
             <label for="annees_debut">Année de</label>
             <select class="form-control" name="annees_debut">
-              <?php for($i=1950 ; $i <= date('Y') ;$i++){
+              <?php for($i=$min ; $i <= date('Y') ;$i++){
                 echo '<option value="'.$i.'">'.$i.'</option>';
               } ?>
             </select>
@@ -127,8 +134,8 @@ include 'includes/header.php';?>
 
             <br/><label for="nbr_par_page">Videos par page </label>
             <select class="form-control" name="nbr_par_page">
-              <?php for($i=10 ; $i <= 50 ;($i+=10)){
-                if($i == 20){
+              <?php for($i=9 ; $i <= 30 ;($i+=3)){
+                if($i == 15){
                   echo '<option value="'.$i.'" selected>'.$i.'</option>';
                 }else{
                     echo '<option value="'.$i.'">'.$i.'</option>';
@@ -172,6 +179,9 @@ include 'includes/header.php';?>
       }
     } ?>
   </div>
+<?php  if(!empty($_GET['submit'])){ //pagination en dessous de la liste aussi
+    echo $pagination;
+  } ?>
 </div>
 <hr>
 <!-- Button + de films -->

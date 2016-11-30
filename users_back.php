@@ -19,32 +19,41 @@ if(isLogged())
       $users = users($num,$retour_get['page']);
       $pagination = pagination($retour_get['page'],$users['total']['nb_page'],basename($_SERVER['PHP_SELF']));
 
-      echo $pagination;
       ?>
-      <div class="container table-responsive">
-       <table class="use table">
-           <th>ID</th>
-           <th>Pseudo</th>
-           <th>Email</th>
-           <th>Creation</th>
-           <th>Role</th>
-           <th>Action</th>
-           <?php
-        foreach ($users as $key => $ligne) {
-          if(is_numeric($key)){
-            $retour = bouton($ligne,$retour_get['page'],basename($_SERVER['PHP_SELF']));
-            ?>
-           <tr>
-              <td><?php echo $ligne['id'] ?></td>
-              <td><?php echo $ligne['pseudo'] ?></td>
-              <td><?php echo $ligne['email'] ?></td>
-              <td><?php echo $ligne['createdat'] ?></td>
-              <td><?php echo $ligne['status'] ?></td>
-              <td><?php echo $retour['bouton']; ?></td>
-           </tr> <?php
-          }
-        } ?>
-       </table>
+      <div class="container-fluid table-responsive">
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-9 col-md-offset-3 col-md-9 col-lg-offset-2 col-lg-10">
+
+            <?php echo $pagination; ?>
+
+            <table class="use table">
+               <th>ID</th>
+               <th>Pseudo</th>
+               <th>Email</th>
+               <th>Creation</th>
+               <th>Role</th>
+               <th>Action</th>
+               <?php
+            foreach ($users as $key => $ligne) {
+              if(is_numeric($key)){
+                $retour = bouton($ligne,$retour_get['page'],basename($_SERVER['PHP_SELF']));
+                ?>
+               <tr>
+                  <td><?php echo $ligne['id'] ?></td>
+                  <td><?php echo $ligne['pseudo'] ?></td>
+                  <td><?php echo $ligne['email'] ?></td>
+                  <td><?php echo $ligne['createdat'] ?></td>
+                  <td><?php echo $ligne['status'] ?></td>
+                  <td><?php echo $retour['bouton']; ?></td>
+               </tr> <?php
+              }
+            } ?>
+           </table>
+
+           <?php echo $pagination; ?>
+                     
+         </div>
+       </div>
       </div>
        <?php
      }
