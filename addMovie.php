@@ -45,15 +45,17 @@ debug($error);
     $query->execute();
 
   }
+}
+if($_GET && !$_POST){
+  $r_GET = nettoyage($_GET);
 
-
+  $sql = "SELECT * FROM movies_full WHERE id = :id";
+  $query = $pdo->prepare($sql);
+  $query->bindvalue(':id',$r_GET['id'],PDO::PARAM_INT);
+  $query->execute();
+  $movie = $query->fetch();
 
 }
-
-
-
-
-
 
 include 'includes/header_back.php';?>
 
@@ -71,7 +73,8 @@ include 'includes/header_back.php';?>
           <div class="col-md-4 col-lg-4">
             <label for="genre">Genre</label>
             <span><?php if (!empty($genre)) {echo $genre;}?></span>
-            <input type="text" name="genre" class="form-control" value="<?php if(!empty($_POST['genre'])) {echo $_POST['genre'];} ?>">
+            <input type="text" name="genre" class="form-control" value="<?php if(!empty($_POST['genre']))
+            {echo $_POST['genre'];}elseif(!empty($movie['genre'])) {echo $movie['genre'];} ?>">
           </div>
           <div class="col-md-4 col-lg-4">
             <label for="year">Année</label>
@@ -112,17 +115,5 @@ include 'includes/header_back.php';?>
   </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include 'includes/header_back.php'; ?>
