@@ -63,24 +63,28 @@ include 'includes/header.php';?>
             }
           }
           //pas fini
-          // $genre_comparaison='';
-          // foreach ($r_GET['genres'] as $key => $value) {
-          //   if($key == 0){
-          //     $genre_comparaison .= '$value == '.$value ;
-          //   }else{
-          //    $genre_comparaison .= ' || $value == '.$value ;
-          //   }
-          // }
+            function tcheck_genre($value_y,$array){
+              foreach ($array as $key => $value) {
+                if($value == $value_y){
+                  return true;
+                }
+              }
+              return false;
+            }
           //pas fini
               //Un checkbox pour sélect tous les genres
           echo '<input type="checkbox" id="check_all"><b>Sélectionner tout</b><br>' ;
           foreach (array_unique($liste_genre) as $key => $value) {
             if($key > 1 && $value != 'N/A'){
-            //  if(isset($r_GET['genres']) && !empty($r_GET['genres']) && ($genre_comparaison)){ //pas fini
-            //    echo '<input type="checkbox" name="genres[]" value="'.$value.'" checked>'.$value.'<br>' ;
-            //  }else{
-                echo '<input type="checkbox" class="check_genres" name="genres[]" value="'.$value.'">'.$value.'<br>' ;
-            //  }
+               if(isset($r_GET['genres']) && !empty($r_GET['genres'])){ //pas fini
+                 if(tcheck_genre($value,$r_GET['genres'])){
+                   echo '<input type="checkbox" name="genres[]" value="'.$value.'" checked>'.$value.'<br>' ;
+                 }else{
+                   echo '<input type="checkbox" class="check_genres" name="genres[]" value="'.$value.'">'.$value.'<br>' ;
+                 }
+               }else{
+                  echo '<input type="checkbox" class="check_genres" name="genres[]" value="'.$value.'">'.$value.'<br>' ;
+               }
             }
           } ?>
         </div>

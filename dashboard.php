@@ -77,7 +77,7 @@ $ratingfilm = $query->fetchColumn();
 									</div>
 									<div class="col-sm-9 col-lg-7 widget-right">
 										<div class="large"><?php echo $nb_Ajfilms ;?></div>
-										<div class="text-muted">Films ajoutés</div>
+										<div class="text-muted">Films mis en favoris </div>
 									</div>
 								</div>
 							</div>
