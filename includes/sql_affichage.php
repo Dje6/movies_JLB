@@ -63,7 +63,7 @@ function movies($limit,$page)
 {
   global $pdo;
   $offset = (($limit)*($page-1));
-  $sql = "(SELECT id,title,year,rating FROM movies_full ORDER BY id LIMIT $limit OFFSET $offset)";
+  $sql = "(SELECT id,title,year,rating,slug FROM movies_full ORDER BY id LIMIT $limit OFFSET $offset)";
   $query = $pdo->prepare($sql);
   $query->execute();
   $nb = $query->fetchAll();
