@@ -2,6 +2,13 @@
 session_start();
 include('includes/functions.php');
 include('includes/header_back.php');
+
+$sql ="SELECT count(*) FROM users";
+$query = $pdo->prepare($sql);
+$query->execute();
+$nb_abo = $query->fetchColumn();
+
+
 if(isLogged())
 {
   if($_SESSION['user']['status'] == 'Admin'){
@@ -20,7 +27,9 @@ if(isLogged())
       $pagination = pagination($retour_get['page'],$users['total']['nb_page'],basename($_SERVER['PHP_SELF']));
 
       ?>
-      <div class="container-fluid table-responsive">
+
+      <!-- Tableau des utilisateurs -->
+      <div class="blue container-fluid table-responsive">
         <div class="row">
           <div class="col-sm-offset-3 col-sm-9 col-md-offset-3 col-md-9 col-lg-offset-2 col-lg-10">
 
@@ -51,10 +60,23 @@ if(isLogged())
            </table>
 
            <?php echo $pagination; ?>
-                     
+
          </div>
        </div>
+
+       <!-- Nombres de users + images  -->
+       <div class="row">
+         <div class="col-lg-12 ">
+           <div class="large alimage">
+             <h4 class="blue"><?php echo $nb_abo ;?> Utilisateurs</h4>
+             <img src="assets/img/ut.png" alt="">
+           </div>
+         </div>
+       </div>
+
       </div>
+      <!-- Fin tableau utilisateurs -->
+
        <?php
      }
      elseif($type == 'supprimer'){

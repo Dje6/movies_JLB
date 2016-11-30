@@ -109,14 +109,21 @@ if (!empty($_GET['slug'])) {
     <div class="container text-center">
       <form class="form-signin" data-ember-action="2">
         <p>
-          <a class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
-          <a class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i class="fa fa-twitter"></i></a>
+          <a name="fb_share" type="box_count" share_url="http://localhost/projet_commun_movies/movies_JLB/index.php" class="btn btn-primary social-login-btn social-facebook" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
+          <a href="http://twitter.com/share" class="btn btn-primary social-login-btn social-twitter" href="/auth/twitter"><i class="fa fa-twitter"></i></a>
         </p>
         <p>
           <a class="btn btn-primary social-login-btn social-linkedin" href="/auth/linkedin"><i class="fa fa-linkedin"></i></a>
           <a class="btn btn-primary social-login-btn social-google" href="/auth/google"><i class="fa fa-google-plus"></i></a>
         </p>
         <br>
+
+
+        <!-- <iframe src="http://www.facebook.com/plugins/like.php?href=http://www.example.com/page.html&layout=box_count&show_faces=true&width=65&action=like&font=arial&colorscheme=light&height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:65px; height:65px; margin-top:3px;" allowTransparency="true"></iframe> -->
+
+        <a name="fb_share" type="box_count" share_url="http://localhost/projet_commun_movies/movies_JLB/index.php"></a>
+        <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+
       </form>
     </div> <!-- end social network -->
   </div> <!-- end div affichage -->
