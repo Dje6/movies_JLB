@@ -24,7 +24,7 @@
 /*form recheche*/
 .filtresRecherche {
   border: 2px solid black;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(238, 238, 238, 0.62);
   max-width: 75%;
   display: none;
   margin-top: 1em;
@@ -141,7 +141,7 @@ a:hover {
 
 /* RESEAUX*/
 .facebook{
-  
+
 }
 .twitter{
 
